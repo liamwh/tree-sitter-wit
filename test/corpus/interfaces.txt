@@ -1,0 +1,19 @@
+==================
+Interfaces
+==================
+
+interface Example {
+    type alias = string;
+    func doSomething() -> bool;
+}
+
+---
+(source_file
+  (interface
+    name: (identifier)
+    (type_definition
+      type_name: (identifier)
+      type: (type))
+    (function_declaration
+      function_name: (identifier)
+      return_type: (type))))

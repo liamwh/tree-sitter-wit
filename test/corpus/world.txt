@@ -1,0 +1,15 @@
+==================
+Worlds
+==================
+
+world imports {
+    import streams;
+    import poll;
+}
+
+---
+(source_file
+  (world
+    name: (identifier)
+    import: (import import_name: (identifier))
+    import: (import import_name: (identifier))))
