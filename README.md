@@ -1,6 +1,12 @@
 # Tree Sitter Grammar for WebAssembly Interface Types (.wit) files
 
-At the moment I don't intend to finish this due to lack of time, but please feel free to fork if you'd like to see it completed.
+## Features
+
+- [X] Primitive Types: (`bool`, `s8`, `u8`, `float32`...)
+- [X] Container Types: (`tuple`, `list`, `option`, `result`)
+- [X] Named types: (`record`, `enum`, `variant`, `flags`, `func`, `resource`)
+- [ ] Imports/Exports (work-in-progress): (`include`, `use`, `using`, `import`, `export`, `world`, `.`, `package`)
+- [ ] Modifiers / Resource Keywords (work-in-progress): (`constructor`, `static`, `self`, `borrow`, `owned`)
 
 ## Contributing
 

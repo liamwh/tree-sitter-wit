@@ -11,10 +11,15 @@ generate:
     tree-sitter generate
 
 
-# Build to wasm
+# Build to Wasm
 build:
-    tree-sitter build --wasm --output ./build/parser.wasm tree-sitter-wit
+    tree-sitter build --wasm --output ./build/parser.wasm .
 
 # Test the parser
 test: generate
     tree-sitter test
+
+# Install the queries locally
+install-local:
+    rm -rf ~/.local/share/nvim/lazy/nvim-treesitter/queries/wit
+    cp -r ./queries ~/.local/share/nvim/lazy/nvim-treesitter/queries/wit
