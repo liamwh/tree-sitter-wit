@@ -23,3 +23,7 @@ test: generate
 install-local:
     rm -rf ~/.local/share/nvim/lazy/nvim-treesitter/queries/wit
     cp -r ./queries ~/.local/share/nvim/lazy/nvim-treesitter/queries/wit
+
+# Format the queries
+format-queries:
+    nvim -l scripts/format-queries.lua
