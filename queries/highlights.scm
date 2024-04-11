@@ -18,10 +18,7 @@
   "float64"
   "char"
   "string"
-] @type.builtin
-
-; Container Types
-[
+  ; Container Types
   "list"
   "tuple"
   "option"
@@ -37,7 +34,7 @@
   "variant"
   "flags"
   "resource"
-] @keyword
+] @keyword.type
 
 ; Keywords for importing and exporting
 [
@@ -52,26 +49,25 @@
 
 ; Named Types (Capitalized identifiers)
 ((identifier) @type
-  (#lua-match? @type "^[A-Z]"))
+  (#match? @type "^[A-Z]"))
 
-; Identifiers (variable names, function names, type names, etc.)
 ((identifier) @variable
-  (#lua-match? @variable "^[a-z_][a-zA-Z0-9_]*$"))
+  (#match? @variable "^[a-z_][a-zA-Z0-9_]*$"))
 
 ; Constants (UPPER_CASE names and Enums)
 ((identifier) @constant
-  (#lua-match? @constant "^[A-Z][A-Z0-9_]+$"))
+  (#match? @constant "^[A-Z][A-Z0-9_]+$"))
 
 ; Functions and Methods (lowercase names followed by parentheses)
 ((identifier) @function
-  (#lua-match? @function "^[a-z_][a-zA-Z0-9_]*%(")))
+  (#match? @function "^[a-z_][a-zA-Z0-9_]*%("))
 
 ; Punctuation
 [
   ";"
   ":"
   "->"
-] @punctuation
+] @punctuation.special
 
 ; Delimiters
 "," @punctuation.delimiter
