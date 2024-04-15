@@ -14,7 +14,7 @@ This grammar is intended to be used with the [Tree-sitter](https://tree-sitter.g
 
 ## Installation
 
-### Neovim (Coming Soon, see [PR](https://github.com/nvim-treesitter/nvim-treesitter/pull/6428))
+### Neovim
 
 Neovim users can use the [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) plugin to install the grammar.
 
