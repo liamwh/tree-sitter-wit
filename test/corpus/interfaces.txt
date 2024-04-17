@@ -4,7 +4,7 @@ Interfaces
 
 interface Example {
     type alias = string;
-    func doSomething() -> bool;
+    func-name: func(hey: u32, ho: string) -> bool;
 }
 
 ---
@@ -15,5 +15,11 @@ interface Example {
       type_name: (identifier)
       type: (type))
     (function_declaration
-      function_name: (identifier)
-      return_type: (type))))
+        function_name: (ident)
+        (named_ty
+            name: (ident)
+            ty: (ty))
+        (named_ty
+            name: (ident)
+            ty: (ty))
+        return_type: (ty))))

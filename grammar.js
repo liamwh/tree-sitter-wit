@@ -50,11 +50,15 @@ module.exports = grammar({
     ),
 
     function_declaration: $ => seq(
+      field('function_name', $.ident),
+      ':',
       'func',
-      field('function_name', $.identifier),
-      '(', /* parameters */ ')',
-      '->',
-      field('return_type', $.type),
+      '(',
+      optional(seq(csl0($.named_ty))),
+      ')',
+      optional(seq(
+        '->',
+        field('return_type', $.ty))),
       ';'
     ),
 
