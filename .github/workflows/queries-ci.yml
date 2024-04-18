@@ -1,0 +1,59 @@
+name: Queries-CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["*"]
+    paths:
+      - queries/**
+  pull_request:
+    paths:
+      - queries/**
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  luacheck:
+    name: Luacheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare
+        run: |
+          sudo apt-get update
+          sudo apt-get install luarocks -y
+          sudo luarocks install luacheck
+
+      - name: Run Luacheck
+        run: luacheck .
+
+  stylua:
+    name: StyLua
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint with stylua
+        uses: JohnnyMorganz/stylua-action@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+          args: --check .
+
+  format-queries:
+    name: Lint queries
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare
+        run: |
+          wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+          tar -zxf nvim-linux64.tar.gz
+          sudo ln -s "$PWD"/nvim-linux64/bin/nvim /usr/local/bin
+
+      - name: Lint Queries
+        run: |
+          nvim -l scripts/format-queries.lua
+          git diff --exit-code
