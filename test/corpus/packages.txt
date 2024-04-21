@@ -2,17 +2,13 @@
 Packages
 ==================
 
-package wasmcloud:hello@1.0.0;
-package wasi:io;
+package wasmcloud:hello/blubs@1.0.0;
 
 ---
 
 (source_file
-  (package
-    namespace: (identifier)
-    name: (identifier)
-    version: (version))
-  (package
-    namespace: (identifier)
-    name: (identifier))
-)
+ (package_decl
+  (id)
+  (id)
+  (id)
+  (valid_semver)))
