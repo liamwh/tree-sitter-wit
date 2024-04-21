@@ -4,12 +4,97 @@ Worlds
 
 world imports {
     import streams;
-    import poll;
+    export streams;
+
+    import iface-name: interface {
+        type some-name = u32;
+        foo: func(p: string) -> result<u32, aaa>;
+    }
+    export iface-name: interface {
+        type some-name = u32;
+        foo: func(p: string) -> result<u32, aaa>;
+    }
+
+    import foo: func(p: string) -> result<u32, aaa>;
 }
 
 ---
+
 (source_file
-  (world
-    name: (identifier)
-    import: (import import_name: (identifier))
-    import: (import import_name: (identifier))))
+ (world_item
+  name: (id)
+  body: (world_body
+   world_items: (world_items
+    import_item: (import_item
+     (use_path
+      (id))))
+   world_items: (world_items
+    export_item: (export_item
+     (use_path
+      (id))))
+   world_items: (world_items
+    import_item: (import_item
+     (id)
+     (extern_type
+      (interface_body
+       interface_items: (interface_items
+        typedef: (typedef_item
+         (type_item
+          alias: (id)
+          type: (ty))))
+       interface_items: (interface_items
+        func: (func_item
+         name: (id)
+         (func_type
+          param_list: (param_list
+           (named_type_list
+            (named_type
+             name: (id)
+             type: (ty))))
+          result_list: (result_list
+           (ty
+            (result
+             (ty)
+             (ty
+              (id))))))))))))
+ world_items: (world_items
+  export_item: (export_item
+   (id)
+   (extern_type
+    (interface_body
+     interface_items: (interface_items
+      typedef: (typedef_item
+       (type_item
+        alias: (id)
+        type: (ty))))
+     interface_items: (interface_items
+      func: (func_item
+       name: (id)
+       (func_type
+        param_list: (param_list
+         (named_type_list
+          (named_type
+           name: (id)
+           type: (ty))))
+        result_list: (result_list
+         (ty
+          (result
+           (ty)
+           (ty
+            (id))))))))))))
+ world_items: (world_items
+  import_item: (import_item
+   (id)
+   (extern_type
+    (func_type
+     param_list: (param_list
+      (named_type_list
+       (named_type
+        name: (id)
+        type: (ty))))
+     result_list: (result_list
+      (ty
+       (result
+        (ty)
+        (ty
+         (id))))))))))))
