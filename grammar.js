@@ -14,106 +14,77 @@ const csl1 = rule => seq(
 );
 
 const csl0 = rule => optional(csl1(rule));
+
 module.exports = grammar({
   name: 'wit',
 
+  extras: $ => [
+    /\s|\\\r?\n/,
+    $.comment,
+  ],
+
   rules: {
-    source_file: $ => repeat($._definition),
-
-    _definition: $ => choice(
-      $.package,
-      $.world,
-      $.interface,
+    source_file: $ => seq(
+      optional($.package_decl),
+      repeat(
+        choice(
+          $.toplevel_use_item,
+          $.world_item,
+          $.interface_item,
+        ),
+      ),
     ),
 
-    interface: $ => seq(
-      'interface',
-      field('name', $.identifier),
-      '{',
-      repeat($._interface_content),
-      '}'
-    ),
-
-    _interface_content: $ => choice(
-      $.type_definition,
-      $.function_declaration,
-    ),
-
-    type_definition: $ => seq(
-      'type',
-      field('type_name', $.identifier),
-      '=',
-      field('type', $.type),
-      ';'
-    ),
-
-    type: $ => choice(
-      'bool',
-      's8', 's16', 's32', 's64',
-      'u8', 'u16', 'u32', 'u64',
-      'float32', 'float64',
-      'char', 'string',
-      $.identifier,
-      $.list,
-      $.tuple
-    ),
-
-    function_declaration: $ => seq(
-      'func',
-      field('function_name', $.identifier),
-      '(', /* parameters */ ')',
-      '->',
-      field('return_type', $.type),
-      ';'
-    ),
-
-    package: $ => seq(
+    package_decl: $ => seq(
       'package',
-      field('namespace', $.identifier),
-      ':',
-      field('name', $.identifier),
-      optional(seq('@', field('version', $.version))),
+      repeat1(seq($.id, ':')),
+      $.id,
+      repeat(seq('/', $.id)),
+      optional(seq('@', $.valid_semver)),
       ';'
     ),
 
-    list: $ => seq(
-      'list<',
-      field('element_type', $.type),
-      '>'
+    toplevel_use_item: $ => seq(
+      'use',
+      field('path', $.use_path),
+      optional(field('alias', seq('as', $.id))),
+      ';',
+    ),
+    use_path: $ => choice(
+      $.id,
+      // seq(repeat1(seq($.id, ':')), $.id, repeat1(seq('/', $.id)), optional(seq('@', $.valid_semver))),
+      seq(repeat1(seq($.id, ':')), $.id, repeat(seq('/', $.id)), optional(seq('@', $.valid_semver))),
     ),
 
-    tuple: $ => seq(
-      'tuple<',
-      field('first_type', $.type),
-      ',',
-      field('second_type', $.type),
-      '>'
-    ),
+    id: $ => /%?(([a-z][a-z0-9]*|[A-Z][A-Z0-9]*))(-([a-z][a-z0-9]*|[A-Z][A-Z0-9]*))*/,
 
-    identifier: $ => /[a-zA-Z_][a-zA-Z0-9_-]*/,
+    valid_semver: $ => /\d+\.\d+\.\d+/,
 
-    version: $ => /\d+\.\d+\.\d+/,
-
-    world: $ => seq(
+    world_item: $ => seq(
       'world',
-      field('name', $.identifier),
-      '{',
-      repeat(field('import', $.import)),
-      '}'
+      field('name', $.id),
+      field('body', $.world_body),
     ),
 
-    import: $ => seq(
-      'import',
-      field('import_name', $.identifier),
-      ';'
+    world_body: $ => seq("{", field('world_items', repeat($.world_items)), "}"),
+
+    world_items: $ => choice(
+      field('export_item', $.export_item),
+      field('import_item', $.import_item),
+      field('use_item', $.use_item),
+      field('typedef_item', $.typedef_item),
+      field('include_item', $.include_item),
     ),
 
-    _world_content: $ => choice(
-      $.import,
-      // Add other world content rules here as needed
+    export_item: $ => choice(
+      seq('export', $.id, ':', $.extern_type),
+      seq('export', $.use_path, ';'),
     ),
 
-    file: $ => repeat($.item),
+    import_item: $ => choice(
+      seq('import', $.id, ':', $.extern_type),
+      seq('import', $.use_path, ';'),
+    ),
 
     _whitespace: _ => /[ \n\r\t]/,
     line_comment: _ => /\/\/.*\n/,
@@ -122,6 +93,146 @@ module.exports = grammar({
     unit: _ => "_",
     star: _ => "*",
     ty: $ => choice(
+    extern_type: $ => choice(
+      seq($.func_type, ';'),
+      seq('interface', $.interface_body),
+    ),
+
+    include_item: $ => choice(
+      seq(
+        'include',
+        field('use_path', $.use_path),
+        ';'
+      ),
+      seq(
+        'include',
+        field('use_path', $.use_path),
+        'with',
+        field('include_names_body', $.include_names_body),
+      ),
+    ),
+
+    include_names_body: $ => seq('{', field('include_names_list', $.include_names_list), '}'),
+
+    include_names_list: $ => csl1(field('include_names_item', $.include_names_item)),
+
+    include_names_item: $ => seq($.id, 'as', $.id),
+
+    interface_item: $ => seq(
+      'interface',
+      field('name', $.id),
+      field('body', $.interface_body),
+    ),
+
+    interface_body: $ => seq(
+      "{",
+      field('interface_items', repeat($.interface_items)),
+      "}"
+    ),
+
+    interface_items: $ => choice(
+      field('typedef', $.typedef_item),
+      field('use', $.use_item),
+      field('func', $.func_item),
+    ),
+
+    typedef_item: $ => choice(
+      $.resource_item,
+      $.variant_items,
+      $.record_item,
+      $.flags_items,
+      $.enum_items,
+      $.type_item,
+    ),
+
+    func_item: $ => seq(field('name', $.id), ':', $.func_type, ';'),
+
+    func_type: $ => seq(
+      'func',
+      field('param_list', $.param_list),
+      optional(field('result_list', $.result_list))
+    ),
+
+    param_list: $ => seq('(', optional($.named_type_list), ')'),
+
+    result_list: $ => choice(
+      seq('->', $.ty),
+      seq('->', '(', optional($.named_type_list), ')'),
+    ),
+
+    named_type_list: $ => csl1($.named_type),
+
+    named_type: $ => seq(
+      field('name', $.id),
+      ':',
+      field('type', $.ty),
+    ),
+
+    use_item: $ => seq('use', $.use_path, '.', '{', $.use_names_list, '}', ';'),
+
+    use_names_list: $ => csl1(field('use_names_item', $.use_names_item)),
+
+    use_names_item: $ => choice(
+      $.id,
+      seq($.id, 'as', $.id),
+    ),
+
+    type_item: $ => seq('type', field('alias', $.id), '=', field('type', $.ty), ';'),
+
+    record_item: $ => seq(
+      'record',
+      field('name', $.id),
+      field('body', $.record_body),
+    ),
+
+    record_body: $ => seq('{', field('record_fields', csl0($.record_field)), '}'),
+
+    record_field: $ => seq(
+      field('name', $.id),
+      ':',
+      field('type', $.ty),
+    ),
+
+    flags_items: $ => seq(
+      'flags',
+      field('name', $.id),
+      field('body', $.flags_body),
+    ),
+
+    flags_body: $ => seq('{', field('flags_fields', csl0($.id)), '}'),
+
+    variant_items: $ => seq(
+      'variant',
+      field('name', $.id),
+      field('body', $.variant_body),
+    ),
+
+    variant_body: $ => seq('{', field('variant_cases', csl0($.variant_case)), '}'),
+
+    variant_case: $ => seq(field('name', $.id), optional(seq($.id, '(', $.ty, ')'))),
+
+    enum_items: $ => seq('enum', field('name', $.id), $.enum_body),
+
+    enum_body: $ => seq('{', field('enum_cases', csl0($.id)), '}'),
+
+    resource_item: $ => seq(
+      'resource',
+      field('name', $.id),
+      choice(
+        ';',
+        optional(field('resource_body', $.resource_body)),
+      ),
+    ),
+
+    resource_body: $ => seq('{', repeat($.resource_method), '}'),
+
+    resource_method: $ => choice(
+      $.func_item,
+      seq($.id, ':', 'static', $.func_type, ';'),
+      seq('constructor', $.param_list, ';'),
+    ),
+
+    ty: $ => prec(1, choice(
       "u8",
       "u16",
       "u32",
@@ -130,132 +241,49 @@ module.exports = grammar({
       "s16",
       "s32",
       "s64",
-      "float32",
-      "float64",
+      "f32",
+      "f64",
+      "float32", // deprecated
+      "float64", // deprecated
       "char",
       "bool",
       "string",
-      $.option,
-      $.result,
       $.tuple,
       $.list,
-      $.future,
-      $.stream,
-      $.ident,
-    ),
+      $.option,
+      $.result,
+      $.id,
+      $.handle,
+    )),
 
-    item: $ => choice(
-      $.item_use,
-      $.item_type,
-      $.item_record,
-      $.item_flags,
-      $.item_variant,
-      $.item_enum,
-      $.item_union,
-      $.item_func,
-      $.item_resource,
-      // $.item_interface,
-    ),
+    tuple: $ => seq('tuple', '<', $.tuple_list, '>'),
 
-    named_ty: $ => seq(field("name", $.ident), ":", field("ty", $.ty)),
-    fields: $ => seq("{", csl0($.named_ty), "}"),
-    args: $ => seq("(", csl0($.named_ty), ")"),
-    tp1: $ => seq("<", $.ty, ">"),
-    tp2: $ => seq(
-      "<",
-      choice(
-        seq($.unit, ",", $.ty),
-        seq($.ty, optional(seq(",", $.ty))),
+    tuple_list: $ => csl1($.ty),
+
+    list: $ => seq('list', '<', $.ty, '>'),
+
+    option: $ => seq('option', '<', $.ty, '>'),
+
+    result: $ => seq(
+      'result',
+      optional(
+        choice(
+          seq('<', $.ty, ',', $.ty, '>'),
+          seq('<', '_', ',', $.ty, '>'),
+          seq('<', $.ty, '>'),
+        ),
       ),
-      ">"
-    ),
-    tps: $ => seq("<", csl1($.ty), ">"),
-
-    option: $ => seq("option", $.tp1),
-    result: $ => seq("result", optional($.tp2)),
-    future: $ => seq("future", optional($.tp1)),
-    stream: $ => seq("stream", optional($.tp2)),
-
-    use_item: $ => seq(
-      optional(seq(
-        field("origin", $.ident),
-        "as"
-      )),
-      field("name", $.ident)
-    ),
-    use_items: $ => seq("{", csl0($.use_item), "}"),
-    item_use: $ => seq(
-      "use",
-      choice($.star, $.use_items),
-      "from",
-      field("from", $.ident),
     ),
 
-    item_type: $ => seq(
-      "type",
-      field("name", $.ident),
-      "=",
-      $.ty,
-    ),
+    handle: $ => prec(0, choice($.id, seq('borrow', '<', $.id, '>'))),
 
-    item_record: $ => seq(
-      "record",
-      field("name", $.ident),
-      $.fields,
-    ),
-
-    flags: $ => seq("{", csl0($.ident), "}"),
-    item_flags: $ => seq(
-      "flags",
-      field("name", $.ident),
-      $.flags,
-    ),
-
-    variant_payload: $ => seq("(", $.ty, ")"),
-    variant_item: $ => seq(
-      field("tag", $.ident),
-      optional($.variant_payload),
-    ),
-    variant_items: $ => seq("{", csl0($.variant_item), "}"),
-    item_variant: $ => seq(
-      "variant",
-      field("name", $.ident),
-      $.variant_items,
-    ),
-
-    enum_items: $ => seq("{", csl0($.ident), "}"),
-    item_enum: $ => seq(
-      "enum",
-      field("name", $.ident),
-      $.enum_items,
-    ),
-
-    union_items: $ => seq("{", csl0($.ty), "}"),
-    item_union: $ => seq(
-      "union",
-      field("name", $.ident),
-      $.union_items,
-    ),
-
-    _func: $ => seq(
-      field("name", $.ident),
-      ":",
-      "func",
-      $.input,
-      "->",
-      $.output,
-    ),
-
-    input: $ => $.args,
-    output: $ => choice($.args, $.ty),
-    item_func: $ => $._func,
-
-    method: $ => seq(optional("static"), $._func),
-    resource_items: $ => seq("{", repeat($.method), "}"),
-    item_resource: $ => seq(
-      "resource",
-      field("name", $.ident),
-      optional($.resource_items),
-    ),
+    comment: _ => token(choice(
+      seq('//', /(\\+(.|\r?\n)|[^\\\n])*/),
+      seq(
+        '/*',
+        /[^*]*\*+([^/*][^*]*\*+)*/,
+        '/',
+      ),
+    )),
   }
 });
