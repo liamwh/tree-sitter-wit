@@ -27,3 +27,7 @@ install-local:
 # Format the queries
 format-queries:
     nvim -l scripts/format-queries.lua
+
+# Lint the grammar
+lint-grammar:
+    npx eslint grammar.js
