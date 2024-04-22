@@ -1,3 +1,12 @@
+/**
+ * @file WIT grammar for tree-sitter
+ * @author Liam Woodleigh-Hardinge <liam.woodleigh@gmail.com>
+ * @license MIT
+ */
+
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+
 const csl1 = rule => seq(
   rule,
   repeat(seq(",", rule)),
@@ -108,7 +117,7 @@ module.exports = grammar({
 
     _whitespace: _ => /[ \n\r\t]/,
     line_comment: _ => /\/\/.*\n/,
-    block_comment: _ => /\/\*([^*]|\*[^\/])*\*\//,
+    block_comment: _ => /\/\*([^*]|\*[^/])*\*\//,
     ident: _ => /%?[a-z][0-9a-z]*(-[a-z][0-9a-z]*)*/,
     unit: _ => "_",
     star: _ => "*",
@@ -163,9 +172,7 @@ module.exports = grammar({
     tps: $ => seq("<", csl1($.ty), ">"),
 
     option: $ => seq("option", $.tp1),
-    list: $ => seq("list", $.tp1),
     result: $ => seq("result", optional($.tp2)),
-    tuple: $ => seq("tuple", $.tps),
     future: $ => seq("future", optional($.tp1)),
     stream: $ => seq("stream", optional($.tp2)),
 
