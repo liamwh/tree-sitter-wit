@@ -34,7 +34,7 @@ world imports {
       (id))))
    world_items: (world_items
     import_item: (import_item
-     (id)
+     name: (id)
      (extern_type
       (interface_body
        interface_items: (interface_items
@@ -59,7 +59,7 @@ world imports {
               (id))))))))))))
  world_items: (world_items
   export_item: (export_item
-   (id)
+   name: (id)
    (extern_type
     (interface_body
      interface_items: (interface_items
@@ -84,7 +84,7 @@ world imports {
             (id))))))))))))
  world_items: (world_items
   import_item: (import_item
-   (id)
+   name: (id)
    (extern_type
     (func_type
      param_list: (param_list

@@ -36,6 +36,7 @@ let package = Package(
                 ],
                 sources: [
                     "src/parser.c",
+                    // NOTE: if your language uses an external scanner, uncomment this block:
                 ],
                 resources: [
                     .copy("queries")

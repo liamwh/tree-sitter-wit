@@ -1,17 +1,41 @@
 (comment) @comment
 
-(ty (id)) @type
+(ty
+  (id)) @type
+
+(package_decl
+  (id)) @module
 
 (valid_semver) @property
 
 (world_item
-  name: (id) @property)
+  name: (id) @module)
 
 (interface_item
-  name: (id) @property)
+  name: (id) @module)
+
+(import_item
+  name: (id) @module
+  (extern_type
+    (interface_body)))
+
+(import_item
+  name: (id) @function
+  (extern_type
+    (func_type)))
+
+(export_item
+  name: (id) @module
+  (extern_type
+    (interface_body)))
+
+(export_item
+  name: (id) @function
+  (extern_type
+    (func_type)))
 
 (type_item
-  alias: (id) @property)
+  alias: (id) @type.definition)
 
 (func_item
   name: (id) @function)
@@ -23,48 +47,74 @@
   name: (id) @variable.parameter)
 
 (record_item
-  name: (id) @variable)
+  name: (id) @type)
 
 (record_field
-  name: (id) @variable)
+  name: (id) @variable.member)
 
 (flags_items
-  name: (id) @variable)
+  name: (id) @type)
 
 (flags_body
   (id) @property)
 
 (variant_items
-  name: (id) @variable)
+  name: (id) @type)
 
 (variant_case
-    name: (id) @variable)
+  name: (id) @type)
 
 (enum_items
-  name: (id) @variable)
+  name: (id) @type)
 
 (enum_body
   enum_cases: (id) @property)
 
+(resource_item
+  name: (id) @type)
+
 (resource_method
   "constructor" @constructor)
 
+(toplevel_use_item
+  "use" @keyword.import)
+
+(use_item
+  "use" @keyword.import)
+
+(use_path
+  (id) @module)
+
 [
   "type"
+  "interface"
+  "world"
+  "package"
+] @keyword
+
+"func" @keyword.function
+
+[
   "resource"
-  "func"
   "record"
   "enum"
   "flags"
   "variant"
-  "static"
-  "interface"
-  "world"
+] @keyword.type
+
+"static" @keyword.modifier
+
+[
+  "include"
   "import"
   "export"
-  "package"
-  "include"
-] @keyword
+] @keyword.import
+
+(result
+  "result" @keyword.return)
+
+(result
+  "_" @variable.parameter.builtin)
 
 [
   "u8"
@@ -80,19 +130,21 @@
   "char"
   "bool"
   "string"
+] @type.builtin
+
+[
   "tuple"
   "list"
   "option"
   "result"
   "borrow"
-] @type
+] @type.definition
 
-; Punctuation
 [
+  "@"
   "->"
 ] @punctuation.special
 
-; Delimiters
 [
   "/"
   ";"
@@ -100,7 +152,6 @@
   ","
 ] @punctuation.delimiter
 
-; Brackets
 [
   "{"
   "}"

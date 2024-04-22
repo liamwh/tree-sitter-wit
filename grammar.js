@@ -52,7 +52,6 @@ module.exports = grammar({
     ),
     use_path: $ => choice(
       $.id,
-      // seq(repeat1(seq($.id, ':')), $.id, repeat1(seq('/', $.id)), optional(seq('@', $.valid_semver))),
       seq(repeat1(seq($.id, ':')), $.id, repeat(seq('/', $.id)), optional(seq('@', $.valid_semver))),
     ),
 
@@ -77,22 +76,15 @@ module.exports = grammar({
     ),
 
     export_item: $ => choice(
-      seq('export', $.id, ':', $.extern_type),
+      seq('export', field('name', $.id), ':', $.extern_type),
       seq('export', $.use_path, ';'),
     ),
 
     import_item: $ => choice(
-      seq('import', $.id, ':', $.extern_type),
+      seq('import', field('name', $.id), ':', $.extern_type),
       seq('import', $.use_path, ';'),
     ),
 
-    _whitespace: _ => /[ \n\r\t]/,
-    line_comment: _ => /\/\/.*\n/,
-    block_comment: _ => /\/\*([^*]|\*[^/])*\*\//,
-    ident: _ => /%?[a-z][0-9a-z]*(-[a-z][0-9a-z]*)*/,
-    unit: _ => "_",
-    star: _ => "*",
-    ty: $ => choice(
     extern_type: $ => choice(
       seq($.func_type, ';'),
       seq('interface', $.interface_body),
@@ -209,7 +201,10 @@ module.exports = grammar({
 
     variant_body: $ => seq('{', field('variant_cases', csl0($.variant_case)), '}'),
 
-    variant_case: $ => seq(field('name', $.id), optional(seq($.id, '(', $.ty, ')'))),
+    variant_case: $ => choice(
+      field('name', $.id),
+      seq(field('name', $.id), '(', field('type', $.ty), ')')
+    ),
 
     enum_items: $ => seq('enum', field('name', $.id), $.enum_body),
 

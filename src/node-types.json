@@ -48,17 +48,24 @@
   {
     "type": "export_item",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "id",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "extern_type",
-          "named": true
-        },
-        {
-          "type": "id",
           "named": true
         },
         {
@@ -203,17 +210,24 @@
   {
     "type": "import_item",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "id",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "extern_type",
-          "named": true
-        },
-        {
-          "type": "id",
           "named": true
         },
         {
@@ -938,21 +952,17 @@
             "named": true
           }
         ]
+      },
+      "type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "ty",
+            "named": true
+          }
+        ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "id",
-          "named": true
-        },
-        {
-          "type": "ty",
-          "named": true
-        }
-      ]
     }
   },
   {
