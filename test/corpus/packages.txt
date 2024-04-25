@@ -1,18 +1,42 @@
 ==================
-Packages
+Packages 1
 ==================
 
-package wasmcloud:hello@1.0.0;
 package wasi:io;
 
 ---
 
 (source_file
-  (package
-    namespace: (identifier)
-    name: (identifier)
-    version: (version))
-  (package
-    namespace: (identifier)
-    name: (identifier))
-)
+ (package_decl
+  (id)
+  (id)))
+
+==================
+Packages 2
+==================
+
+package wasmi:io:hello;
+
+---
+
+(source_file
+ (package_decl
+  (id)
+  (id)
+  (id)))
+
+==================
+Packages 3
+==================
+
+package wasmi:io:hello/epic@1.0.0;
+
+---
+
+(source_file
+ (package_decl
+  (id)
+  (id)
+  (id)
+  (id)
+  (valid_semver)))
