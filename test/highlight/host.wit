@@ -1,0 +1,21 @@
+package wasmcloud:host@1.0.0;
+// <- keyword.type
+
+world interfaces {
+    import wasmcloud:bus/lattice@1.0.0;
+
+    import wasi:blobstore/blobstore@0.2.0-draft;
+    // ^ keyword.import
+    //     ^ module
+    //                              ^ string.special
+    //                                   ^ string.special
+    //                                        ^ string.special
+    //                                         ^ punctuation.delimiter
+    import wasi:config/runtime@0.2.0-draft;
+    import wasi:http/outgoing-handler@0.2.0;
+    import wasi:keyvalue/atomics@0.2.0-draft;
+    import wasi:keyvalue/store@0.2.0-draft;
+    import wasi:logging/logging;
+
+    import wasmcloud:messaging/consumer@0.2.0;
+}

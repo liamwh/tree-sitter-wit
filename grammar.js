@@ -7,13 +7,14 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 
-const csl1 = rule => seq(
+const optionalCommaSeparatedList = rule => optional(commaSeparatedList(rule));
+
+const commaSeparatedList = rule => seq(
   rule,
   repeat(seq(",", rule)),
   optional(","),
 );
 
-const csl0 = rule => optional(csl1(rule));
 
 module.exports = grammar({
   name: 'wit',
@@ -57,7 +58,8 @@ module.exports = grammar({
 
     id: $ => /%?(([a-z][a-z0-9]*|[A-Z][A-Z0-9]*))(-([a-z][a-z0-9]*|[A-Z][A-Z0-9]*))*/,
 
-    valid_semver: $ => /\d+\.\d+\.\d+/,
+    // As per https://semver.org/, this regex allows for trailing metadata after MAJOR.MINOR.PATCH
+    valid_semver: $ => /(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?/,
 
     world_item: $ => seq(
       'world',
@@ -106,7 +108,7 @@ module.exports = grammar({
 
     include_names_body: $ => seq('{', field('include_names_list', $.include_names_list), '}'),
 
-    include_names_list: $ => csl1(field('include_names_item', $.include_names_item)),
+    include_names_list: $ => commaSeparatedList(field('include_names_item', $.include_names_item)),
 
     include_names_item: $ => seq($.id, 'as', $.id),
 
@@ -152,7 +154,7 @@ module.exports = grammar({
       seq('->', '(', optional($.named_type_list), ')'),
     ),
 
-    named_type_list: $ => csl1($.named_type),
+    named_type_list: $ => commaSeparatedList($.named_type),
 
     named_type: $ => seq(
       field('name', $.id),
@@ -162,7 +164,7 @@ module.exports = grammar({
 
     use_item: $ => seq('use', $.use_path, '.', '{', $.use_names_list, '}', ';'),
 
-    use_names_list: $ => csl1(field('use_names_item', $.use_names_item)),
+    use_names_list: $ => commaSeparatedList(field('use_names_item', $.use_names_item)),
 
     use_names_item: $ => choice(
       $.id,
@@ -177,7 +179,7 @@ module.exports = grammar({
       field('body', $.record_body),
     ),
 
-    record_body: $ => seq('{', field('record_fields', csl0($.record_field)), '}'),
+    record_body: $ => seq('{', field('record_fields', optionalCommaSeparatedList($.record_field)), '}'),
 
     record_field: $ => seq(
       field('name', $.id),
@@ -191,7 +193,7 @@ module.exports = grammar({
       field('body', $.flags_body),
     ),
 
-    flags_body: $ => seq('{', field('flags_fields', csl0($.id)), '}'),
+    flags_body: $ => seq('{', field('flags_fields', optionalCommaSeparatedList($.id)), '}'),
 
     variant_items: $ => seq(
       'variant',
@@ -199,7 +201,7 @@ module.exports = grammar({
       field('body', $.variant_body),
     ),
 
-    variant_body: $ => seq('{', field('variant_cases', csl0($.variant_case)), '}'),
+    variant_body: $ => seq('{', field('variant_cases', optionalCommaSeparatedList($.variant_case)), '}'),
 
     variant_case: $ => choice(
       field('name', $.id),
@@ -208,7 +210,7 @@ module.exports = grammar({
 
     enum_items: $ => seq('enum', field('name', $.id), $.enum_body),
 
-    enum_body: $ => seq('{', field('enum_cases', csl0($.id)), '}'),
+    enum_body: $ => seq('{', field('enum_cases', optionalCommaSeparatedList($.id)), '}'),
 
     resource_item: $ => seq(
       'resource',
@@ -253,7 +255,7 @@ module.exports = grammar({
 
     tuple: $ => seq('tuple', '<', $.tuple_list, '>'),
 
-    tuple_list: $ => csl1($.ty),
+    tuple_list: $ => commaSeparatedList($.ty),
 
     list: $ => seq('list', '<', $.ty, '>'),
 

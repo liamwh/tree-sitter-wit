@@ -1,0 +1,178 @@
+==================
+Interfaces
+==================
+
+package local:demo;
+
+interface foo {
+  // "package of named fields"
+  record r {
+    a: u32,
+    b: string,
+  }
+
+  // values of this type will be one of the specified cases
+  variant human {
+    baby,
+    child(u32), // optional type payload
+    adult,
+  }
+
+  // similar to `variant`, but no type payloads
+  enum errno {
+    too-big,
+    too-small,
+    too-fast,
+    too-slow,
+  }
+
+  // a bitflags type
+  flags permissions {
+    read,
+    write,
+    exec,
+  }
+
+  // type aliases are allowed to primitive types and additionally here are some
+  // examples of other types
+  type t1 = u32;
+  type t2 = tuple<u32, u64>;
+  type t3 = string;
+  type t4 = option<u32>;
+  type t5 = result<_, errno>;           // no "ok" type
+  type t6 = result<string>;             // no "err" type
+  type t7 = result<char, errno>;        // both types specified
+  type t8 = result;                     // no "ok" or "err" type
+  type t9 = list<string>;
+  type t10 = t9;
+}
+
+---
+
+(source_file
+  (package_decl
+    (id)
+    (id))
+  (interface_item
+    (id)
+    (interface_body
+      (comment)
+      (interface_items
+        (typedef_item
+          (record_item
+            (id)
+            (record_body
+              (record_field
+                (id)
+                (ty))
+              (record_field
+                (id)
+                (ty))))))
+      (comment)
+      (interface_items
+        (typedef_item
+          (variant_items
+            (id)
+            (variant_body
+              (variant_case
+                (id))
+              (variant_case
+                (id)
+                (ty))
+              (comment)
+              (variant_case
+                (id))))))
+      (comment)
+      (interface_items
+        (typedef_item
+          (enum_items
+            (id)
+            (enum_body
+              (id)
+              (id)
+              (id)
+              (id)))))
+      (comment)
+      (interface_items
+        (typedef_item
+          (flags_items
+            (id)
+            (flags_body
+              (id)
+              (id)
+              (id)))))
+      (comment)
+      (comment)
+      (interface_items
+        (typedef_item
+          (type_item
+            (id)
+            (ty))))
+      (interface_items
+        (typedef_item
+          (type_item
+            (id)
+            (ty
+              (tuple
+                (tuple_list
+                  (ty)
+                  (ty)))))))
+      (interface_items
+        (typedef_item
+          (type_item
+            (id)
+            (ty))))
+      (interface_items
+        (typedef_item
+          (type_item
+            (id)
+            (ty
+              (option
+                (ty))))))
+      (interface_items
+        (typedef_item
+          (type_item
+            (id)
+            (ty
+              (result
+                (ty
+                  (id)))))))
+      (comment)
+      (interface_items
+        (typedef_item
+          (type_item
+            (id)
+            (ty
+              (result
+                (ty))))))
+      (comment)
+      (interface_items
+        (typedef_item
+          (type_item
+            (id)
+            (ty
+              (result
+                (ty)
+                (ty
+                  (id)))))))
+      (comment)
+      (interface_items
+        (typedef_item
+          (type_item
+            (id)
+            (ty
+              (result)))))
+      (comment)
+      (interface_items
+        (typedef_item
+          (type_item
+            (id)
+            (ty
+              (list
+                (ty))))))
+      (interface_items
+        (typedef_item
+          (type_item
+            (id)
+            (ty
+              (id))))))))

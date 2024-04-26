@@ -1,0 +1,12 @@
+interface foo {
+    // <- keyword.type
+    flags permissions {
+    // <- keyword.type
+        read,
+        // <- variable.member
+        write,
+        // <- variable.member
+        exec,
+        // <- variable.member
+    }
+}

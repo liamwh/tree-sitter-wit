@@ -1,4 +1,4 @@
-(comment) @comment
+(comment) @comment @spell
 
 (ty
   (id)) @type
@@ -6,7 +6,7 @@
 (package_decl
   (id)) @module
 
-(valid_semver) @property
+(valid_semver) @string.special
 
 (world_item
   name: (id) @module)
@@ -56,7 +56,7 @@
   name: (id) @type)
 
 (flags_body
-  (id) @property)
+  (id) @variable.member)
 
 (variant_items
   name: (id) @type)
@@ -68,7 +68,7 @@
   name: (id) @type)
 
 (enum_body
-  enum_cases: (id) @property)
+  enum_cases: (id) @constant)
 
 (resource_item
   name: (id) @type)
@@ -85,16 +85,13 @@
 (use_path
   (id) @module)
 
+"func" @keyword.function
+
 [
   "type"
   "interface"
   "world"
   "package"
-] @keyword
-
-"func" @keyword.function
-
-[
   "resource"
   "record"
   "enum"
@@ -110,12 +107,6 @@
   "export"
 ] @keyword.import
 
-(result
-  "result" @keyword.return)
-
-(result
-  "_" @variable.parameter.builtin)
-
 [
   "u8"
   "u16"
@@ -130,20 +121,20 @@
   "char"
   "bool"
   "string"
-] @type.builtin
-
-[
   "tuple"
   "list"
   "option"
   "result"
   "borrow"
-] @type.definition
+] @type.builtin
 
 [
   "@"
   "->"
 ] @punctuation.special
+
+(result
+  "_" @variable.parameter.builtin)
 
 [
   "/"
@@ -158,3 +149,5 @@
   "("
   ")"
 ] @punctuation.bracket
+
+"=" @operator

@@ -1,0 +1,147 @@
+package local:demo;
+// <- keyword.type
+//          ^ module
+//             ^ module
+//                ^ punctuation.delimiter
+
+interface foo {
+  // <- keyword.type
+  //      ^ module
+  //          ^ punctuation.bracket
+  // "package of named fields"
+  // <- spell
+  record myrecord {
+  // <- keyword.type
+  //     ^ type
+  //              ^ punctuation.bracket
+    a: u32,
+  //^ variable.member
+  // ^ punctuation.delimiter
+  //    ^ type.builtin
+    b: string,
+  //^ variable.member
+  // ^ punctuation.delimiter
+  //   ^ type.builtin
+  }
+//^ punctuation.bracket
+
+  // values of this type will be one of the specified cases
+  variant human {
+  // <- keyword.type
+  //      ^ type
+  //            ^ punctuation.bracket
+    baby,
+  //^ type
+    child(u32), // optional type payload
+  //^ type
+    adult,
+  //^ type
+  }
+
+  // similar to `variant`, but no type payloads
+  // <- spell
+  enum errno {
+  // <- keyword.type
+  //   ^ type
+  //         ^ punctuation.bracket
+    too-big,
+  //^ constant
+    too-small,
+  //^ constant
+    too-fast,
+  //^ constant
+    too-slow,
+  //^ constant
+  }
+//^ punctuation.bracket
+
+  // a bitflags type
+  // <- spell
+  flags permissions {
+  // <- keyword.type
+  //    ^ type
+  //                ^ punctuation.bracket
+    read,
+  // ^ variable.member
+    write,
+  // ^ variable.member
+    exec,
+  // ^ variable.member
+  }
+//^ punctuation.bracket
+
+  // type aliases are allowed to primitive types and additionally here are some
+  // examples of other types
+  // ^ spell
+  type t1 = u32;
+  // ^ keyword.type
+  //   ^ type.definition
+  //      ^ operator
+  //        ^ type.builtin
+  //           ^ punctuation.delimiter
+  type t2 = tuple<u32, u64>;
+  // ^ keyword.type
+  //   ^ type.definition
+  //      ^ operator
+  //        ^ type.builtin
+  //              ^ type.builtin
+  //                 ^ punctuation.delimiter
+  //                    ^ type.builtin
+  //                       ^ punctuation.delimiter
+  type t3 = string;
+  // ^ keyword.type
+  //   ^ type.definition
+  //      ^ operator
+  //        ^ type.builtin
+  //              ^ punctuation.delimiter
+  type t4 = option<u32>;
+  // ^ keyword.type
+  //   ^ type.definition
+  //      ^ operator
+  //        ^ type.builtin
+  //               ^ type.builtin
+  //                   ^ punctuation.delimiter
+  type t5 = result<_, errno>;           // no "ok" type
+  // ^ keyword.type
+  //   ^ type.definition
+  //      ^ operator
+  //        ^ type.builtin
+  //               ^ variable.parameter.builtin
+  //                ^ punctuation.delimiter
+  //                  ^ type
+  //                        ^ punctuation.delimiter
+  type t6 = result<string>;             // no "err" type
+  // ^ keyword.type
+  //   ^ type.definition
+  //      ^ operator
+  //        ^ type.builtin
+  //               ^ type.builtin
+  //                      ^ punctuation.delimiter
+  type t7 = result<char, errno>;        // both types specified
+  // ^ keyword.type
+  //   ^ type.definition
+  //      ^ operator
+  //        ^ type.builtin
+  //               ^ type.builtin
+  //                     ^ type
+  //                           ^ punctuation.delimiter
+  type t8 = result;                     // no "ok" or "err" type
+  // ^ keyword.type
+  //   ^ type.definition
+  //      ^ operator
+  //        ^ type.builtin
+  //              ^ punctuation.delimiter
+  type t9 = list<string>;
+  // ^ keyword.type
+  //   ^ type.definition
+  //      ^ operator
+  //        ^ type.builtin
+  //               ^ type.builtin
+  //                    ^ punctuation.delimiter
+  type t10 = t9;
+  // ^ keyword.type
+  //   ^ type.definition
+  //       ^ operator
+  //         ^ type
+  //           ^ punctuation.delimiter
+}

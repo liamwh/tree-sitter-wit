@@ -45,4 +45,4 @@ jobs:
       - name: Parse examples
         uses: tree-sitter/parse-action@v4
         with:
-          files: examples/**/*.rs
+          files: examples/**/*.wit
