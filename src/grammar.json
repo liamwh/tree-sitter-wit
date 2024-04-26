@@ -231,7 +231,7 @@
     },
     "valid_semver": {
       "type": "PATTERN",
-      "value": "\\d+\\.\\d+\\.\\d+"
+      "value": "(\\d+)\\.(\\d+)\\.(\\d+)(?:-([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?"
     },
     "world_item": {
       "type": "SEQ",
