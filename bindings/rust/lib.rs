@@ -44,11 +44,39 @@ pub const INJECTIONS_QUERY: &str = include_str!("../../queries/injections.scm");
 
 #[cfg(test)]
 mod tests {
+    use std::path::Path;
+
+    use super::*;
+
     #[test]
     fn test_can_load_grammar() {
         let mut parser = tree_sitter::Parser::new();
         parser
-            .set_language(&super::language())
+            .set_language(&language())
             .expect("Error loading Wit grammar");
+    }
+
+    #[test]
+    fn all_queries_are_valid() {
+        let queries_dir = project_root().join("queries");
+        let lang = language();
+
+        for entry in queries_dir.read_dir().unwrap() {
+            let path = entry.unwrap().path();
+
+            if path.extension() != Some("scm".as_ref()) {
+                continue;
+            }
+
+            let query = std::fs::read_to_string(&path).unwrap();
+            let _ = tree_sitter::Query::new(&lang, &query).unwrap();
+        }
+    }
+
+    fn project_root() -> &'static Path {
+        Path::new(env!("CARGO_MANIFEST_DIR"))
+            .ancestors()
+            .find(|p| p.join(".git").exists())
+            .expect("Unable to find the project's root directory")
     }
 }
