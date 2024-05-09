@@ -103,6 +103,7 @@ module.exports = grammar({
         field('use_path', $.use_path),
         'with',
         field('include_names_body', $.include_names_body),
+        ';',
       ),
     ),
 
@@ -253,7 +254,7 @@ module.exports = grammar({
       $.handle,
     )),
 
-    tuple: $ => seq('tuple', '<', $.tuple_list, '>'),
+    tuple: $ => seq('tuple', '<', optional($.tuple_list), '>'),
 
     tuple_list: $ => commaSeparatedList($.ty),
 
@@ -272,7 +273,9 @@ module.exports = grammar({
       ),
     ),
 
-    handle: $ => prec(0, choice($.id, seq('borrow', '<', $.id, '>'))),
+    handle: $ => prec(0, choice($.id, $._borrow_handle, $._owned_handle)),
+    _borrow_handle: $ => seq('borrow', '<', $.id, '>'),
+    _owned_handle: $ => seq('own', '<', $.id, '>'),
 
     comment: _ => token(choice(
       seq('//', /(\\+(.|\r?\n)|[^\\\n])*/),

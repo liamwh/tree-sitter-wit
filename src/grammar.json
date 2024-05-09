@@ -502,6 +502,10 @@
                 "type": "SYMBOL",
                 "name": "include_names_body"
               }
+            },
+            {
+              "type": "STRING",
+              "value": ";"
             }
           ]
         }
@@ -1655,8 +1659,16 @@
           "value": "<"
         },
         {
-          "type": "SYMBOL",
-          "name": "tuple_list"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "tuple_list"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -1843,28 +1855,57 @@
             "name": "id"
           },
           {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "borrow"
-              },
-              {
-                "type": "STRING",
-                "value": "<"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "id"
-              },
-              {
-                "type": "STRING",
-                "value": ">"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "_borrow_handle"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_owned_handle"
           }
         ]
       }
+    },
+    "_borrow_handle": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "borrow"
+        },
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "id"
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        }
+      ]
+    },
+    "_owned_handle": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "own"
+        },
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "id"
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        }
+      ]
     },
     "comment": {
       "type": "TOKEN",
