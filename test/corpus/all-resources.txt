@@ -69,37 +69,7 @@ interface i {
             (id)
             (resource_body
               (resource_method
-                (param_list))))))
-      (interface_items
-        (typedef_item
-          (resource_item
-            (id)
-            (resource_body
-              (resource_method
-                (param_list
-                  (named_type_list
-                    (named_type
-                      (id)
-                      (ty)))))))))
-      (interface_items
-        (typedef_item
-          (resource_item
-            (id)
-            (resource_body
-              (resource_method
-                (param_list
-                  (named_type_list
-                    (named_type
-                      (id)
-                      (ty)))))
-              (resource_method
-                (func_item
-                  (id)
-                  (func_type
-                    (param_list))))
-              (resource_method
-                (id)
-                (func_type
+                (resource_constructor
                   (param_list)))))))
       (interface_items
         (typedef_item
@@ -107,18 +77,53 @@ interface i {
             (id)
             (resource_body
               (resource_method
-                (param_list
-                  (named_type_list
-                    (named_type
-                      (id)
-                      (ty
-                        (handle
-                          (id))))
-                    (named_type
-                      (id)
-                      (ty
-                        (handle
-                          (id)))))))
+                (resource_constructor
+                  (param_list
+                    (named_type_list
+                      (named_type
+                        (id)
+                        (ty))))))))))
+      (interface_items
+        (typedef_item
+          (resource_item
+            (id)
+            (resource_body
+              (resource_method
+                (resource_constructor
+                  (param_list
+                    (named_type_list
+                      (named_type
+                        (id)
+                        (ty))))))
+              (resource_method
+                (func_item
+                  (id)
+                  (func_type
+                    (param_list))))
+              (resource_method
+                (static_resource_method
+                  (id)
+                  (func_type
+                    (param_list))))))))
+      (interface_items
+        (typedef_item
+          (resource_item
+            (id)
+            (resource_body
+              (resource_method
+                (resource_constructor
+                  (param_list
+                    (named_type_list
+                      (named_type
+                        (id)
+                        (ty
+                          (handle
+                            (id))))
+                      (named_type
+                        (id)
+                        (ty
+                          (handle
+                            (id))))))))
               (resource_method
                 (func_item
                   (id)
@@ -153,7 +158,8 @@ interface i {
             (id)
             (resource_body
               (resource_method
-                (param_list))))))))
+                (resource_constructor
+                  (param_list)))))))))
   (interface_item
     (id)
     (interface_body

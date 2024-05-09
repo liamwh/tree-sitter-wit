@@ -40,15 +40,26 @@ interface foo {
   (interface_item
     (id)
     (interface_body
-      (comment)
       (interface_items
         (typedef_item
           (flags_items
+            (attribute
+              (doc_comment
+                (docs)))
             (id)
             (flags_body
-              (comment)
-              (id)
-              (comment)
-              (id)
-              (comment)
-              (id))))))))
+              (flags_case
+                (attribute
+                  (doc_comment
+                    (docs)))
+                (id))
+              (flags_case
+                (attribute
+                  (doc_comment
+                    (docs)))
+                (id))
+              (flags_case
+                (attribute
+                  (doc_comment
+                    (docs)))
+                (id)))))))))

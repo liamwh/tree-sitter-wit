@@ -8,8 +8,10 @@ package local:demo;
 ---
 
 (source_file
-  (comment)
   (package_decl
+    (attribute
+      (doc_comment
+        (docs)))
     (id)
     (id)))
 

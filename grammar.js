@@ -24,6 +24,10 @@ module.exports = grammar({
     $.comment,
   ],
 
+  conflicts: $ => [
+    [$.comment, $.doc_comment],
+  ],
+
   rules: {
     source_file: $ => seq(
       optional($.package_decl),
@@ -37,6 +41,7 @@ module.exports = grammar({
     ),
 
     package_decl: $ => seq(
+      field('attributes', repeat($.attribute)),
       'package',
       repeat1(seq($.id, ':')),
       $.id,
@@ -62,6 +67,7 @@ module.exports = grammar({
     valid_semver: $ => /(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?/,
 
     world_item: $ => seq(
+      field("attributes", repeat($.attribute)),
       'world',
       field('name', $.id),
       field('body', $.world_body),
@@ -114,6 +120,7 @@ module.exports = grammar({
     include_names_item: $ => seq($.id, 'as', $.id),
 
     interface_item: $ => seq(
+      field('attributes', repeat($.attribute)),
       'interface',
       field('name', $.id),
       field('body', $.interface_body),
@@ -140,7 +147,13 @@ module.exports = grammar({
       $.type_item,
     ),
 
-    func_item: $ => seq(field('name', $.id), ':', $.func_type, ';'),
+    func_item: $ => seq(
+      field('attributes', repeat($.attribute)),
+      field('name', $.id),
+      ':',
+      $.func_type,
+      ';',
+    ),
 
     func_type: $ => seq(
       'func',
@@ -158,6 +171,7 @@ module.exports = grammar({
     named_type_list: $ => commaSeparatedList($.named_type),
 
     named_type: $ => seq(
+      field('attributes', repeat($.attribute)),
       field('name', $.id),
       ':',
       field('type', $.ty),
@@ -172,9 +186,17 @@ module.exports = grammar({
       seq($.id, 'as', $.id),
     ),
 
-    type_item: $ => seq('type', field('alias', $.id), '=', field('type', $.ty), ';'),
+    type_item: $ => seq(
+      field('attributes', repeat($.attribute)),
+      'type',
+      field('alias', $.id),
+      '=',
+      field('type', $.ty),
+      ';',
+    ),
 
     record_item: $ => seq(
+      field('attributes', repeat($.attribute)),
       'record',
       field('name', $.id),
       field('body', $.record_body),
@@ -183,20 +205,27 @@ module.exports = grammar({
     record_body: $ => seq('{', field('record_fields', optionalCommaSeparatedList($.record_field)), '}'),
 
     record_field: $ => seq(
+      field('attributes', repeat($.attribute)),
       field('name', $.id),
       ':',
       field('type', $.ty),
     ),
 
     flags_items: $ => seq(
+      field('attributes', repeat($.attribute)),
       'flags',
       field('name', $.id),
       field('body', $.flags_body),
     ),
 
-    flags_body: $ => seq('{', field('flags_fields', optionalCommaSeparatedList($.id)), '}'),
+    flags_body: $ => seq('{', field('flags_fields', optionalCommaSeparatedList($.flags_case)), '}'),
+    flags_case: $ => seq(
+      field('attributes', repeat($.attribute)),
+      $.id,
+    ),
 
     variant_items: $ => seq(
+      field('attributes', repeat($.attribute)),
       'variant',
       field('name', $.id),
       field('body', $.variant_body),
@@ -204,16 +233,27 @@ module.exports = grammar({
 
     variant_body: $ => seq('{', field('variant_cases', optionalCommaSeparatedList($.variant_case)), '}'),
 
-    variant_case: $ => choice(
+    variant_case: $ => seq(
+      field('attributes', repeat($.attribute)),
       field('name', $.id),
-      seq(field('name', $.id), '(', field('type', $.ty), ')')
+      optional(seq('(', field('type', $.ty), ')')),
     ),
 
-    enum_items: $ => seq('enum', field('name', $.id), $.enum_body),
+    enum_items: $ => seq(
+      field('attributes', repeat($.attribute)),
+      'enum',
+      field('name', $.id),
+      $.enum_body,
+    ),
 
-    enum_body: $ => seq('{', field('enum_cases', optionalCommaSeparatedList($.id)), '}'),
+    enum_body: $ => seq('{', field('enum_cases', optionalCommaSeparatedList($.enum_case)), '}'),
+    enum_case: $ => seq(
+      field('attributes', repeat($.attribute)),
+      $.id,
+    ),
 
     resource_item: $ => seq(
+      field('attributes', repeat($.attribute)),
       'resource',
       field('name', $.id),
       choice(
@@ -226,8 +266,23 @@ module.exports = grammar({
 
     resource_method: $ => choice(
       $.func_item,
-      seq($.id, ':', 'static', $.func_type, ';'),
-      seq('constructor', $.param_list, ';'),
+      $.static_resource_method,
+      $.resource_constructor,
+    ),
+    static_resource_method: $ => seq(
+      field('attributes', repeat($.attribute)),
+      $.id,
+      ':',
+      'static',
+      $.func_type,
+      ';',
+
+    ),
+    resource_constructor: $ => seq(
+      field('attributes', repeat($.attribute)),
+      'constructor',
+      $.param_list,
+      ';',
     ),
 
     ty: $ => prec(1, choice(
@@ -266,9 +321,9 @@ module.exports = grammar({
       'result',
       optional(
         choice(
-          seq('<', $.ty, ',', $.ty, '>'),
-          seq('<', '_', ',', $.ty, '>'),
-          seq('<', $.ty, '>'),
+          seq('<', field('ok', $.ty), ',', field('err', $.ty), '>'),
+          seq('<', '_', ',', field('err', $.ty), '>'),
+          seq('<', field('ok', $.ty), '>'),
         ),
       ),
     ),
@@ -277,8 +332,12 @@ module.exports = grammar({
     _borrow_handle: $ => seq('borrow', '<', $.id, '>'),
     _owned_handle: $ => seq('own', '<', $.id, '>'),
 
+    attribute: $ => $.doc_comment,
+
+    doc_comment: $ => seq("///", optional(' '), $.docs),
+    docs: _ => /[^\n]*/,
     comment: _ => token(choice(
-      seq('//', /(\\+(.|\r?\n)|[^\\\n])*/),
+      seq("//", /[^/\n][^\n]*/),
       seq(
         '/*',
         /[^*]*\*+([^/*][^*]*\*+)*/,

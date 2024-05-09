@@ -7,6 +7,19 @@ package some:package;
 
 /// An interface.
 interface i {
+    /// A function.
+    f: func(
+      /// First argument.
+      first: string,
+      /// Second argument.
+      second: u32,
+    ) -> (
+      /// First return value.
+      third: f32,
+      /// Second return value.
+      fourth: bool,
+    );
+
     /// A record.
     record r {
         /// A field
@@ -45,75 +58,172 @@ interface i {
     }
 }
 
+/// A world.
+world w {
+  export i: interface {
+    /// top-level function
+    f: func();
+  }
+ 
+}
+
 ---
 
 (source_file
-  (comment)
   (package_decl
+    (attribute
+      (doc_comment
+        (docs)))
     (id)
     (id))
-  (comment)
   (interface_item
+    (attribute
+      (doc_comment
+        (docs)))
     (id)
     (interface_body
-      (comment)
+      (interface_items
+        (func_item
+          (attribute
+            (doc_comment
+              (docs)))
+          (id)
+          (func_type
+            (param_list
+              (named_type_list
+                (named_type
+                  (attribute
+                    (doc_comment
+                      (docs)))
+                  (id)
+                  (ty))
+                (named_type
+                  (attribute
+                    (doc_comment
+                      (docs)))
+                  (id)
+                  (ty))))
+            (result_list
+              (named_type_list
+                (named_type
+                  (attribute
+                    (doc_comment
+                      (docs)))
+                  (id)
+                  (ty))
+                (named_type
+                  (attribute
+                    (doc_comment
+                      (docs)))
+                  (id)
+                  (ty)))))))
       (interface_items
         (typedef_item
           (record_item
+            (attribute
+              (doc_comment
+                (docs)))
             (id)
             (record_body
-              (comment)
               (record_field
+                (attribute
+                  (doc_comment
+                    (docs)))
                 (id)
                 (ty))))))
-      (comment)
       (interface_items
         (typedef_item
           (type_item
+            (attribute
+              (doc_comment
+                (docs)))
             (id)
             (ty))))
-      (comment)
       (interface_items
         (typedef_item
           (variant_items
+            (attribute
+              (doc_comment
+                (docs)))
             (id)
             (variant_body
-              (comment)
               (variant_case
+                (attribute
+                  (doc_comment
+                    (docs)))
                 (id))))))
-      (comment)
       (interface_items
         (typedef_item
           (flags_items
+            (attribute
+              (doc_comment
+                (docs)))
             (id)
             (flags_body
-              (comment)
-              (id)))))
-      (comment)
+              (flags_case
+                (attribute
+                  (doc_comment
+                    (docs)))
+                (id))))))
       (interface_items
         (typedef_item
           (enum_items
+            (attribute
+              (doc_comment
+                (docs)))
             (id)
             (enum_body
-              (comment)
-              (id)))))
-      (comment)
+              (enum_case
+                (attribute
+                  (doc_comment
+                    (docs)))
+                (id))))))
       (interface_items
         (typedef_item
           (resource_item
+            (attribute
+              (doc_comment
+                (docs)))
             (id)
             (resource_body
-              (comment)
               (resource_method
-                (param_list))
-              (comment)
-              (resource_method
-                (id)
-                (func_type
+                (resource_constructor
+                  (attribute
+                    (doc_comment
+                      (docs)))
                   (param_list)))
-              (comment)
+              (resource_method
+                (static_resource_method
+                  (attribute
+                    (doc_comment
+                      (docs)))
+                  (id)
+                  (func_type
+                    (param_list))))
               (resource_method
                 (func_item
+                  (attribute
+                    (doc_comment
+                      (docs)))
+                  (id)
+                  (func_type
+                    (param_list))))))))))
+  (world_item
+    (attribute
+      (doc_comment
+        (docs)))
+    (id)
+    (world_body
+      (world_items
+        (export_item
+          (id)
+          (extern_type
+            (interface_body
+              (interface_items
+                (func_item
+                  (attribute
+                    (doc_comment
+                      (docs)))
                   (id)
                   (func_type
                     (param_list)))))))))))

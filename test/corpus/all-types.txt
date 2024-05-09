@@ -283,17 +283,23 @@ interface types {
           (flags_items
             (id)
             (flags_body
-              (id)
-              (id)
-              (id)))))
+              (flags_case
+                (id))
+              (flags_case
+                (id))
+              (flags_case
+                (id))))))
       (interface_items
         (typedef_item
           (flags_items
             (id)
             (flags_body
-              (id)
-              (id)
-              (id)))))
+              (flags_case
+                (id))
+              (flags_case
+                (id))
+              (flags_case
+                (id))))))
       (interface_items
         (typedef_item
           (variant_items
@@ -346,17 +352,23 @@ interface types {
           (enum_items
             (id)
             (enum_body
-              (id)
-              (id)
-              (id)))))
+              (enum_case
+                (id))
+              (enum_case
+                (id))
+              (enum_case
+                (id))))))
       (interface_items
         (typedef_item
           (enum_items
             (id)
             (enum_body
-              (id)
-              (id)
-              (id)))))
+              (enum_case
+                (id))
+              (enum_case
+                (id))
+              (enum_case
+                (id))))))
       (interface_items
         (typedef_item
           (type_item
@@ -392,10 +404,12 @@ interface types {
             (ty
               (id)))))
       (comment)
-      (comment)
       (interface_items
         (typedef_item
           (type_item
+            (attribute
+              (doc_comment
+                (docs)))
             (id)
             (ty
               (id)))))

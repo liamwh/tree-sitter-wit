@@ -201,8 +201,8 @@ world imports {
                     result_list: (result_list
                       (ty
                         (result
-                          (ty)
-                          (ty
+                          ok: (ty)
+                          err: (ty
                             (id))))))))))))
       world_items: (world_items
         export_item: (export_item
@@ -226,8 +226,8 @@ world imports {
                     result_list: (result_list
                       (ty
                         (result
-                          (ty)
-                          (ty
+                          ok: (ty)
+                          err: (ty
                             (id))))))))))))
       world_items: (world_items
         import_item: (import_item
@@ -242,6 +242,6 @@ world imports {
               result_list: (result_list
                 (ty
                   (result
-                    (ty)
-                    (ty
+                    ok: (ty)
+                    err: (ty
                       (id))))))))))))

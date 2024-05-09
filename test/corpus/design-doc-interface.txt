@@ -88,19 +88,26 @@ interface foo {
           (enum_items
             (id)
             (enum_body
-              (id)
-              (id)
-              (id)
-              (id)))))
+              (enum_case
+                (id))
+              (enum_case
+                (id))
+              (enum_case
+                (id))
+              (enum_case
+                (id))))))
       (comment)
       (interface_items
         (typedef_item
           (flags_items
             (id)
             (flags_body
-              (id)
-              (id)
-              (id)))))
+              (flags_case
+                (id))
+              (flags_case
+                (id))
+              (flags_case
+                (id))))))
       (comment)
       (comment)
       (interface_items
