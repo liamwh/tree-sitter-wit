@@ -4,7 +4,7 @@
   (id)) @type
 
 (package_decl
-  (id)) @module
+  (package_name)) @module
 
 (valid_semver) @string.special
 
@@ -40,7 +40,10 @@
 (func_item
   name: (id) @function)
 
-(handle
+(borrowed_handle
+  (id) @type)
+
+(owned_handle
   (id) @type)
 
 (named_type

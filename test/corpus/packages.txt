@@ -7,9 +7,10 @@ package wasi:io;
 ---
 
 (source_file
- (package_decl
-  (id)
-  (id)))
+  (package_decl
+    (package_name
+      (id)
+      (id))))
 
 ==================
 Packages 2
@@ -20,10 +21,11 @@ package wasmi:io:hello;
 ---
 
 (source_file
- (package_decl
-  (id)
-  (id)
-  (id)))
+  (package_decl
+    (package_name
+      (id)
+      (id)
+      (id))))
 
 ==================
 Packages 3
@@ -34,12 +36,13 @@ package wasmi:io:hello/epic@1.0.0;
 ---
 
 (source_file
- (package_decl
-  (id)
-  (id)
-  (id)
-  (id)
-  (valid_semver)))
+  (package_decl
+    (package_name
+      (id)
+      (id)
+      (id)
+      (id)
+      (valid_semver))))
 
 =======================================
 Packages 4
@@ -51,8 +54,9 @@ package wasi:io:some/nested/package;
 
 (source_file
   (package_decl
-    (id)
-    (id)
-    (id)
-    (id)
-    (id)))
+    (package_name
+      (id)
+      (id)
+      (id)
+      (id)
+      (id))))

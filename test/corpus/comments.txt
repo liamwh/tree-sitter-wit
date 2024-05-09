@@ -12,8 +12,9 @@ package local:demo;
     (attribute
       (doc_comment
         (docs)))
-    (id)
-    (id)))
+    (package_name
+      (id)
+      (id))))
 
 =============
 Slash Comment

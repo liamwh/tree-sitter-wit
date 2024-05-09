@@ -74,8 +74,9 @@ world w {
     (attribute
       (doc_comment
         (docs)))
-    (id)
-    (id))
+    (package_name
+      (id)
+      (id)))
   (interface_item
     (attribute
       (doc_comment

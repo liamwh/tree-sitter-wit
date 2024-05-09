@@ -57,6 +57,19 @@
           "value": "package"
         },
         {
+          "type": "SYMBOL",
+          "name": "package_name"
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
+    "package_name": {
+      "type": "SEQ",
+      "members": [
+        {
           "type": "REPEAT1",
           "content": {
             "type": "SEQ",
@@ -112,10 +125,6 @@
               "type": "BLANK"
             }
           ]
-        },
-        {
-          "type": "STRING",
-          "value": ";"
         }
       ]
     },
@@ -2126,16 +2135,16 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_borrow_handle"
+            "name": "borrowed_handle"
           },
           {
             "type": "SYMBOL",
-            "name": "_owned_handle"
+            "name": "owned_handle"
           }
         ]
       }
     },
-    "_borrow_handle": {
+    "borrowed_handle": {
       "type": "SEQ",
       "members": [
         {
@@ -2156,7 +2165,7 @@
         }
       ]
     },
-    "_owned_handle": {
+    "owned_handle": {
       "type": "SEQ",
       "members": [
         {

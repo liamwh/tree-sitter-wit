@@ -17,8 +17,9 @@ world my-world {
 
 (source_file
   (package_decl
-    (id)
-    (id))
+    (package_name
+      (id)
+      (id)))
   (interface_item
     (id)
     (interface_body

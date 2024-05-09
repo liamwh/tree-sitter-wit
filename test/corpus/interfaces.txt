@@ -124,7 +124,8 @@ interface foo {
                           name: (id)
                           type: (ty
                             (handle
-                              (id))))))
+                              (borrowed_handle
+                                (id)))))))
                     result_list: (result_list
                       (ty
                         (result

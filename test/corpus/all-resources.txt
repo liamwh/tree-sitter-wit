@@ -53,8 +53,9 @@ interface i {
 
 (source_file
   (package_decl
-    (id)
-    (id))
+    (package_name
+      (id)
+      (id)))
   (interface_item
     (id)
     (interface_body
@@ -120,12 +121,14 @@ interface i {
                         (id)
                         (ty
                           (handle
-                            (id))))
+                            (owned_handle
+                              (id)))))
                       (named_type
                         (id)
                         (ty
                           (handle
-                            (id))))))))
+                            (borrowed_handle
+                              (id)))))))))
               (resource_method
                 (func_item
                   (id)
@@ -136,12 +139,14 @@ interface i {
                           (id)
                           (ty
                             (handle
-                              (id))))
+                              (owned_handle
+                                (id)))))
                         (named_type
                           (id)
                           (ty
                             (handle
-                              (id)))))))))))))))
+                              (borrowed_handle
+                                (id))))))))))))))))
   (world_item
     (id)
     (world_body
@@ -181,11 +186,13 @@ interface i {
             (id)
             (ty
               (handle
-                (id))))))
+                (borrowed_handle
+                  (id)))))))
       (interface_items
         (typedef_item
           (type_item
             (id)
             (ty
               (handle
-                (id)))))))))
+                (borrowed_handle
+                  (id))))))))))

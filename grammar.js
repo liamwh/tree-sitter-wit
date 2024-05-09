@@ -39,11 +39,15 @@ module.exports = grammar({
     package_decl: $ => seq(
       field('attributes', repeat($.attribute)),
       'package',
+      $.package_name,
+      ';',
+    ),
+
+    package_name: $ => seq(
       repeat1(seq($.id, ':')),
       $.id,
       repeat(seq('/', $.id)),
       optional(seq('@', $.valid_semver)),
-      ';'
     ),
 
     toplevel_use_item: $ => seq(
@@ -332,9 +336,9 @@ module.exports = grammar({
       ),
     ),
 
-    handle: $ => prec(0, choice($.id, $._borrow_handle, $._owned_handle)),
-    _borrow_handle: $ => seq('borrow', '<', $.id, '>'),
-    _owned_handle: $ => seq('own', '<', $.id, '>'),
+    handle: $ => prec(0, choice($.borrowed_handle, $.owned_handle)),
+    borrowed_handle: $ => seq('borrow', '<', $.id, '>'),
+    owned_handle: $ => seq('own', '<', $.id, '>'),
 
     attribute: $ => $.doc_comment,
 
