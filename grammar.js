@@ -58,7 +58,13 @@ module.exports = grammar({
     ),
     use_path: $ => choice(
       $.id,
-      seq(repeat1(seq($.id, ':')), $.id, repeat(seq('/', $.id)), optional(seq('@', $.valid_semver))),
+      $.fully_qualified_use_path,
+    ),
+    fully_qualified_use_path: $ => seq(
+      repeat1(seq($.id, ':')),
+      $.id,
+      repeat(seq('/', $.id)),
+      optional(seq('@', $.valid_semver)),
     ),
 
     id: $ => /%?(([a-z][a-z0-9]*|[A-Z][A-Z0-9]*))(-([a-z][a-z0-9]*|[A-Z][A-Z0-9]*))*/,

@@ -26,10 +26,11 @@ world my-world {
       (interface_items
         (use_item
           (use_path
-            (id)
-            (id)
-            (id)
-            (valid_semver))
+            (fully_qualified_use_path
+              (id)
+              (id)
+              (id)
+              (valid_semver)))
           (use_names_list
             (use_names_item
               (id))
@@ -41,14 +42,16 @@ world my-world {
       (world_items
         (import_item
           (use_path
-            (id)
-            (id)
-            (id)
-            (valid_semver))))
+            (fully_qualified_use_path
+              (id)
+              (id)
+              (id)
+              (valid_semver)))))
       (world_items
         (export_item
           (use_path
-            (id)
-            (id)
-            (id)
-            (valid_semver)))))))
+            (fully_qualified_use_path
+              (id)
+              (id)
+              (id)
+              (valid_semver))))))))

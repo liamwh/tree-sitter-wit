@@ -263,6 +263,25 @@
     }
   },
   {
+    "type": "fully_qualified_use_path",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "id",
+          "named": true
+        },
+        {
+          "type": "valid_semver",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "func_item",
     "named": true,
     "fields": {
@@ -334,10 +353,6 @@
       "types": [
         {
           "type": "borrowed_handle",
-          "named": true
-        },
-        {
-          "type": "id",
           "named": true
         },
         {
@@ -1241,15 +1256,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "id",
+          "type": "fully_qualified_use_path",
           "named": true
         },
         {
-          "type": "valid_semver",
+          "type": "id",
           "named": true
         }
       ]

@@ -21,9 +21,10 @@ interface my-interface {
       (interface_items
         (use_item
           (use_path
-            (id)
-            (id)
-            (id))
+            (fully_qualified_use_path
+              (id)
+              (id)
+              (id)))
           (use_names_list
             (use_names_item
               (id))

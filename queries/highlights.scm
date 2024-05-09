@@ -89,6 +89,9 @@
 (use_path
   (id) @module)
 
+(use_path
+  (fully_qualified_use_path) @module)
+
 "func" @keyword.function
 
 [
