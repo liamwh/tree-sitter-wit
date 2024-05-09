@@ -2218,12 +2218,7 @@
       "name": "comment"
     }
   ],
-  "conflicts": [
-    [
-      "comment",
-      "doc_comment"
-    ]
-  ],
+  "conflicts": [],
   "precedences": [],
   "externals": [],
   "inline": [],

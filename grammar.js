@@ -24,10 +24,6 @@ module.exports = grammar({
     $.comment,
   ],
 
-  conflicts: $ => [
-    [$.comment, $.doc_comment],
-  ],
-
   rules: {
     source_file: $ => seq(
       optional($.package_decl),

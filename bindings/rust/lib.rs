@@ -39,8 +39,13 @@ pub const NODE_TYPES: &str = include_str!("../../src/node-types.json");
 
 pub const HIGHLIGHTS_QUERY: &str = include_str!("../../queries/highlights.scm");
 pub const INJECTIONS_QUERY: &str = include_str!("../../queries/injections.scm");
-// pub const LOCALS_QUERY: &str = include_str!("../../queries/locals.scm");
-// pub const TAGS_QUERY: &str = include_str!("../../queries/tags.scm");
+
+/// A Tree Sitter query for finding all foldable nodes.
+///
+/// The folds are split into three categories; `@imports` for imports,
+/// `@comments` for comments, and `@normal` for essentially anything else that
+/// you would normally want to fold.
+pub const FOLDING_QUERY: &str = include_str!("../../queries/folding.scm");
 
 #[cfg(test)]
 mod tests {
