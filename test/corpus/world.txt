@@ -1,6 +1,135 @@
+===========
+Basic world
+===========
+
+world foo { }
+
+---
+
+(source_file
+  (world_item
+    (id)
+    (world_body)))
+
+===========================
+World with interface export
+===========================
+
+world console {
+    export run: interface {}
+}
+
+---
+
+(source_file
+  (world_item
+    (id)
+    (world_body
+      (world_items
+        (export_item
+          (id)
+          (extern_type
+            (interface_body)))))))
+
+==========================
+World with function export
+==========================
+
+world foo {
+    export run: func();
+}
+
+---
+
+(source_file
+  (world_item
+    (id)
+    (world_body
+      (world_items
+        (export_item
+          (id)
+          (extern_type
+            (func_type
+              (param_list))))))))
+
+=================
+World with import
+=================
+
+world command {
+  import wasi:filesystem/filesystem;
+}
+
+---
+
+(source_file
+  (world_item
+    (id)
+    (world_body
+      (world_items
+        (import_item
+          (use_path
+            (id)
+            (id)
+            (id)))))))
+
 ==================
-Worlds
+World with include
 ==================
+
+world foo {
+     include bar;
+}
+
+---
+
+(source_file
+  (world_item
+    (id)
+    (world_body
+      (world_items
+        (include_item
+          (use_path
+            (id)))))))
+
+==========================
+World with include aliased
+==========================
+
+world foo {
+    include wasi:io/my-world-1 with { a as a1, b as b1 };
+}
+
+---
+
+
+==============
+World with use
+==============
+
+world command {
+  use wasi:filesystem/filesystem.{errno};
+}
+
+---
+
+(source_file
+  (world_item
+    (id)
+    (world_body
+      (world_items
+        (use_item
+          (use_path
+            (id)
+            (id)
+            (id))
+          (use_names_list
+            (use_names_item
+              (id))))))))
+
+===================
+Worlds Kitchen Sink
+===================
 
 world imports {
     import streams;

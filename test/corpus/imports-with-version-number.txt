@@ -1,0 +1,53 @@
+===========================
+Imports with version number
+===========================
+
+package local:demo;
+
+interface my-interface {
+  use wasi:http/types@1.0.0.{request, response};
+}
+
+world my-world {
+  import wasi:http/handler@1.0.0;
+  export wasi:http/handler@1.0.0;
+}
+
+---
+
+(source_file
+  (package_decl
+    (id)
+    (id))
+  (interface_item
+    (id)
+    (interface_body
+      (interface_items
+        (use_item
+          (use_path
+            (id)
+            (id)
+            (id)
+            (valid_semver))
+          (use_names_list
+            (use_names_item
+              (id))
+            (use_names_item
+              (id)))))))
+  (world_item
+    (id)
+    (world_body
+      (world_items
+        (import_item
+          (use_path
+            (id)
+            (id)
+            (id)
+            (valid_semver))))
+      (world_items
+        (export_item
+          (use_path
+            (id)
+            (id)
+            (id)
+            (valid_semver)))))))

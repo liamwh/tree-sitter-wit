@@ -1,0 +1,119 @@
+========================
+Doc Comment Kitchen Sink
+========================
+
+/// This is a package
+package some:package;
+
+/// An interface.
+interface i {
+    /// A record.
+    record r {
+        /// A field
+        field: u32,
+    }
+
+    /// A type alias.
+    type x = u32;
+
+    /// A variant.
+    variant v {
+        /// An empty field
+        empty,
+    }
+
+    /// Some flags.
+    flags f {
+        /// First flag.
+        first,
+    }
+
+    /// An enum.
+    enum e {
+        /// An enum variant.
+        variant,
+    }
+
+    /// A resource.
+    resource res {
+        /// The constructor.
+        constructor();
+        /// Some static method.
+        s: static func();
+        /// A normal method.
+        method: func();
+    }
+}
+
+---
+
+(source_file
+  (comment)
+  (package_decl
+    (id)
+    (id))
+  (comment)
+  (interface_item
+    (id)
+    (interface_body
+      (comment)
+      (interface_items
+        (typedef_item
+          (record_item
+            (id)
+            (record_body
+              (comment)
+              (record_field
+                (id)
+                (ty))))))
+      (comment)
+      (interface_items
+        (typedef_item
+          (type_item
+            (id)
+            (ty))))
+      (comment)
+      (interface_items
+        (typedef_item
+          (variant_items
+            (id)
+            (variant_body
+              (comment)
+              (variant_case
+                (id))))))
+      (comment)
+      (interface_items
+        (typedef_item
+          (flags_items
+            (id)
+            (flags_body
+              (comment)
+              (id)))))
+      (comment)
+      (interface_items
+        (typedef_item
+          (enum_items
+            (id)
+            (enum_body
+              (comment)
+              (id)))))
+      (comment)
+      (interface_items
+        (typedef_item
+          (resource_item
+            (id)
+            (resource_body
+              (comment)
+              (resource_method
+                (param_list))
+              (comment)
+              (resource_method
+                (id)
+                (func_type
+                  (param_list)))
+              (comment)
+              (resource_method
+                (func_item
+                  (id)
+                  (func_type
+                    (param_list)))))))))))

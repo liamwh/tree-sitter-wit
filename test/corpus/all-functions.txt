@@ -1,0 +1,132 @@
+=============
+All Functions
+=============
+
+package foo:functions;
+
+interface functions {
+  f1: func();
+  f2: func(a: u32);
+  f3: func(a: u32,);
+  f4: func() -> u32;
+  f6: func() -> tuple<u32, u32>;
+  f7: func(a: f32, b: f32) -> tuple<u32, u32>;
+  f8: func(a: option<u32>) -> result<u32, f32>;
+  f9: func() -> (u: u32, f: f32);
+  f10: func() -> (u: u32);
+  f11: func() -> ();
+}
+
+---
+
+(source_file
+  (package_decl
+    (id)
+    (id))
+  (interface_item
+    (id)
+    (interface_body
+      (interface_items
+        (func_item
+          (id)
+          (func_type
+            (param_list))))
+      (interface_items
+        (func_item
+          (id)
+          (func_type
+            (param_list
+              (named_type_list
+                (named_type
+                  (id)
+                  (ty)))))))
+      (interface_items
+        (func_item
+          (id)
+          (func_type
+            (param_list
+              (named_type_list
+                (named_type
+                  (id)
+                  (ty)))))))
+      (interface_items
+        (func_item
+          (id)
+          (func_type
+            (param_list)
+            (result_list
+              (ty)))))
+      (interface_items
+        (func_item
+          (id)
+          (func_type
+            (param_list)
+            (result_list
+              (ty
+                (tuple
+                  (tuple_list
+                    (ty)
+                    (ty))))))))
+      (interface_items
+        (func_item
+          (id)
+          (func_type
+            (param_list
+              (named_type_list
+                (named_type
+                  (id)
+                  (ty))
+                (named_type
+                  (id)
+                  (ty))))
+            (result_list
+              (ty
+                (tuple
+                  (tuple_list
+                    (ty)
+                    (ty))))))))
+      (interface_items
+        (func_item
+          (id)
+          (func_type
+            (param_list
+              (named_type_list
+                (named_type
+                  (id)
+                  (ty
+                    (option
+                      (ty))))))
+            (result_list
+              (ty
+                (result
+                  (ty)
+                  (ty)))))))
+      (interface_items
+        (func_item
+          (id)
+          (func_type
+            (param_list)
+            (result_list
+              (named_type_list
+                (named_type
+                  (id)
+                  (ty))
+                (named_type
+                  (id)
+                  (ty)))))))
+      (interface_items
+        (func_item
+          (id)
+          (func_type
+            (param_list)
+            (result_list
+              (named_type_list
+                (named_type
+                  (id)
+                  (ty)))))))
+      (interface_items
+        (func_item
+          (id)
+          (func_type
+            (param_list)
+            (result_list)))))))
