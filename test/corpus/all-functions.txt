@@ -39,7 +39,8 @@ interface functions {
               (named_type_list
                 (named_type
                   (id)
-                  (ty)))))))
+                  (ty
+                    (builtin))))))))
       (interface_items
         (func_item
           (id)
@@ -48,14 +49,16 @@ interface functions {
               (named_type_list
                 (named_type
                   (id)
-                  (ty)))))))
+                  (ty
+                    (builtin))))))))
       (interface_items
         (func_item
           (id)
           (func_type
             (param_list)
             (result_list
-              (ty)))))
+              (ty
+                (builtin))))))
       (interface_items
         (func_item
           (id)
@@ -65,8 +68,10 @@ interface functions {
               (ty
                 (tuple
                   (tuple_list
-                    (ty)
-                    (ty))))))))
+                    (ty
+                      (builtin))
+                    (ty
+                      (builtin)))))))))
       (interface_items
         (func_item
           (id)
@@ -75,16 +80,20 @@ interface functions {
               (named_type_list
                 (named_type
                   (id)
-                  (ty))
+                  (ty
+                    (builtin)))
                 (named_type
                   (id)
-                  (ty))))
+                  (ty
+                    (builtin)))))
             (result_list
               (ty
                 (tuple
                   (tuple_list
-                    (ty)
-                    (ty))))))))
+                    (ty
+                      (builtin))
+                    (ty
+                      (builtin)))))))))
       (interface_items
         (func_item
           (id)
@@ -95,12 +104,15 @@ interface functions {
                   (id)
                   (ty
                     (option
-                      (ty))))))
+                      (ty
+                        (builtin)))))))
             (result_list
               (ty
                 (result
-                  (ty)
-                  (ty)))))))
+                  (ty
+                    (builtin))
+                  (ty
+                    (builtin))))))))
       (interface_items
         (func_item
           (id)
@@ -110,10 +122,12 @@ interface functions {
               (named_type_list
                 (named_type
                   (id)
-                  (ty))
+                  (ty
+                    (builtin)))
                 (named_type
                   (id)
-                  (ty)))))))
+                  (ty
+                    (builtin))))))))
       (interface_items
         (func_item
           (id)
@@ -123,7 +137,8 @@ interface functions {
               (named_type_list
                 (named_type
                   (id)
-                  (ty)))))))
+                  (ty
+                    (builtin))))))))
       (interface_items
         (func_item
           (id)

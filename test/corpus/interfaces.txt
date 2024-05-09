@@ -48,7 +48,8 @@ interface foo {
         typedef: (typedef_item
           (type_item
             alias: (id)
-            type: (ty))))
+            type: (ty
+              (builtin)))))
       interface_items: (interface_items
         func: (func_item
           name: (id)
@@ -57,12 +58,15 @@ interface foo {
               (named_type_list
                 (named_type
                   name: (id)
-                  type: (ty))
+                  type: (ty
+                    (builtin)))
                 (named_type
                   name: (id)
-                  type: (ty))))
+                  type: (ty
+                    (builtin)))))
             result_list: (result_list
-              (ty)))))
+              (ty
+                (builtin))))))
       interface_items: (interface_items
         func: (func_item
           name: (id)
@@ -71,8 +75,10 @@ interface foo {
             result_list: (result_list
               (ty
                 (result
-                  ok: (ty)
-                  err: (ty)))))))
+                  ok: (ty
+                    (builtin))
+                  err: (ty
+                    (builtin))))))))
       interface_items: (interface_items
         func: (func_item
           name: (id)
@@ -81,7 +87,8 @@ interface foo {
             result_list: (result_list
               (ty
                 (option
-                  (ty)))))))
+                  (ty
+                    (builtin))))))))
       interface_items: (interface_items
         typedef: (typedef_item
           (resource_item
@@ -98,11 +105,13 @@ interface foo {
                       (named_type_list
                         (named_type
                           name: (id)
-                          type: (ty))))
+                          type: (ty
+                            (builtin)))))
                     result_list: (result_list
                       (ty
                         (result
-                          ok: (ty)
+                          ok: (ty
+                            (builtin))
                           err: (ty
                             (id))))))))
               (resource_method
@@ -119,7 +128,8 @@ interface foo {
                     result_list: (result_list
                       (ty
                         (result
-                          ok: (ty)
+                          ok: (ty
+                            (builtin))
                           err: (ty
                             (id))))))))))))
       interface_items: (interface_items
@@ -134,25 +144,26 @@ interface foo {
             body: (record_body
               record_fields: (record_field
                 name: (id)
-                type: (ty))))))
+                type: (ty
+                  (builtin)))))))
       interface_items: (interface_items
         typedef: (typedef_item
           (flags_items
             name: (id)
             body: (flags_body
               flags_fields: (flags_case
-                (id))
+                name: (id))
               flags_fields: (flags_case
-                (id))))))
+                name: (id))))))
       interface_items: (interface_items
         typedef: (typedef_item
           (enum_items
             name: (id)
             (enum_body
               enum_cases: (enum_case
-                (id))
+                name: (id))
               enum_cases: (enum_case
-                (id))))))
+                name: (id))))))
       interface_items: (interface_items
         typedef: (typedef_item
           (variant_items

@@ -603,16 +603,24 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "id"
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "id"
+          }
         },
         {
           "type": "STRING",
           "value": "as"
         },
         {
-          "type": "SYMBOL",
-          "name": "id"
+          "type": "FIELD",
+          "name": "alias",
+          "content": {
+            "type": "SYMBOL",
+            "name": "id"
+          }
         }
       ]
     },
@@ -1030,23 +1038,35 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "id"
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "id"
+          }
         },
         {
           "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "id"
+              "type": "FIELD",
+              "name": "name",
+              "content": {
+                "type": "SYMBOL",
+                "name": "id"
+              }
             },
             {
               "type": "STRING",
               "value": "as"
             },
             {
-              "type": "SYMBOL",
-              "name": "id"
+              "type": "FIELD",
+              "name": "alias",
+              "content": {
+                "type": "SYMBOL",
+                "name": "id"
+              }
             }
           ]
         }
@@ -1343,8 +1363,12 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "id"
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "id"
+          }
         }
       ]
     },
@@ -1608,8 +1632,12 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "id"
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "id"
+          }
         }
       ]
     },
@@ -1718,8 +1746,12 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "id"
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "id"
+          }
         },
         {
           "type": "STRING",
@@ -1774,64 +1806,8 @@
         "type": "CHOICE",
         "members": [
           {
-            "type": "STRING",
-            "value": "u8"
-          },
-          {
-            "type": "STRING",
-            "value": "u16"
-          },
-          {
-            "type": "STRING",
-            "value": "u32"
-          },
-          {
-            "type": "STRING",
-            "value": "u64"
-          },
-          {
-            "type": "STRING",
-            "value": "s8"
-          },
-          {
-            "type": "STRING",
-            "value": "s16"
-          },
-          {
-            "type": "STRING",
-            "value": "s32"
-          },
-          {
-            "type": "STRING",
-            "value": "s64"
-          },
-          {
-            "type": "STRING",
-            "value": "f32"
-          },
-          {
-            "type": "STRING",
-            "value": "f64"
-          },
-          {
-            "type": "STRING",
-            "value": "float32"
-          },
-          {
-            "type": "STRING",
-            "value": "float64"
-          },
-          {
-            "type": "STRING",
-            "value": "char"
-          },
-          {
-            "type": "STRING",
-            "value": "bool"
-          },
-          {
-            "type": "STRING",
-            "value": "string"
+            "type": "SYMBOL",
+            "name": "builtin"
           },
           {
             "type": "SYMBOL",
@@ -1859,6 +1835,71 @@
           }
         ]
       }
+    },
+    "builtin": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "u8"
+        },
+        {
+          "type": "STRING",
+          "value": "u16"
+        },
+        {
+          "type": "STRING",
+          "value": "u32"
+        },
+        {
+          "type": "STRING",
+          "value": "u64"
+        },
+        {
+          "type": "STRING",
+          "value": "s8"
+        },
+        {
+          "type": "STRING",
+          "value": "s16"
+        },
+        {
+          "type": "STRING",
+          "value": "s32"
+        },
+        {
+          "type": "STRING",
+          "value": "s64"
+        },
+        {
+          "type": "STRING",
+          "value": "f32"
+        },
+        {
+          "type": "STRING",
+          "value": "f64"
+        },
+        {
+          "type": "STRING",
+          "value": "float32"
+        },
+        {
+          "type": "STRING",
+          "value": "float64"
+        },
+        {
+          "type": "STRING",
+          "value": "char"
+        },
+        {
+          "type": "STRING",
+          "value": "bool"
+        },
+        {
+          "type": "STRING",
+          "value": "string"
+        }
+      ]
     },
     "tuple": {
       "type": "SEQ",

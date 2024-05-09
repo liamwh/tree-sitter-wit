@@ -188,7 +188,8 @@ world imports {
                 typedef: (typedef_item
                   (type_item
                     alias: (id)
-                    type: (ty))))
+                    type: (ty
+                      (builtin)))))
               interface_items: (interface_items
                 func: (func_item
                   name: (id)
@@ -197,11 +198,13 @@ world imports {
                       (named_type_list
                         (named_type
                           name: (id)
-                          type: (ty))))
+                          type: (ty
+                            (builtin)))))
                     result_list: (result_list
                       (ty
                         (result
-                          ok: (ty)
+                          ok: (ty
+                            (builtin))
                           err: (ty
                             (id))))))))))))
       world_items: (world_items
@@ -213,7 +216,8 @@ world imports {
                 typedef: (typedef_item
                   (type_item
                     alias: (id)
-                    type: (ty))))
+                    type: (ty
+                      (builtin)))))
               interface_items: (interface_items
                 func: (func_item
                   name: (id)
@@ -222,11 +226,13 @@ world imports {
                       (named_type_list
                         (named_type
                           name: (id)
-                          type: (ty))))
+                          type: (ty
+                            (builtin)))))
                     result_list: (result_list
                       (ty
                         (result
-                          ok: (ty)
+                          ok: (ty
+                            (builtin))
                           err: (ty
                             (id))))))))))))
       world_items: (world_items
@@ -238,10 +244,12 @@ world imports {
                 (named_type_list
                   (named_type
                     name: (id)
-                    type: (ty))))
+                    type: (ty
+                      (builtin)))))
               result_list: (result_list
                 (ty
                   (result
-                    ok: (ty)
+                    ok: (ty
+                      (builtin))
                     err: (ty
                       (id))))))))))))

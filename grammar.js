@@ -113,7 +113,7 @@ module.exports = grammar({
 
     include_names_list: $ => commaSeparatedList(field('include_names_item', $.include_names_item)),
 
-    include_names_item: $ => seq($.id, 'as', $.id),
+    include_names_item: $ => seq(field('name', $.id), 'as', field('alias', $.id)),
 
     interface_item: $ => seq(
       field('attributes', repeat($.attribute)),
@@ -178,8 +178,12 @@ module.exports = grammar({
     use_names_list: $ => commaSeparatedList(field('use_names_item', $.use_names_item)),
 
     use_names_item: $ => choice(
-      $.id,
-      seq($.id, 'as', $.id),
+      field('name', $.id),
+      seq(
+        field('name', $.id),
+        'as',
+        field('alias', $.id),
+      ),
     ),
 
     type_item: $ => seq(
@@ -217,7 +221,7 @@ module.exports = grammar({
     flags_body: $ => seq('{', field('flags_fields', optionalCommaSeparatedList($.flags_case)), '}'),
     flags_case: $ => seq(
       field('attributes', repeat($.attribute)),
-      $.id,
+      field('name', $.id),
     ),
 
     variant_items: $ => seq(
@@ -245,7 +249,7 @@ module.exports = grammar({
     enum_body: $ => seq('{', field('enum_cases', optionalCommaSeparatedList($.enum_case)), '}'),
     enum_case: $ => seq(
       field('attributes', repeat($.attribute)),
-      $.id,
+      field('name', $.id),
     ),
 
     resource_item: $ => seq(
@@ -267,7 +271,7 @@ module.exports = grammar({
     ),
     static_resource_method: $ => seq(
       field('attributes', repeat($.attribute)),
-      $.id,
+      field('name', $.id),
       ':',
       'static',
       $.func_type,
@@ -282,6 +286,16 @@ module.exports = grammar({
     ),
 
     ty: $ => prec(1, choice(
+      $.builtin,
+      $.tuple,
+      $.list,
+      $.option,
+      $.result,
+      $.id,
+      $.handle,
+    )),
+
+    builtin: _ => choice(
       "u8",
       "u16",
       "u32",
@@ -297,13 +311,7 @@ module.exports = grammar({
       "char",
       "bool",
       "string",
-      $.tuple,
-      $.list,
-      $.option,
-      $.result,
-      $.id,
-      $.handle,
-    )),
+    ),
 
     tuple: $ => seq('tuple', '<', optional($.tuple_list), '>'),
 

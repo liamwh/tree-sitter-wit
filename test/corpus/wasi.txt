@@ -224,7 +224,8 @@ interface wasi {
               (doc_comment
                 (docs)))
             (id)
-            (ty))))
+            (ty
+              (builtin)))))
       (interface_items
         (typedef_item
           (enum_items

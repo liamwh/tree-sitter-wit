@@ -64,10 +64,12 @@ interface foo {
             (record_body
               (record_field
                 (id)
-                (ty))
+                (ty
+                  (builtin)))
               (record_field
                 (id)
-                (ty))))))
+                (ty
+                  (builtin)))))))
       (comment)
       (interface_items
         (typedef_item
@@ -78,7 +80,8 @@ interface foo {
                 (id))
               (variant_case
                 (id)
-                (ty))
+                (ty
+                  (builtin)))
               (comment)
               (variant_case
                 (id))))))
@@ -114,7 +117,8 @@ interface foo {
         (typedef_item
           (type_item
             (id)
-            (ty))))
+            (ty
+              (builtin)))))
       (interface_items
         (typedef_item
           (type_item
@@ -122,20 +126,24 @@ interface foo {
             (ty
               (tuple
                 (tuple_list
-                  (ty)
-                  (ty)))))))
+                  (ty
+                    (builtin))
+                  (ty
+                    (builtin))))))))
       (interface_items
         (typedef_item
           (type_item
             (id)
-            (ty))))
+            (ty
+              (builtin)))))
       (interface_items
         (typedef_item
           (type_item
             (id)
             (ty
               (option
-                (ty))))))
+                (ty
+                  (builtin)))))))
       (interface_items
         (typedef_item
           (type_item
@@ -151,7 +159,8 @@ interface foo {
             (id)
             (ty
               (result
-                (ty))))))
+                (ty
+                  (builtin)))))))
       (comment)
       (interface_items
         (typedef_item
@@ -159,7 +168,8 @@ interface foo {
             (id)
             (ty
               (result
-                (ty)
+                (ty
+                  (builtin))
                 (ty
                   (id)))))))
       (comment)
@@ -176,7 +186,8 @@ interface foo {
             (id)
             (ty
               (list
-                (ty))))))
+                (ty
+                  (builtin)))))))
       (interface_items
         (typedef_item
           (type_item

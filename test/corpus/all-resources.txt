@@ -82,7 +82,8 @@ interface i {
                     (named_type_list
                       (named_type
                         (id)
-                        (ty))))))))))
+                        (ty
+                          (builtin)))))))))))
       (interface_items
         (typedef_item
           (resource_item
@@ -94,7 +95,8 @@ interface i {
                     (named_type_list
                       (named_type
                         (id)
-                        (ty))))))
+                        (ty
+                          (builtin)))))))
               (resource_method
                 (func_item
                   (id)
