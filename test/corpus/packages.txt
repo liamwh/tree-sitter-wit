@@ -40,3 +40,19 @@ package wasmi:io:hello/epic@1.0.0;
   (id)
   (id)
   (valid_semver)))
+
+=======================================
+Packages 4
+=======================================
+
+package wasi:io:some/nested/package;
+
+---
+
+(source_file
+  (package_decl
+    (id)
+    (id)
+    (id)
+    (id)
+    (id)))
