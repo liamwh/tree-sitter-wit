@@ -1,0 +1,201 @@
+=============
+All Resources
+=============
+
+package foo:bar;
+
+interface foo {
+  resource a { }
+
+  resource b {
+    constructor();
+  }
+
+  resource c {
+    constructor(x: u32);
+  }
+
+  resource d {
+    constructor(x: u32);
+
+    a: func();
+
+    b: static func();
+  }
+
+  resource e {
+    constructor(other: own<e>, other2: borrow<e>);
+
+    method: func(thing: own<e>, thing2: borrow<e>);
+  }
+}
+
+world w {
+  resource a;
+
+  resource b {
+  }
+
+  resource c {
+    constructor();
+  }
+}
+
+interface i {
+  resource a;
+
+  type t1 = a;
+  type t2 = borrow<a>;
+  type t3 = borrow<t1>;
+}
+
+---
+
+(source_file
+  (package_decl
+    (package_name
+      (id)
+      (id)))
+  (top_level_item
+    (interface_item
+      (id)
+      (interface_body
+        (interface_items
+          (typedef_item
+            (resource_item
+              (id)
+              (resource_body))))
+        (interface_items
+          (typedef_item
+            (resource_item
+              (id)
+              (resource_body
+                (resource_method
+                  (resource_constructor
+                    (param_list)))))))
+        (interface_items
+          (typedef_item
+            (resource_item
+              (id)
+              (resource_body
+                (resource_method
+                  (resource_constructor
+                    (param_list
+                      (named_type_list
+                        (named_type
+                          (id)
+                          (ty
+                            (builtin)))))))))))
+        (interface_items
+          (typedef_item
+            (resource_item
+              (id)
+              (resource_body
+                (resource_method
+                  (resource_constructor
+                    (param_list
+                      (named_type_list
+                        (named_type
+                          (id)
+                          (ty
+                            (builtin)))))))
+                (resource_method
+                  (func_item
+                    (id)
+                    (func_type
+                      (param_list))))
+                (resource_method
+                  (static_resource_method
+                    (id)
+                    (func_type
+                      (param_list))))))))
+        (interface_items
+          (typedef_item
+            (resource_item
+              (id)
+              (resource_body
+                (resource_method
+                  (resource_constructor
+                    (param_list
+                      (named_type_list
+                        (named_type
+                          (id)
+                          (ty
+                            (handle
+                              (owned_handle
+                                (id)))))
+                        (named_type
+                          (id)
+                          (ty
+                            (handle
+                              (borrowed_handle
+                                (id)))))))))
+                (resource_method
+                  (func_item
+                    (id)
+                    (func_type
+                      (param_list
+                        (named_type_list
+                          (named_type
+                            (id)
+                            (ty
+                              (handle
+                                (owned_handle
+                                  (id)))))
+                          (named_type
+                            (id)
+                            (ty
+                              (handle
+                                (borrowed_handle
+                                  (id)))))))))))))))))
+  (top_level_item
+    (world_item
+      (id)
+      (world_body
+        (world_items
+          (typedef_item
+            (resource_item
+              (id))))
+        (world_items
+          (typedef_item
+            (resource_item
+              (id)
+              (resource_body))))
+        (world_items
+          (typedef_item
+            (resource_item
+              (id)
+              (resource_body
+                (resource_method
+                  (resource_constructor
+                    (param_list))))))))))
+  (top_level_item
+    (interface_item
+      (id)
+      (interface_body
+        (interface_items
+          (typedef_item
+            (resource_item
+              (id))))
+        (interface_items
+          (typedef_item
+            (type_item
+              (id)
+              (ty
+                (id)))))
+        (interface_items
+          (typedef_item
+            (type_item
+              (id)
+              (ty
+                (handle
+                  (borrowed_handle
+                    (id)))))))
+        (interface_items
+          (typedef_item
+            (type_item
+              (id)
+              (ty
+                (handle
+                  (borrowed_handle
+                    (id)))))))))))

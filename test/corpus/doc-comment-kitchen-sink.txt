@@ -1,0 +1,238 @@
+========================
+Doc Comment Kitchen Sink
+========================
+
+/// This is a package
+package some:package;
+
+/// An interface.
+interface i {
+    /// A function.
+    f: func(
+      /// First argument.
+      first: string,
+      /// Second argument.
+      second: u32,
+    ) -> (
+      /// First return value.
+      third: f32,
+      /// Second return value.
+      fourth: bool,
+    );
+
+    /// A record.
+    record r {
+        /// A field
+        field: u32,
+    }
+
+    /// A type alias.
+    type x = u32;
+
+    /// A variant.
+    variant v {
+        /// An empty field
+        empty,
+    }
+
+    /// Some flags.
+    flags f {
+        /// First flag.
+        first,
+    }
+
+    /// An enum.
+    enum e {
+        /// An enum variant.
+        variant,
+    }
+
+    /// A resource.
+    resource res {
+        /// The constructor.
+        constructor();
+        /// Some static method.
+        s: static func();
+        /// A normal method.
+        method: func();
+    }
+}
+
+/// A world.
+world w {
+  export i: interface {
+    /// top-level function
+    f: func();
+  }
+ 
+}
+
+---
+
+(source_file
+  (package_decl
+    (attribute
+      (doc_comment
+        (docs)))
+    (package_name
+      (id)
+      (id)))
+  (top_level_item
+    (interface_item
+      (attribute
+        (doc_comment
+          (docs)))
+      (id)
+      (interface_body
+        (interface_items
+          (func_item
+            (attribute
+              (doc_comment
+                (docs)))
+            (id)
+            (func_type
+              (param_list
+                (named_type_list
+                  (named_type
+                    (attribute
+                      (doc_comment
+                        (docs)))
+                    (id)
+                    (ty
+                      (builtin)))
+                  (named_type
+                    (attribute
+                      (doc_comment
+                        (docs)))
+                    (id)
+                    (ty
+                      (builtin)))))
+              (result_list
+                (named_type_list
+                  (named_type
+                    (attribute
+                      (doc_comment
+                        (docs)))
+                    (id)
+                    (ty
+                      (builtin)))
+                  (named_type
+                    (attribute
+                      (doc_comment
+                        (docs)))
+                    (id)
+                    (ty
+                      (builtin))))))))
+        (interface_items
+          (typedef_item
+            (record_item
+              (attribute
+                (doc_comment
+                  (docs)))
+              (id)
+              (record_body
+                (record_field
+                  (attribute
+                    (doc_comment
+                      (docs)))
+                  (id)
+                  (ty
+                    (builtin)))))))
+        (interface_items
+          (typedef_item
+            (type_item
+              (attribute
+                (doc_comment
+                  (docs)))
+              (id)
+              (ty
+                (builtin)))))
+        (interface_items
+          (typedef_item
+            (variant_items
+              (attribute
+                (doc_comment
+                  (docs)))
+              (id)
+              (variant_body
+                (variant_case
+                  (attribute
+                    (doc_comment
+                      (docs)))
+                  (id))))))
+        (interface_items
+          (typedef_item
+            (flags_items
+              (attribute
+                (doc_comment
+                  (docs)))
+              (id)
+              (flags_body
+                (flags_case
+                  (attribute
+                    (doc_comment
+                      (docs)))
+                  (id))))))
+        (interface_items
+          (typedef_item
+            (enum_items
+              (attribute
+                (doc_comment
+                  (docs)))
+              (id)
+              (enum_body
+                (enum_case
+                  (attribute
+                    (doc_comment
+                      (docs)))
+                  (id))))))
+        (interface_items
+          (typedef_item
+            (resource_item
+              (attribute
+                (doc_comment
+                  (docs)))
+              (id)
+              (resource_body
+                (resource_method
+                  (resource_constructor
+                    (attribute
+                      (doc_comment
+                        (docs)))
+                    (param_list)))
+                (resource_method
+                  (static_resource_method
+                    (attribute
+                      (doc_comment
+                        (docs)))
+                    (id)
+                    (func_type
+                      (param_list))))
+                (resource_method
+                  (func_item
+                    (attribute
+                      (doc_comment
+                        (docs)))
+                    (id)
+                    (func_type
+                      (param_list)))))))))))
+  (top_level_item
+    (world_item
+      (attribute
+        (doc_comment
+          (docs)))
+      (id)
+      (world_body
+        (world_items
+          (export_item
+            (id)
+            (extern_type
+              (interface_body
+                (interface_items
+                  (func_item
+                    (attribute
+                      (doc_comment
+                        (docs)))
+                    (id)
+                    (func_type
+                      (param_list))))))))))))

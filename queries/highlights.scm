@@ -4,7 +4,7 @@
   (id)) @type
 
 (package_decl
-  (id)) @module
+  (package_name)) @module
 
 (valid_semver) @string.special
 
@@ -40,7 +40,10 @@
 (func_item
   name: (id) @function)
 
-(handle
+(borrowed_handle
+  (id) @type)
+
+(owned_handle
   (id) @type)
 
 (named_type
@@ -56,7 +59,8 @@
   name: (id) @type)
 
 (flags_body
-  (id) @variable.member)
+  (flags_case
+    (id) @variable.member))
 
 (variant_items
   name: (id) @type)
@@ -68,13 +72,13 @@
   name: (id) @type)
 
 (enum_body
-  enum_cases: (id) @constant)
+  (enum_case
+    (id) @constant))
 
 (resource_item
   name: (id) @type)
 
-(resource_method
-  "constructor" @constructor)
+(resource_constructor) @constructor
 
 (toplevel_use_item
   "use" @keyword.import)
@@ -84,6 +88,9 @@
 
 (use_path
   (id) @module)
+
+(use_path
+  (fully_qualified_use_path) @module)
 
 "func" @keyword.function
 

@@ -26,23 +26,27 @@ module.exports = grammar({
 
   rules: {
     source_file: $ => seq(
-      optional($.package_decl),
-      repeat(
-        choice(
-          $.toplevel_use_item,
-          $.world_item,
-          $.interface_item,
-        ),
-      ),
+      optional(field('decl', $.package_decl)),
+      repeat($.top_level_item),
+    ),
+    top_level_item: $ => choice(
+      $.toplevel_use_item,
+      $.world_item,
+      $.interface_item,
     ),
 
     package_decl: $ => seq(
+      field('attributes', repeat($.attribute)),
       'package',
+      $.package_name,
+      ';',
+    ),
+
+    package_name: $ => seq(
       repeat1(seq($.id, ':')),
       $.id,
       repeat(seq('/', $.id)),
       optional(seq('@', $.valid_semver)),
-      ';'
     ),
 
     toplevel_use_item: $ => seq(
@@ -53,7 +57,13 @@ module.exports = grammar({
     ),
     use_path: $ => choice(
       $.id,
-      seq(repeat1(seq($.id, ':')), $.id, repeat(seq('/', $.id)), optional(seq('@', $.valid_semver))),
+      $.fully_qualified_use_path,
+    ),
+    fully_qualified_use_path: $ => seq(
+      repeat1(seq($.id, ':')),
+      repeat(seq($.id, '/')),
+      $.id,
+      optional(seq('@', $.valid_semver)),
     ),
 
     id: $ => /%?(([a-z][a-z0-9]*|[A-Z][A-Z0-9]*))(-([a-z][a-z0-9]*|[A-Z][A-Z0-9]*))*/,
@@ -62,6 +72,7 @@ module.exports = grammar({
     valid_semver: $ => /(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?/,
 
     world_item: $ => seq(
+      field("attributes", repeat($.attribute)),
       'world',
       field('name', $.id),
       field('body', $.world_body),
@@ -92,27 +103,26 @@ module.exports = grammar({
       seq('interface', $.interface_body),
     ),
 
-    include_item: $ => choice(
-      seq(
-        'include',
-        field('use_path', $.use_path),
-        ';'
+    include_item: $ => seq(
+      'include',
+      field('use_path', $.use_path),
+      optional(
+        seq(
+          'with',
+          field('include_names_body', $.include_names_body),
+        )
       ),
-      seq(
-        'include',
-        field('use_path', $.use_path),
-        'with',
-        field('include_names_body', $.include_names_body),
-      ),
+      ';',
     ),
 
     include_names_body: $ => seq('{', field('include_names_list', $.include_names_list), '}'),
 
     include_names_list: $ => commaSeparatedList(field('include_names_item', $.include_names_item)),
 
-    include_names_item: $ => seq($.id, 'as', $.id),
+    include_names_item: $ => seq(field('name', $.id), 'as', field('alias', $.id)),
 
     interface_item: $ => seq(
+      field('attributes', repeat($.attribute)),
       'interface',
       field('name', $.id),
       field('body', $.interface_body),
@@ -139,7 +149,13 @@ module.exports = grammar({
       $.type_item,
     ),
 
-    func_item: $ => seq(field('name', $.id), ':', $.func_type, ';'),
+    func_item: $ => seq(
+      field('attributes', repeat($.attribute)),
+      field('name', $.id),
+      ':',
+      $.func_type,
+      ';',
+    ),
 
     func_type: $ => seq(
       'func',
@@ -157,23 +173,45 @@ module.exports = grammar({
     named_type_list: $ => commaSeparatedList($.named_type),
 
     named_type: $ => seq(
+      field('attributes', repeat($.attribute)),
       field('name', $.id),
       ':',
       field('type', $.ty),
     ),
 
-    use_item: $ => seq('use', $.use_path, '.', '{', $.use_names_list, '}', ';'),
+    use_item: $ => seq(
+      'use',
+      field('path', $.use_path),
+      '.',
+      '{',
+      field('names', $.use_names_list),
+      '}',
+      ';'
+    ),
 
     use_names_list: $ => commaSeparatedList(field('use_names_item', $.use_names_item)),
 
-    use_names_item: $ => choice(
-      $.id,
-      seq($.id, 'as', $.id),
+    use_names_item: $ => seq(
+      field('name', $.id),
+      optional(
+        seq(
+          'as',
+          field('alias', $.id),
+        ),
+      ),
     ),
 
-    type_item: $ => seq('type', field('alias', $.id), '=', field('type', $.ty), ';'),
+    type_item: $ => seq(
+      field('attributes', repeat($.attribute)),
+      'type',
+      field('alias', $.id),
+      '=',
+      field('type', $.ty),
+      ';',
+    ),
 
     record_item: $ => seq(
+      field('attributes', repeat($.attribute)),
       'record',
       field('name', $.id),
       field('body', $.record_body),
@@ -182,20 +220,27 @@ module.exports = grammar({
     record_body: $ => seq('{', field('record_fields', optionalCommaSeparatedList($.record_field)), '}'),
 
     record_field: $ => seq(
+      field('attributes', repeat($.attribute)),
       field('name', $.id),
       ':',
       field('type', $.ty),
     ),
 
     flags_items: $ => seq(
+      field('attributes', repeat($.attribute)),
       'flags',
       field('name', $.id),
       field('body', $.flags_body),
     ),
 
-    flags_body: $ => seq('{', field('flags_fields', optionalCommaSeparatedList($.id)), '}'),
+    flags_body: $ => seq('{', field('flags_fields', optionalCommaSeparatedList($.flags_case)), '}'),
+    flags_case: $ => seq(
+      field('attributes', repeat($.attribute)),
+      field('name', $.id),
+    ),
 
     variant_items: $ => seq(
+      field('attributes', repeat($.attribute)),
       'variant',
       field('name', $.id),
       field('body', $.variant_body),
@@ -203,16 +248,27 @@ module.exports = grammar({
 
     variant_body: $ => seq('{', field('variant_cases', optionalCommaSeparatedList($.variant_case)), '}'),
 
-    variant_case: $ => choice(
+    variant_case: $ => seq(
+      field('attributes', repeat($.attribute)),
       field('name', $.id),
-      seq(field('name', $.id), '(', field('type', $.ty), ')')
+      optional(seq('(', field('type', $.ty), ')')),
     ),
 
-    enum_items: $ => seq('enum', field('name', $.id), $.enum_body),
+    enum_items: $ => seq(
+      field('attributes', repeat($.attribute)),
+      'enum',
+      field('name', $.id),
+      $.enum_body,
+    ),
 
-    enum_body: $ => seq('{', field('enum_cases', optionalCommaSeparatedList($.id)), '}'),
+    enum_body: $ => seq('{', field('enum_cases', optionalCommaSeparatedList($.enum_case)), '}'),
+    enum_case: $ => seq(
+      field('attributes', repeat($.attribute)),
+      field('name', $.id),
+    ),
 
     resource_item: $ => seq(
+      field('attributes', repeat($.attribute)),
       'resource',
       field('name', $.id),
       choice(
@@ -225,11 +281,36 @@ module.exports = grammar({
 
     resource_method: $ => choice(
       $.func_item,
-      seq($.id, ':', 'static', $.func_type, ';'),
-      seq('constructor', $.param_list, ';'),
+      $.static_resource_method,
+      $.resource_constructor,
+    ),
+    static_resource_method: $ => seq(
+      field('attributes', repeat($.attribute)),
+      field('name', $.id),
+      ':',
+      'static',
+      $.func_type,
+      ';',
+
+    ),
+    resource_constructor: $ => seq(
+      field('attributes', repeat($.attribute)),
+      'constructor',
+      $.param_list,
+      ';',
     ),
 
     ty: $ => prec(1, choice(
+      $.builtin,
+      $.tuple,
+      $.list,
+      $.option,
+      $.result,
+      $.id,
+      $.handle,
+    )),
+
+    builtin: _ => choice(
       "u8",
       "u16",
       "u32",
@@ -245,15 +326,9 @@ module.exports = grammar({
       "char",
       "bool",
       "string",
-      $.tuple,
-      $.list,
-      $.option,
-      $.result,
-      $.id,
-      $.handle,
-    )),
+    ),
 
-    tuple: $ => seq('tuple', '<', $.tuple_list, '>'),
+    tuple: $ => seq('tuple', '<', optional($.tuple_list), '>'),
 
     tuple_list: $ => commaSeparatedList($.ty),
 
@@ -265,17 +340,23 @@ module.exports = grammar({
       'result',
       optional(
         choice(
-          seq('<', $.ty, ',', $.ty, '>'),
-          seq('<', '_', ',', $.ty, '>'),
-          seq('<', $.ty, '>'),
+          seq('<', field('ok', $.ty), ',', field('err', $.ty), '>'),
+          seq('<', '_', ',', field('err', $.ty), '>'),
+          seq('<', field('ok', $.ty), '>'),
         ),
       ),
     ),
 
-    handle: $ => prec(0, choice($.id, seq('borrow', '<', $.id, '>'))),
+    handle: $ => prec(0, choice($.borrowed_handle, $.owned_handle)),
+    borrowed_handle: $ => seq('borrow', '<', $.id, '>'),
+    owned_handle: $ => seq('own', '<', $.id, '>'),
 
+    attribute: $ => $.doc_comment,
+
+    doc_comment: $ => seq("///", optional(' '), $.docs),
+    docs: _ => /[^\n]*/,
     comment: _ => token(choice(
-      seq('//', /(\\+(.|\r?\n)|[^\\\n])*/),
+      seq("//", /[^/\n][^\n]*/),
       seq(
         '/*',
         /[^*]*\*+([^/*][^*]*\*+)*/,
