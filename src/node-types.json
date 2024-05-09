@@ -730,7 +730,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "tuple_list",
@@ -1219,6 +1219,10 @@
   },
   {
     "type": "option",
+    "named": false
+  },
+  {
+    "type": "own",
     "named": false
   },
   {

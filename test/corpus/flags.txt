@@ -1,13 +1,9 @@
 ==================
-Flags
+Empty Flags
 ==================
 
 interface foo {
-    flags permissions {
-        read,
-        write,
-        exec,
-    }
+    flags permissions { }
 }
 
 ---
@@ -20,7 +16,39 @@ interface foo {
         (typedef_item
           (flags_items
             (id)
+            (flags_body)))))))
+
+==================
+Flags
+==================
+
+interface foo {
+    /// This is a doc-comment.
+    flags permissions {
+        /// Reading
+        read,
+        /// Writing
+        write,
+        /// Execute
+        exec,
+    }
+}
+
+---
+
+(source_file
+  (interface_item
+    (id)
+    (interface_body
+      (comment)
+      (interface_items
+        (typedef_item
+          (flags_items
+            (id)
             (flags_body
+              (comment)
               (id)
+              (comment)
               (id)
+              (comment)
               (id))))))))

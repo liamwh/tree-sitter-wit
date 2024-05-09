@@ -1,0 +1,38 @@
+=====================
+Top level doc comment
+=====================
+
+/// Some package.
+package local:demo;
+
+---
+
+(source_file
+  (comment)
+  (package_decl
+    (id)
+    (id)))
+
+=============
+Slash Comment
+=============
+
+// This is a comment
+
+---
+
+(source_file
+  (comment))
+
+=======================
+Multiline Block Comment
+=======================
+/* this
+   is
+   a
+   comment
+ */
+---
+
+(source_file
+  (comment))

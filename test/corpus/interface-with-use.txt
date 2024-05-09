@@ -1,0 +1,30 @@
+==================
+Interface with use
+==================
+
+package local:demo;
+
+interface my-interface {
+  use wasi:http/types.{request, response};
+}
+
+---
+
+(source_file
+  (package_decl
+    (id)
+    (id))
+  (interface_item
+    (id)
+    (interface_body
+      (interface_items
+        (use_item
+          (use_path
+            (id)
+            (id)
+            (id))
+          (use_names_list
+            (use_names_item
+              (id))
+            (use_names_item
+              (id))))))))
