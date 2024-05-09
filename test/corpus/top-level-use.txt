@@ -7,9 +7,10 @@ use error;
 ---
 
 (source_file
-  (toplevel_use_item
-    (use_path
-      (id))))
+  (top_level_item
+    (toplevel_use_item
+      (use_path
+        (id)))))
 
 =============================
 Fully qualified
@@ -21,19 +22,21 @@ use wasi:http/handler;
 ---
 
 (source_file
-  (toplevel_use_item
-    (use_path
-      (fully_qualified_use_path
-        (id)
-        (id)
-        (id)
-        (valid_semver))))
-  (toplevel_use_item
-    (use_path
-      (fully_qualified_use_path
-        (id)
-        (id)
-        (id)))))
+  (top_level_item
+    (toplevel_use_item
+      (use_path
+        (fully_qualified_use_path
+          (id)
+          (id)
+          (id)
+          (valid_semver)))))
+  (top_level_item
+    (toplevel_use_item
+      (use_path
+        (fully_qualified_use_path
+          (id)
+          (id)
+          (id))))))
 
 ========================
 Alias
@@ -45,18 +48,20 @@ use wasi:http/handler@1.2.3 as http-handler;
 ---
 
 (source_file
-  (toplevel_use_item
-    (use_path
-      (fully_qualified_use_path
-        (id)
-        (id)
-        (id)))
-    (id))
-  (toplevel_use_item
-    (use_path
-      (fully_qualified_use_path
-        (id)
-        (id)
-        (id)
-        (valid_semver)))
-    (id)))
+  (top_level_item
+    (toplevel_use_item
+      (use_path
+        (fully_qualified_use_path
+          (id)
+          (id)
+          (id)))
+      (id)))
+  (top_level_item
+    (toplevel_use_item
+      (use_path
+        (fully_qualified_use_path
+          (id)
+          (id)
+          (id)
+          (valid_semver)))
+      (id))))

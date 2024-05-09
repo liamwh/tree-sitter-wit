@@ -7,9 +7,10 @@ world foo { }
 ---
 
 (source_file
-  (world_item
-    (id)
-    (world_body)))
+  (top_level_item
+    (world_item
+      (id)
+      (world_body))))
 
 ===========================
 World with interface export
@@ -22,14 +23,15 @@ world console {
 ---
 
 (source_file
-  (world_item
-    (id)
-    (world_body
-      (world_items
-        (export_item
-          (id)
-          (extern_type
-            (interface_body)))))))
+  (top_level_item
+    (world_item
+      (id)
+      (world_body
+        (world_items
+          (export_item
+            (id)
+            (extern_type
+              (interface_body))))))))
 
 ==========================
 World with function export
@@ -42,15 +44,16 @@ world foo {
 ---
 
 (source_file
-  (world_item
-    (id)
-    (world_body
-      (world_items
-        (export_item
-          (id)
-          (extern_type
-            (func_type
-              (param_list))))))))
+  (top_level_item
+    (world_item
+      (id)
+      (world_body
+        (world_items
+          (export_item
+            (id)
+            (extern_type
+              (func_type
+                (param_list)))))))))
 
 =================
 World with import
@@ -63,16 +66,17 @@ world command {
 ---
 
 (source_file
-  (world_item
-    (id)
-    (world_body
-      (world_items
-        (import_item
-          (use_path
-            (fully_qualified_use_path
-              (id)
-              (id)
-              (id))))))))
+  (top_level_item
+    (world_item
+      (id)
+      (world_body
+        (world_items
+          (import_item
+            (use_path
+              (fully_qualified_use_path
+                (id)
+                (id)
+                (id)))))))))
 
 ==================
 World with include
@@ -85,13 +89,14 @@ world foo {
 ---
 
 (source_file
-  (world_item
-    (id)
-    (world_body
-      (world_items
-        (include_item
-          (use_path
-            (id)))))))
+  (top_level_item
+    (world_item
+      (id)
+      (world_body
+        (world_items
+          (include_item
+            (use_path
+              (id))))))))
 
 ==========================
 World with include aliased
@@ -104,24 +109,25 @@ world foo {
 ---
 
 (source_file
-  (world_item
-    (id)
-    (world_body
-      (world_items
-        (include_item
-          (use_path
-            (fully_qualified_use_path
-              (id)
-              (id)
-              (id)))
-          (include_names_body
-            (include_names_list
-              (include_names_item
+  (top_level_item
+    (world_item
+      (id)
+      (world_body
+        (world_items
+          (include_item
+            (use_path
+              (fully_qualified_use_path
                 (id)
-                (id))
-              (include_names_item
                 (id)
-                (id)))))))))
+                (id)))
+            (include_names_body
+              (include_names_list
+                (include_names_item
+                  (id)
+                  (id))
+                (include_names_item
+                  (id)
+                  (id))))))))))
 
 ==============
 World with use
@@ -134,19 +140,20 @@ world command {
 ---
 
 (source_file
-  (world_item
-    (id)
-    (world_body
-      (world_items
-        (use_item
-          (use_path
-            (fully_qualified_use_path
-              (id)
-              (id)
-              (id)))
-          (use_names_list
-            (use_names_item
-              (id))))))))
+  (top_level_item
+    (world_item
+      (id)
+      (world_body
+        (world_items
+          (use_item
+            (use_path
+              (fully_qualified_use_path
+                (id)
+                (id)
+                (id)))
+            (use_names_list
+              (use_names_item
+                (id)))))))))
 
 ===================
 Worlds Kitchen Sink
@@ -171,88 +178,89 @@ world imports {
 ---
 
 (source_file
-  (world_item
-    name: (id)
-    body: (world_body
-      world_items: (world_items
-        import_item: (import_item
-          (use_path
-            (id))))
-      world_items: (world_items
-        export_item: (export_item
-          (use_path
-            (id))))
-      world_items: (world_items
-        import_item: (import_item
-          name: (id)
-          (extern_type
-            (interface_body
-              interface_items: (interface_items
-                typedef: (typedef_item
-                  (type_item
-                    alias: (id)
-                    type: (ty
-                      (builtin)))))
-              interface_items: (interface_items
-                func: (func_item
-                  name: (id)
-                  (func_type
-                    param_list: (param_list
-                      (named_type_list
-                        (named_type
-                          name: (id)
-                          type: (ty
-                            (builtin)))))
-                    result_list: (result_list
-                      (ty
-                        (result
-                          ok: (ty
-                            (builtin))
-                          err: (ty
-                            (id))))))))))))
-      world_items: (world_items
-        export_item: (export_item
-          name: (id)
-          (extern_type
-            (interface_body
-              interface_items: (interface_items
-                typedef: (typedef_item
-                  (type_item
-                    alias: (id)
-                    type: (ty
-                      (builtin)))))
-              interface_items: (interface_items
-                func: (func_item
-                  name: (id)
-                  (func_type
-                    param_list: (param_list
-                      (named_type_list
-                        (named_type
-                          name: (id)
-                          type: (ty
-                            (builtin)))))
-                    result_list: (result_list
-                      (ty
-                        (result
-                          ok: (ty
-                            (builtin))
-                          err: (ty
-                            (id))))))))))))
-      world_items: (world_items
-        import_item: (import_item
-          name: (id)
-          (extern_type
-            (func_type
-              param_list: (param_list
-                (named_type_list
-                  (named_type
+  (top_level_item
+    (world_item
+      name: (id)
+      body: (world_body
+        world_items: (world_items
+          import_item: (import_item
+            (use_path
+              (id))))
+        world_items: (world_items
+          export_item: (export_item
+            (use_path
+              (id))))
+        world_items: (world_items
+          import_item: (import_item
+            name: (id)
+            (extern_type
+              (interface_body
+                interface_items: (interface_items
+                  typedef: (typedef_item
+                    (type_item
+                      alias: (id)
+                      type: (ty
+                        (builtin)))))
+                interface_items: (interface_items
+                  func: (func_item
                     name: (id)
-                    type: (ty
-                      (builtin)))))
-              result_list: (result_list
-                (ty
-                  (result
-                    ok: (ty
-                      (builtin))
-                    err: (ty
-                      (id))))))))))))
+                    (func_type
+                      param_list: (param_list
+                        (named_type_list
+                          (named_type
+                            name: (id)
+                            type: (ty
+                              (builtin)))))
+                      result_list: (result_list
+                        (ty
+                          (result
+                            ok: (ty
+                              (builtin))
+                            err: (ty
+                              (id))))))))))))
+        world_items: (world_items
+          export_item: (export_item
+            name: (id)
+            (extern_type
+              (interface_body
+                interface_items: (interface_items
+                  typedef: (typedef_item
+                    (type_item
+                      alias: (id)
+                      type: (ty
+                        (builtin)))))
+                interface_items: (interface_items
+                  func: (func_item
+                    name: (id)
+                    (func_type
+                      param_list: (param_list
+                        (named_type_list
+                          (named_type
+                            name: (id)
+                            type: (ty
+                              (builtin)))))
+                      result_list: (result_list
+                        (ty
+                          (result
+                            ok: (ty
+                              (builtin))
+                            err: (ty
+                              (id))))))))))))
+        world_items: (world_items
+          import_item: (import_item
+            name: (id)
+            (extern_type
+              (func_type
+                param_list: (param_list
+                  (named_type_list
+                    (named_type
+                      name: (id)
+                      type: (ty
+                        (builtin)))))
+                result_list: (result_list
+                  (ty
+                    (result
+                      ok: (ty
+                        (builtin))
+                      err: (ty
+                        (id)))))))))))))

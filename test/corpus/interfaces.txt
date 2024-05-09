@@ -41,136 +41,137 @@ interface foo {
 ---
 
 (source_file
-  (interface_item
-    name: (id)
-    body: (interface_body
-      interface_items: (interface_items
-        typedef: (typedef_item
-          (type_item
-            alias: (id)
-            type: (ty
-              (builtin)))))
-      interface_items: (interface_items
-        func: (func_item
-          name: (id)
-          (func_type
-            param_list: (param_list
-              (named_type_list
-                (named_type
+  (top_level_item
+    (interface_item
+      name: (id)
+      body: (interface_body
+        interface_items: (interface_items
+          typedef: (typedef_item
+            (type_item
+              alias: (id)
+              type: (ty
+                (builtin)))))
+        interface_items: (interface_items
+          func: (func_item
+            name: (id)
+            (func_type
+              param_list: (param_list
+                (named_type_list
+                  (named_type
+                    name: (id)
+                    type: (ty
+                      (builtin)))
+                  (named_type
+                    name: (id)
+                    type: (ty
+                      (builtin)))))
+              result_list: (result_list
+                (ty
+                  (builtin))))))
+        interface_items: (interface_items
+          func: (func_item
+            name: (id)
+            (func_type
+              param_list: (param_list)
+              result_list: (result_list
+                (ty
+                  (result
+                    ok: (ty
+                      (builtin))
+                    err: (ty
+                      (builtin))))))))
+        interface_items: (interface_items
+          func: (func_item
+            name: (id)
+            (func_type
+              param_list: (param_list)
+              result_list: (result_list
+                (ty
+                  (option
+                    (ty
+                      (builtin))))))))
+        interface_items: (interface_items
+          typedef: (typedef_item
+            (resource_item
+              name: (id)
+              resource_body: (resource_body
+                (resource_method
+                  (resource_constructor
+                    (param_list)))
+                (resource_method
+                  (func_item
+                    name: (id)
+                    (func_type
+                      param_list: (param_list
+                        (named_type_list
+                          (named_type
+                            name: (id)
+                            type: (ty
+                              (builtin)))))
+                      result_list: (result_list
+                        (ty
+                          (result
+                            ok: (ty
+                              (builtin))
+                            err: (ty
+                              (id))))))))
+                (resource_method
+                  (func_item
+                    name: (id)
+                    (func_type
+                      param_list: (param_list
+                        (named_type_list
+                          (named_type
+                            name: (id)
+                            type: (ty
+                              (handle
+                                (borrowed_handle
+                                  (id)))))))
+                      result_list: (result_list
+                        (ty
+                          (result
+                            ok: (ty
+                              (builtin))
+                            err: (ty
+                              (id))))))))))))
+        interface_items: (interface_items
+          typedef: (typedef_item
+            (record_item
+              name: (id)
+              body: (record_body))))
+        interface_items: (interface_items
+          typedef: (typedef_item
+            (record_item
+              name: (id)
+              body: (record_body
+                record_fields: (record_field
                   name: (id)
                   type: (ty
-                    (builtin)))
-                (named_type
-                  name: (id)
-                  type: (ty
-                    (builtin)))))
-            result_list: (result_list
-              (ty
-                (builtin))))))
-      interface_items: (interface_items
-        func: (func_item
-          name: (id)
-          (func_type
-            param_list: (param_list)
-            result_list: (result_list
-              (ty
-                (result
-                  ok: (ty
-                    (builtin))
-                  err: (ty
-                    (builtin))))))))
-      interface_items: (interface_items
-        func: (func_item
-          name: (id)
-          (func_type
-            param_list: (param_list)
-            result_list: (result_list
-              (ty
-                (option
-                  (ty
-                    (builtin))))))))
-      interface_items: (interface_items
-        typedef: (typedef_item
-          (resource_item
-            name: (id)
-            resource_body: (resource_body
-              (resource_method
-                (resource_constructor
-                  (param_list)))
-              (resource_method
-                (func_item
-                  name: (id)
-                  (func_type
-                    param_list: (param_list
-                      (named_type_list
-                        (named_type
-                          name: (id)
-                          type: (ty
-                            (builtin)))))
-                    result_list: (result_list
-                      (ty
-                        (result
-                          ok: (ty
-                            (builtin))
-                          err: (ty
-                            (id))))))))
-              (resource_method
-                (func_item
-                  name: (id)
-                  (func_type
-                    param_list: (param_list
-                      (named_type_list
-                        (named_type
-                          name: (id)
-                          type: (ty
-                            (handle
-                              (borrowed_handle
-                                (id)))))))
-                    result_list: (result_list
-                      (ty
-                        (result
-                          ok: (ty
-                            (builtin))
-                          err: (ty
-                            (id))))))))))))
-      interface_items: (interface_items
-        typedef: (typedef_item
-          (record_item
-            name: (id)
-            body: (record_body))))
-      interface_items: (interface_items
-        typedef: (typedef_item
-          (record_item
-            name: (id)
-            body: (record_body
-              record_fields: (record_field
-                name: (id)
-                type: (ty
-                  (builtin)))))))
-      interface_items: (interface_items
-        typedef: (typedef_item
-          (flags_items
-            name: (id)
-            body: (flags_body
-              flags_fields: (flags_case
-                name: (id))
-              flags_fields: (flags_case
-                name: (id))))))
-      interface_items: (interface_items
-        typedef: (typedef_item
-          (enum_items
-            name: (id)
-            (enum_body
-              enum_cases: (enum_case
-                name: (id))
-              enum_cases: (enum_case
-                name: (id))))))
-      interface_items: (interface_items
-        typedef: (typedef_item
-          (variant_items
-            name: (id)
-            body: (variant_body
-              variant_cases: (variant_case
-                name: (id))
-              variant_cases: (variant_case
-                name: (id)))))))))
+                    (builtin)))))))
+        interface_items: (interface_items
+          typedef: (typedef_item
+            (flags_items
+              name: (id)
+              body: (flags_body
+                flags_fields: (flags_case
+                  name: (id))
+                flags_fields: (flags_case
+                  name: (id))))))
+        interface_items: (interface_items
+          typedef: (typedef_item
+            (enum_items
+              name: (id)
+              (enum_body
+                enum_cases: (enum_case
+                  name: (id))
+                enum_cases: (enum_case
+                  name: (id))))))
+        interface_items: (interface_items
+          typedef: (typedef_item
+            (variant_items
+              name: (id)
+              body: (variant_body
+                variant_cases: (variant_case
+                  name: (id))
+                variant_cases: (variant_case
+                  name: (id))))))))))

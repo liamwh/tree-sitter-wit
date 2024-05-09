@@ -15,18 +15,19 @@ interface my-interface {
     (package_name
       (id)
       (id)))
-  (interface_item
-    (id)
-    (interface_body
-      (interface_items
-        (use_item
-          (use_path
-            (fully_qualified_use_path
-              (id)
-              (id)
-              (id)))
-          (use_names_list
-            (use_names_item
-              (id))
-            (use_names_item
-              (id))))))))
+  (top_level_item
+    (interface_item
+      (id)
+      (interface_body
+        (interface_items
+          (use_item
+            (use_path
+              (fully_qualified_use_path
+                (id)
+                (id)
+                (id)))
+            (use_names_list
+              (use_names_item
+                (id))
+              (use_names_item
+                (id)))))))))

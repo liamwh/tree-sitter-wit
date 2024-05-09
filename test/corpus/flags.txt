@@ -9,14 +9,15 @@ interface foo {
 ---
 
 (source_file
-  (interface_item
-    (id)
-    (interface_body
-      (interface_items
-        (typedef_item
-          (flags_items
-            (id)
-            (flags_body)))))))
+  (top_level_item
+    (interface_item
+      (id)
+      (interface_body
+        (interface_items
+          (typedef_item
+            (flags_items
+              (id)
+              (flags_body))))))))
 
 ==================
 Flags
@@ -37,29 +38,30 @@ interface foo {
 ---
 
 (source_file
-  (interface_item
-    (id)
-    (interface_body
-      (interface_items
-        (typedef_item
-          (flags_items
-            (attribute
-              (doc_comment
-                (docs)))
-            (id)
-            (flags_body
-              (flags_case
-                (attribute
-                  (doc_comment
-                    (docs)))
-                (id))
-              (flags_case
-                (attribute
-                  (doc_comment
-                    (docs)))
-                (id))
-              (flags_case
-                (attribute
-                  (doc_comment
-                    (docs)))
-                (id)))))))))
+  (top_level_item
+    (interface_item
+      (id)
+      (interface_body
+        (interface_items
+          (typedef_item
+            (flags_items
+              (attribute
+                (doc_comment
+                  (docs)))
+              (id)
+              (flags_body
+                (flags_case
+                  (attribute
+                    (doc_comment
+                      (docs)))
+                  (id))
+                (flags_case
+                  (attribute
+                    (doc_comment
+                      (docs)))
+                  (id))
+                (flags_case
+                  (attribute
+                    (doc_comment
+                      (docs)))
+                  (id))))))))))

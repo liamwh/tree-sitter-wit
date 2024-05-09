@@ -26,14 +26,13 @@ module.exports = grammar({
 
   rules: {
     source_file: $ => seq(
-      optional($.package_decl),
-      repeat(
-        choice(
-          $.toplevel_use_item,
-          $.world_item,
-          $.interface_item,
-        ),
-      ),
+      optional(field('decl', $.package_decl)),
+      repeat($.top_level_item),
+    ),
+    top_level_item: $ => choice(
+      $.toplevel_use_item,
+      $.world_item,
+      $.interface_item,
     ),
 
     package_decl: $ => seq(
@@ -62,8 +61,8 @@ module.exports = grammar({
     ),
     fully_qualified_use_path: $ => seq(
       repeat1(seq($.id, ':')),
+      repeat(seq($.id, '/')),
       $.id,
-      repeat(seq('/', $.id)),
       optional(seq('@', $.valid_semver)),
     ),
 
@@ -104,19 +103,16 @@ module.exports = grammar({
       seq('interface', $.interface_body),
     ),
 
-    include_item: $ => choice(
-      seq(
-        'include',
-        field('use_path', $.use_path),
-        ';'
+    include_item: $ => seq(
+      'include',
+      field('use_path', $.use_path),
+      optional(
+        seq(
+          'with',
+          field('include_names_body', $.include_names_body),
+        )
       ),
-      seq(
-        'include',
-        field('use_path', $.use_path),
-        'with',
-        field('include_names_body', $.include_names_body),
-        ';',
-      ),
+      ';',
     ),
 
     include_names_body: $ => seq('{', field('include_names_list', $.include_names_list), '}'),
@@ -183,16 +179,25 @@ module.exports = grammar({
       field('type', $.ty),
     ),
 
-    use_item: $ => seq('use', $.use_path, '.', '{', $.use_names_list, '}', ';'),
+    use_item: $ => seq(
+      'use',
+      field('path', $.use_path),
+      '.',
+      '{',
+      field('names', $.use_names_list),
+      '}',
+      ';'
+    ),
 
     use_names_list: $ => commaSeparatedList(field('use_names_item', $.use_names_item)),
 
-    use_names_item: $ => choice(
+    use_names_item: $ => seq(
       field('name', $.id),
-      seq(
-        field('name', $.id),
-        'as',
-        field('alias', $.id),
+      optional(
+        seq(
+          'as',
+          field('alias', $.id),
+        ),
       ),
     ),
 
