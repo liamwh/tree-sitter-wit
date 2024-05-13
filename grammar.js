@@ -52,6 +52,8 @@ module.exports = grammar({
         ),
       ),
 
+    // See here: https://github.com/WebAssembly/component-model/blob/f44d2377f79ea6dd105060f08f01e269cda7df85/design/mvp/WIT.md#wit-identifiers
+    // And here: https://github.com/WebAssembly/component-model/blob/c182ca92143c06287e71c3d1125e38d49ffc32b3/design/mvp/Explainer.md#import-and-export-definitions
     id: ($) =>
       /%?(([a-z][a-z0-9]*|[A-Z][A-Z0-9]*))(-([a-z][a-z0-9]*|[A-Z][A-Z0-9]*))*/,
 
