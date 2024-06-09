@@ -146,14 +146,18 @@ interface foo {
           (enum_items
             name: (id)
             (enum_body
-              enum_cases: (id)
-              enum_cases: (id)))))
+              (enum_cases
+                (enum_case
+                  name: (id))
+                (enum_case
+                  name: (id)))))))
       interface_items: (interface_items
         typedef: (typedef_item
           (variant_items
             name: (id)
             body: (variant_body
-              variant_cases: (variant_case
-                name: (id))
-              variant_cases: (variant_case
-                name: (id)))))))))
+              (variant_cases
+                (variant_case
+                  name: (id))
+                (variant_case
+                  name: (id))))))))))

@@ -74,24 +74,30 @@ interface foo {
           (variant_items
             (id)
             (variant_body
+             (variant_cases
               (variant_case
-                (id))
+               (id))
               (variant_case
-                (id)
-                (ty))
+               (id)
+               (ty))
               (comment)
               (variant_case
-                (id))))))
+               (id)))))))
       (comment)
       (interface_items
         (typedef_item
           (enum_items
             (id)
             (enum_body
-              (id)
-              (id)
-              (id)
-              (id)))))
+             (enum_cases
+              (enum_case
+               (id))
+              (enum_case
+               (id))
+              (enum_case
+               (id))
+              (enum_case
+               (id)))))))
       (comment)
       (interface_items
         (typedef_item
