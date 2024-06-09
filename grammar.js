@@ -184,11 +184,10 @@ module.exports = grammar({
       seq("variant", field("name", $.id), field("body", $.variant_body)),
 
     variant_body: ($) =>
-      seq(
-        "{",
-        field("variant_cases", optionalCommaSeparatedList($.variant_case)),
-        "}",
-      ),
+      seq("{", $.variant_cases, "}",),
+
+    variant_cases: ($) =>
+      commaSeparatedList($.variant_case),
 
     variant_case: ($) =>
       choice(
@@ -199,7 +198,13 @@ module.exports = grammar({
     enum_items: ($) => seq("enum", field("name", $.id), $.enum_body),
 
     enum_body: ($) =>
-      seq("{", field("enum_cases", optionalCommaSeparatedList($.id)), "}"),
+      seq("{", $.enum_cases, "}"),
+
+    enum_cases: ($) =>
+      commaSeparatedList($.enum_case),
+
+    enum_case: ($) =>
+      field("name", $.id),
 
     resource_item: ($) =>
       seq(
