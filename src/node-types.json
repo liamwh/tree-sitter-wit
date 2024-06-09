@@ -2,21 +2,47 @@
   {
     "type": "enum_body",
     "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "enum_cases",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enum_case",
+    "named": true,
     "fields": {
-      "enum_cases": {
-        "multiple": true,
-        "required": false,
+      "name": {
+        "multiple": false,
+        "required": true,
         "types": [
-          {
-            "type": ",",
-            "named": false
-          },
           {
             "type": "id",
             "named": true
           }
         ]
       }
+    }
+  },
+  {
+    "type": "enum_cases",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "enum_case",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -922,21 +948,16 @@
   {
     "type": "variant_body",
     "named": true,
-    "fields": {
-      "variant_cases": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": ",",
-            "named": false
-          },
-          {
-            "type": "variant_case",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "variant_cases",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -963,6 +984,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "variant_cases",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "variant_case",
+          "named": true
+        }
+      ]
     }
   },
   {
