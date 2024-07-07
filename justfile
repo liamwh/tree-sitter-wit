@@ -10,7 +10,6 @@ default:
 generate:
     tree-sitter generate
 
-
 # Build to Wasm
 build:
     tree-sitter build --wasm --output ./build/parser.wasm .
