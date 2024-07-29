@@ -18,9 +18,12 @@ build:
 test: generate
     tree-sitter test
 
-# Install the queries locally
-install-local:
+[private]
+remove-local:
     rm -rf ~/.local/share/nvim/lazy/nvim-treesitter/queries/wit
+
+# Install the queries locally
+install-local: remove-local
     cp -r ./queries ~/.local/share/nvim/lazy/nvim-treesitter/queries/wit
 
 # Format the queries
