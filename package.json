@@ -1,18 +1,9 @@
 {
   "name": "tree-sitter-wit",
-  "version": "1.0.0",
-  "description": "",
-  "main": "bindings/node",
-  "types": "bindings/node",
-  "scripts": {
-    "install": "node-gyp-build",
-    "prebuildify": "prebuildify --napi --strip",
-    "build": "tree-sitter generate --no-bindings",
-    "build-wasm": "tree-sitter build --wasm",
-    "lint": "eslint grammar.js",
-    "parse": "tree-sitter parse",
-    "test": "tree-sitter test"
-  },
+  "version": "1.1.0",
+  "description": "WIT grammar for tree-sitter",
+  "author": "Liam Woodleigh-Hardinge <liam.woodleigh@gmail.com>",
+  "license": "ISC",
   "maintainers": [
     "Liam Woodleigh-Hardinge <liam.woodleigh@gmail.com>"
   ],
@@ -24,6 +15,17 @@
     "parsing",
     "tree-sitter"
   ],
+  "main": "bindings/node",
+  "types": "bindings/node",
+  "scripts": {
+    "install": "node-gyp-build",
+    "prebuildify": "prebuildify --napi --strip",
+    "build": "tree-sitter generate --no-bindings",
+    "build-wasm": "tree-sitter build --wasm",
+    "lint": "eslint grammar.js",
+    "parse": "tree-sitter parse",
+    "test": "tree-sitter test"
+  },
   "files": [
     "grammar.js",
     "binding.gyp",
@@ -32,41 +34,24 @@
     "queries/*",
     "src/**"
   ],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "node-addon-api": "^8.0.0",
-    "node-gyp-build": "^4.8.0"
+    "node-addon-api": "^8.3.1",
+    "node-gyp-build": "^4.8.4"
   },
   "peerDependencies": {
-    "tree-sitter": "~0.21"
+    "tree-sitter": "^0.22.4"
   },
   "peerDependenciesMeta": {
-    "tree_sitter": {
+    "tree-sitter": {
       "optional": true
     }
   },
   "devDependencies": {
     "@eslint/js": "^9.1.1",
-    "eslint": "^8.57.0",
-    "eslint-config-google": "^0.14.0",
+    "eslint": "^9.21.0",
+    "eslint-config-treesitter": "^1.0.2",
     "globals": "^15.0.0",
     "prebuildify": "^6.0.0",
-    "tree-sitter-cli": "^0.22.2"
-  },
-  "tree-sitter": [
-    {
-      "scope": "source.wit",
-      "file-types": [
-        "wit"
-      ],
-      "highlights": [
-        "queries/highlights.scm"
-      ],
-      "injections": [
-        "queries/injections.scm"
-      ],
-      "injection-regex": "^toml$"
-    }
-  ]
+    "tree-sitter-cli": "^0.25"
+  }
 }
