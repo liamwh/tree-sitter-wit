@@ -1,0 +1,42 @@
+{
+  "grammars": [
+    {
+      "name": "wit",
+      "camelcase": "Wit",
+      "scope": "source.wit",
+      "path": ".",
+      "file-types": [
+        "wit"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injections": [
+        "queries/injections.scm"
+      ],
+      "injection-regex": "^wit$"
+    }
+  ],
+  "metadata": {
+    "version": "1.1.0",
+    "license": "ISC",
+    "description": "WIT grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Liam Woodleigh-Hardinge",
+        "email": "liam.woodleigh@gmail.com"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/liamwh/tree-sitter-wit"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}
