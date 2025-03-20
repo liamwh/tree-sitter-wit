@@ -1901,7 +1901,7 @@
   "extras": [
     {
       "type": "PATTERN",
-      "value": "\\s|\\\\\\r?\\n"
+      "value": "\\s"
     },
     {
       "type": "SYMBOL",
@@ -1910,7 +1910,12 @@
   ],
   "conflicts": [],
   "precedences": [],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "_error_sentinel"
+    }
+  ],
   "inline": [],
   "supertypes": [],
   "reserved": {}

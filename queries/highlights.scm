@@ -140,9 +140,10 @@
   "borrow"
 ] @type.builtin
 
+"_" @variable.parameter.builtin
+
 [
   "@"
-  "_"
 ] @punctuation.special
 
 [

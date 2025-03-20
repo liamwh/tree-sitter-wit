@@ -15,7 +15,7 @@ const commaSeparatedList = (rule) =>
 module.exports = grammar({
   name: 'wit',
 
-  extras: ($) => [/\s|\\\r?\n/, $.comment],
+  extras: ($) => [/\s/, $.comment],
   externals: $ => [
     $._error_sentinel,
   ],
