@@ -10,10 +10,10 @@
 const optionalCommaSeparatedList = (rule) => optional(commaSeparatedList(rule));
 
 const commaSeparatedList = (rule) =>
-  seq(rule, repeat(seq(",", rule)), optional(","));
+  seq(rule, repeat(seq(',', rule)), optional(','));
 
 module.exports = grammar({
-  name: "wit",
+  name: 'wit',
 
   extras: ($) => [/\s|\\\r?\n/, $.comment],
 
@@ -26,29 +26,29 @@ module.exports = grammar({
 
     package_decl: ($) =>
       seq(
-        "package",
-        repeat1(seq($.id, ":")),
+        'package',
+        repeat1(seq($.id, ':')),
         $.id,
-        repeat(seq("/", $.id)),
-        optional(seq("@", $.valid_semver)),
-        ";",
+        repeat(seq('/', $.id)),
+        optional(seq('@', $.valid_semver)),
+        ';',
       ),
 
     toplevel_use_item: ($) =>
       seq(
-        "use",
-        field("path", $.use_path),
-        optional(field("alias", seq("as", $.id))),
-        ";",
+        'use',
+        field('path', $.use_path),
+        optional(field('alias', seq('as', $.id))),
+        ';',
       ),
     use_path: ($) =>
       choice(
         $.id,
         seq(
-          repeat1(seq($.id, ":")),
+          repeat1(seq($.id, ':')),
           $.id,
-          repeat(seq("/", $.id)),
-          optional(seq("@", $.valid_semver)),
+          repeat(seq('/', $.id)),
+          optional(seq('@', $.valid_semver)),
         ),
       ),
 
@@ -62,65 +62,65 @@ module.exports = grammar({
       /(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?/,
 
     world_item: ($) =>
-      seq("world", field("name", $.id), field("body", $.world_body)),
+      seq('world', field('name', $.id), field('body', $.world_body)),
 
     world_body: ($) =>
-      seq("{", field("world_items", repeat($.world_items)), "}"),
+      seq('{', field('world_items', repeat($.world_items)), '}'),
 
     world_items: ($) =>
       choice(
-        field("export_item", $.export_item),
-        field("import_item", $.import_item),
-        field("use_item", $.use_item),
-        field("typedef_item", $.typedef_item),
-        field("include_item", $.include_item),
+        field('export_item', $.export_item),
+        field('import_item', $.import_item),
+        field('use_item', $.use_item),
+        field('typedef_item', $.typedef_item),
+        field('include_item', $.include_item),
       ),
 
     export_item: ($) =>
       choice(
-        seq("export", field("name", $.id), ":", $.extern_type),
-        seq("export", $.use_path, ";"),
+        seq('export', field('name', $.id), ':', $.extern_type),
+        seq('export', $.use_path, ';'),
       ),
 
     import_item: ($) =>
       choice(
-        seq("import", field("name", $.id), ":", $.extern_type),
-        seq("import", $.use_path, ";"),
+        seq('import', field('name', $.id), ':', $.extern_type),
+        seq('import', $.use_path, ';'),
       ),
 
     extern_type: ($) =>
-      choice(seq($.func_type, ";"), seq("interface", $.interface_body)),
+      choice(seq($.func_type, ';'), seq('interface', $.interface_body)),
 
     include_item: ($) =>
       choice(
-        seq("include", field("use_path", $.use_path), ";"),
+        seq('include', field('use_path', $.use_path), ';'),
         seq(
-          "include",
-          field("use_path", $.use_path),
-          "with",
-          field("include_names_body", $.include_names_body),
+          'include',
+          field('use_path', $.use_path),
+          'with',
+          field('include_names_body', $.include_names_body),
         ),
       ),
 
     include_names_body: ($) =>
-      seq("{", field("include_names_list", $.include_names_list), "}"),
+      seq('{', field('include_names_list', $.include_names_list), '}'),
 
     include_names_list: ($) =>
-      commaSeparatedList(field("include_names_item", $.include_names_item)),
+      commaSeparatedList(field('include_names_item', $.include_names_item)),
 
-    include_names_item: ($) => seq($.id, "as", $.id),
+    include_names_item: ($) => seq($.id, 'as', $.id),
 
     interface_item: ($) =>
-      seq("interface", field("name", $.id), field("body", $.interface_body)),
+      seq('interface', field('name', $.id), field('body', $.interface_body)),
 
     interface_body: ($) =>
-      seq("{", field("interface_items", repeat($.interface_items)), "}"),
+      seq('{', field('interface_items', repeat($.interface_items)), '}'),
 
     interface_items: ($) =>
       choice(
-        field("typedef", $.typedef_item),
-        field("use", $.use_item),
-        field("func", $.func_item),
+        field('typedef', $.typedef_item),
+        field('use', $.use_item),
+        field('func', $.func_item),
       ),
 
     typedef_item: ($) =>
@@ -133,114 +133,114 @@ module.exports = grammar({
         $.type_item,
       ),
 
-    func_item: ($) => seq(field("name", $.id), ":", $.func_type, ";"),
+    func_item: ($) => seq(field('name', $.id), ':', $.func_type, ';'),
 
     func_type: ($) =>
       seq(
-        "func",
-        field("param_list", $.param_list),
-        optional(field("result_list", $.result_list)),
+        'func',
+        field('param_list', $.param_list),
+        optional(field('result_list', $.result_list)),
       ),
 
-    param_list: ($) => seq("(", optional($.named_type_list), ")"),
+    param_list: ($) => seq('(', optional($.named_type_list), ')'),
 
     result_list: ($) =>
-      choice(seq("->", $.ty), seq("->", "(", optional($.named_type_list), ")")),
+      choice(seq('->', $.ty), seq('->', '(', optional($.named_type_list), ')')),
 
     named_type_list: ($) => commaSeparatedList($.named_type),
 
-    named_type: ($) => seq(field("name", $.id), ":", field("type", $.ty)),
+    named_type: ($) => seq(field('name', $.id), ':', field('type', $.ty)),
 
     use_item: ($) =>
-      seq("use", $.use_path, ".", "{", $.use_names_list, "}", ";"),
+      seq('use', $.use_path, '.', '{', $.use_names_list, '}', ';'),
 
     use_names_list: ($) =>
-      commaSeparatedList(field("use_names_item", $.use_names_item)),
+      commaSeparatedList(field('use_names_item', $.use_names_item)),
 
-    use_names_item: ($) => choice($.id, seq($.id, "as", $.id)),
+    use_names_item: ($) => choice($.id, seq($.id, 'as', $.id)),
 
     type_item: ($) =>
-      seq("type", field("alias", $.id), "=", field("type", $.ty), ";"),
+      seq('type', field('alias', $.id), '=', field('type', $.ty), ';'),
 
     record_item: ($) =>
-      seq("record", field("name", $.id), field("body", $.record_body)),
+      seq('record', field('name', $.id), field('body', $.record_body)),
 
     record_body: ($) =>
       seq(
-        "{",
-        field("record_fields", optionalCommaSeparatedList($.record_field)),
-        "}",
+        '{',
+        field('record_fields', optionalCommaSeparatedList($.record_field)),
+        '}',
       ),
 
-    record_field: ($) => seq(field("name", $.id), ":", field("type", $.ty)),
+    record_field: ($) => seq(field('name', $.id), ':', field('type', $.ty)),
 
     flags_items: ($) =>
-      seq("flags", field("name", $.id), field("body", $.flags_body)),
+      seq('flags', field('name', $.id), field('body', $.flags_body)),
 
     flags_body: ($) =>
-      seq("{", field("flags_fields", optionalCommaSeparatedList($.id)), "}"),
+      seq('{', field('flags_fields', optionalCommaSeparatedList($.id)), '}'),
 
     variant_items: ($) =>
-      seq("variant", field("name", $.id), field("body", $.variant_body)),
+      seq('variant', field('name', $.id), field('body', $.variant_body)),
 
     variant_body: ($) =>
-      seq("{", $.variant_cases, "}",),
+      seq('{', $.variant_cases, '}'),
 
     variant_cases: ($) =>
       commaSeparatedList($.variant_case),
 
     variant_case: ($) =>
       choice(
-        field("name", $.id),
-        seq(field("name", $.id), "(", field("type", $.ty), ")"),
+        field('name', $.id),
+        seq(field('name', $.id), '(', field('type', $.ty), ')'),
       ),
 
-    enum_items: ($) => seq("enum", field("name", $.id), $.enum_body),
+    enum_items: ($) => seq('enum', field('name', $.id), $.enum_body),
 
     enum_body: ($) =>
-      seq("{", $.enum_cases, "}"),
+      seq('{', $.enum_cases, '}'),
 
     enum_cases: ($) =>
       commaSeparatedList($.enum_case),
 
     enum_case: ($) =>
-      field("name", $.id),
+      field('name', $.id),
 
     resource_item: ($) =>
       seq(
-        "resource",
-        field("name", $.id),
-        choice(";", optional(field("resource_body", $.resource_body))),
+        'resource',
+        field('name', $.id),
+        choice(';', optional(field('resource_body', $.resource_body))),
       ),
 
-    resource_body: ($) => seq("{", repeat($.resource_method), "}"),
+    resource_body: ($) => seq('{', repeat($.resource_method), '}'),
 
     resource_method: ($) =>
       choice(
         $.func_item,
-        seq($.id, ":", "static", $.func_type, ";"),
-        seq("constructor", $.param_list, ";"),
+        seq($.id, ':', 'static', $.func_type, ';'),
+        seq('constructor', $.param_list, ';'),
       ),
 
     ty: ($) =>
       prec(
         1,
         choice(
-          "u8",
-          "u16",
-          "u32",
-          "u64",
-          "s8",
-          "s16",
-          "s32",
-          "s64",
-          "f32",
-          "f64",
-          "float32", // deprecated
-          "float64", // deprecated
-          "char",
-          "bool",
-          "string",
+          'u8',
+          'u16',
+          'u32',
+          'u64',
+          's8',
+          's16',
+          's32',
+          's64',
+          'f32',
+          'f64',
+          'float32', // deprecated
+          'float64', // deprecated
+          'char',
+          'bool',
+          'string',
           $.tuple,
           $.list,
           $.option,
@@ -250,33 +250,33 @@ module.exports = grammar({
         ),
       ),
 
-    tuple: ($) => seq("tuple", "<", $.tuple_list, ">"),
+    tuple: ($) => seq('tuple', '<', $.tuple_list, '>'),
 
     tuple_list: ($) => commaSeparatedList($.ty),
 
-    list: ($) => seq("list", "<", $.ty, ">"),
+    list: ($) => seq('list', '<', $.ty, '>'),
 
-    option: ($) => seq("option", "<", $.ty, ">"),
+    option: ($) => seq('option', '<', $.ty, '>'),
 
     result: ($) =>
       seq(
-        "result",
+        'result',
         optional(
           choice(
-            seq("<", $.ty, ",", $.ty, ">"),
-            seq("<", "_", ",", $.ty, ">"),
-            seq("<", $.ty, ">"),
+            seq('<', $.ty, ',', $.ty, '>'),
+            seq('<', '_', ',', $.ty, '>'),
+            seq('<', $.ty, '>'),
           ),
         ),
       ),
 
-    handle: ($) => prec(0, choice($.id, seq("borrow", "<", $.id, ">"))),
+    handle: ($) => prec(0, choice($.id, seq('borrow', '<', $.id, '>'))),
 
     comment: (_) =>
       token(
         choice(
-          seq("//", /(\\+(.|\r?\n)|[^\\\n])*/),
-          seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/"),
+          seq('//', /(\\+(.|\r?\n)|[^\\\n])*/),
+          seq('/*', /[^*]*\*+([^/*][^*]*\*+)*/, '/'),
         ),
       ),
   },
