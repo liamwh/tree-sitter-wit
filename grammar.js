@@ -4,8 +4,8 @@
  * @license MIT
  */
 
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
+/// <reference types="tree-sitter-cli/dsl" />
+// @ts-check
 
 const optionalCommaSeparatedList = (rule) => optional(commaSeparatedList(rule));
 
