@@ -35,8 +35,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-addon-api": "^8.0.0",
-    "node-gyp-build": "^4.8.0"
+    "node-addon-api": "^8.3.1",
+    "node-gyp-build": "^4.8.4"
   },
   "peerDependencies": {
     "tree-sitter": "~0.21"
@@ -47,12 +47,11 @@
     }
   },
   "devDependencies": {
-    "@eslint/js": "^9.1.1",
-    "eslint": "^8.57.0",
-    "eslint-config-google": "^0.14.0",
-    "globals": "^15.0.0",
-    "prebuildify": "^6.0.0",
-    "tree-sitter-cli": "^0.22.2"
+    "@eslint/js": "^9.22.0",
+    "eslint-config-treesitter": "^1.0.2",
+    "globals": "^15.15.0",
+    "prebuildify": "^6.0.1",
+    "tree-sitter-cli": "^0.22.6"
   },
   "tree-sitter": [
     {
@@ -66,7 +65,13 @@
       "injections": [
         "queries/injections.scm"
       ],
-      "injection-regex": "^toml$"
+      "injection-regex": "^wit$"
     }
-  ]
+  ],
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "tree-sitter",
+      "tree-sitter-cli"
+    ]
+  }
 }
