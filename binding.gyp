@@ -11,7 +11,7 @@
       "sources": [
         "bindings/node/binding.cc",
         "src/parser.c",
-        # NOTE: if your language uses an external scanner, uncomment this block:
+        "src/scanner.c",
       ],
       "cflags_c": [
         "-std=c11",

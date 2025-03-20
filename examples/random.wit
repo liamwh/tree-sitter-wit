@@ -3,6 +3,7 @@ package wasi:random@0.2.0;
 ///
 /// It is intended to be portable at least between Unix-family platforms and
 /// Windows.
+/* blah /* rabbit */ rhubarb */
 interface random {
     /// Return `len` cryptographically-secure random or pseudo-random bytes.
     ///
