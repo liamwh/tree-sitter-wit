@@ -33,3 +33,7 @@ format-queries:
 # Lint the grammar
 lint-grammar:
     npx eslint grammar.js
+
+# Format the grammar
+fmt-grammar:
+    npx eslint --fix grammar.js
