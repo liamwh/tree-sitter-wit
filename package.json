@@ -67,11 +67,5 @@
       ],
       "injection-regex": "^wit$"
     }
-  ],
-  "pnpm": {
-    "ignoredBuiltDependencies": [
-      "tree-sitter",
-      "tree-sitter-cli"
-    ]
-  }
+  ]
 }
