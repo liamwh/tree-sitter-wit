@@ -16,6 +16,9 @@ module.exports = grammar({
   name: "wit",
 
   extras: ($) => [/\s|\\\r?\n/, $.comment],
+  externals: $ => [
+    $._error_sentinel,
+  ],
 
   rules: {
     source_file: ($) =>
