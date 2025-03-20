@@ -35,5 +35,5 @@ lint-grammar:
     npx eslint grammar.js
 
 # Format the grammar
-fmt-grammar:
+format-grammar:
     npx eslint --fix grammar.js
