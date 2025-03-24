@@ -1,23 +1,34 @@
 [package]
 name = "tree-sitter-wit"
-description = "Wit grammar for tree-sitter"
-version = "0.0.1"
-license = "MIT"
+description = "WIT grammar for tree-sitter"
+version = "0.1.0"
+authors = ["Liam Woodleigh-Hardinge <liam.woodleigh@gmail.com>"]
+license = "ISC"
 readme = "README.md"
 keywords = ["incremental", "parsing", "tree-sitter", "wit"]
-categories = ["parsing", "text-editors"]
-repository = "https://github.com/tree-sitter/tree-sitter-wit"
+categories = ["parser-implementations", "parsing", "text-editors"]
+repository = "https://github.com/liamwh/tree-sitter-wit"
 edition = "2021"
 autoexamples = false
 
 build = "bindings/rust/build.rs"
-include = ["bindings/rust/*", "grammar.js", "queries/*", "src/*"]
+include = [
+  "bindings/rust/*",
+  "grammar.js",
+  "queries/*",
+  "src/*",
+  "tree-sitter.json",
+  "LICENSE",
+]
 
 [lib]
 path = "bindings/rust/lib.rs"
 
 [dependencies]
-tree-sitter = ">=0.22.2"
+tree-sitter-language = "0.1"
 
 [build-dependencies]
-cc = "1.0.87"
+cc = "1.2"
+
+[dev-dependencies]
+tree-sitter = "0.25.3"
