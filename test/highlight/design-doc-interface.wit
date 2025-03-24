@@ -31,11 +31,11 @@ interface foo {
   //      ^ type
   //            ^ punctuation.bracket
     baby,
-  //^ type
+  //^ constant
     child(u32), // optional type payload
-  //^ type
+  //^ constant
     adult,
-  //^ type
+  //^ constant
   }
 
   // similar to `variant`, but no type payloads
