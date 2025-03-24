@@ -15,9 +15,17 @@ const commaSeparatedList = (rule) =>
 module.exports = grammar({
   name: 'wit',
 
-  extras: ($) => [/\s/, $.comment],
+  extras: $ => [
+    /\s/,
+    $.line_comment,
+    $.block_comment,
+  ],
+
   externals: $ => [
+    $._block_comment_content,
+    $._block_doc_comment_marker,
     $._error_sentinel,
+    $._line_doc_content,
   ],
 
   rules: {
@@ -275,12 +283,42 @@ module.exports = grammar({
 
     handle: ($) => prec(0, choice($.id, seq('borrow', '<', $.id, '>'))),
 
-    comment: (_) =>
-      token(
+
+    comment: $ => choice(
+      $.line_comment,
+      $.block_comment,
+    ),
+
+    line_comment: $ => seq(
+      // All line comments start with two //
+      '//',
+      // Then are followed by:
+      // - 2 or more slashes making it a regular comment
+      // - 1 slash or 1 or more bang operators making it a doc comment
+      // - or just content for the comment
+      choice(
+        // A tricky edge case where what looks like a doc comment is not
+        seq(token.immediate(prec(2, /\/\//)), /.*/),
+        seq(token.immediate(prec(2, '/')), field('doc', alias($._line_doc_content, $.doc_comment))),
+        // A regular doc comment
+        token.immediate(prec(1, /.*/)),
+      ),
+    ),
+
+    block_comment: $ => seq(
+      '/*',
+      optional(
         choice(
-          seq('//', /(\\+(.|\r?\n)|[^\\\n])*/),
-          seq('/*', /[^*]*\*+([^/*][^*]*\*+)*/, '/'),
+          // Documentation block comments: /** docs */ or /*! docs */
+          seq(
+            $._block_doc_comment_marker,
+            optional(field('doc', alias($._block_comment_content, $.doc_comment))),
+          ),
+          // Non-doc block comments
+          $._block_comment_content,
         ),
       ),
+      '*/',
+    ),
   },
 });

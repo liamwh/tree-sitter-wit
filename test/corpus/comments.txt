@@ -1,0 +1,27 @@
+==================
+Doc comments
+==================
+
+/// Prints "hello".
+print-hello: func();
+
+
+/**
+Prints "hello".
+*/
+print-hello: func();
+
+---
+
+(source_file)
+
+==================
+Line comments
+==================
+
+//// Fake doc-comment
+print-hello: func();
+
+---
+
+(source_file)
