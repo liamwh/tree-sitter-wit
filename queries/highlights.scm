@@ -108,6 +108,9 @@
 ] @keyword.type
 
 "static" @keyword.modifier
+"async" @keyword.coroutine
+
+(uint) @number
 
 [
   "include"

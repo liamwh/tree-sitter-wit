@@ -172,3 +172,77 @@ world union-my-world-b {
           (extern_type
             (func_type
               (param_list))))))))
+
+==================
+Union
+==================
+package local:demo;
+
+world world-one { import a: func(); }
+world world-two { import a: func(); }
+
+world union-my-world-a {
+    include world-one;
+    include world-two with { a as b }
+}
+
+world union-my-world-b {
+    import a: func();
+    import b: func();
+}
+
+---
+
+(source_file
+  (package_decl
+    (id)
+    (id))
+  (world_item
+    (id)
+    (world_body
+      (world_items
+        (import_item
+          (id)
+          (extern_type
+            (func_type
+              (param_list)))))))
+  (world_item
+    (id)
+    (world_body
+      (world_items
+        (import_item
+          (id)
+          (extern_type
+            (func_type
+              (param_list)))))))
+  (world_item
+    (id)
+    (world_body
+      (world_items
+        (include_item
+          (use_path
+            (id))))
+      (world_items
+        (include_item
+          (use_path
+            (id))
+          (include_names_body
+            (include_names_list
+              (include_names_item
+                (id)
+                (id))))))))
+  (world_item
+    (id)
+    (world_body
+      (world_items
+        (import_item
+          (id)
+          (extern_type
+            (func_type
+              (param_list)))))
+      (world_items
+        (import_item
+          (id)
+          (extern_type
+            (func_type
+              (param_list))))))))
