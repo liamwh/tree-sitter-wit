@@ -4,9 +4,9 @@
 #include <wctype.h>
 
 enum TokenType {
-    ERROR_SENTINEL,
-    BLOCK_DOC_MARKER,
     BLOCK_COMMENT_CONTENT,
+    BLOCK_DOC_MARKER,
+    ERROR_SENTINEL,
     LINE_DOC_CONTENT,
 };
 
@@ -98,12 +98,13 @@ static inline bool process_block_comment(TSLexer *lexer, const bool *valid_symbo
     if (valid_symbols[BLOCK_DOC_MARKER] && first == '*') {
         advance(lexer);
         lexer->mark_end(lexer);
-        // If the next token is a / that means that it's an empty block comment.
+        // If the next token is a / that means that it's an empty block comment:
+        // /**/
         if (lexer->lookahead == '/') {
             return false;
         }
-        // If the next token is a * that means that this isn't a BLOCK_OUTER_DOC_MARKER
-        // as BLOCK_OUTER_DOC_MARKER's only have 2 * not 3 or more.
+        // If the next token is a * that means that this isn't a BLOCK_DOC_MARKER
+        // as BLOCK_DOC_MARKER's only have 2 * not 3 or more.
         if (lexer->lookahead == '*') {
             lexer->result_symbol = BLOCK_DOC_MARKER;
             return true;

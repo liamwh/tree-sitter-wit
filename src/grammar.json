@@ -6,36 +6,32 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "package_decl"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
           "type": "REPEAT",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "toplevel_use_item"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "world_item"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "interface_item"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "_statement"
           }
+        }
+      ]
+    },
+    "_statement": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "package_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "toplevel_use_item"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "world_item"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "interface_item"
         }
       ]
     },
@@ -1891,8 +1887,8 @@
                     "type": "PREC",
                     "value": 2,
                     "content": {
-                      "type": "PATTERN",
-                      "value": "\\/\\/"
+                      "type": "STRING",
+                      "value": "//"
                     }
                   }
                 },
@@ -1906,8 +1902,15 @@
               "type": "SEQ",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "_line_doc_comment_marker"
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "PREC",
+                    "value": 2,
+                    "content": {
+                      "type": "STRING",
+                      "value": "/"
+                    }
+                  }
                 },
                 {
                   "type": "FIELD",
@@ -1938,26 +1941,6 @@
           ]
         }
       ]
-    },
-    "_line_doc_comment_marker": {
-      "type": "ALIAS",
-      "content": {
-        "type": "SYMBOL",
-        "name": "_outer_line_doc_comment_marker"
-      },
-      "named": true,
-      "value": "doc_comment_marker"
-    },
-    "_outer_line_doc_comment_marker": {
-      "type": "IMMEDIATE_TOKEN",
-      "content": {
-        "type": "PREC",
-        "value": 2,
-        "content": {
-          "type": "STRING",
-          "value": "/"
-        }
-      }
     },
     "block_comment": {
       "type": "SEQ",

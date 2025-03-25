@@ -31,9 +31,15 @@ module.exports = grammar({
   rules: {
     source_file: ($) =>
       seq(
-        optional($.package_decl),
-        repeat(choice($.toplevel_use_item, $.world_item, $.interface_item)),
+        repeat($._statement),
       ),
+
+    _statement: $ => choice(
+      $.package_decl,
+      $.toplevel_use_item,
+      $.world_item,
+      $.interface_item,
+    ),
 
     package_decl: ($) =>
       seq(
@@ -298,24 +304,19 @@ module.exports = grammar({
       // - or just content for the comment
       choice(
         // A tricky edge case where what looks like a doc comment is not
-        seq(token.immediate(prec(2, /\/\//)), /.*/),
+        seq(token.immediate(prec(2, '//')), /.*/),
         // A line doc comment
-        seq($._line_doc_comment_marker, field('doc', alias($._line_doc_content, $.doc_comment))),
+        seq(token.immediate(prec(2, '/')), field('doc', alias($._line_doc_content, $.doc_comment))),
         // A regular comment
         token.immediate(prec(1, /.*/)),
       ),
     ),
 
-
-    _line_doc_comment_marker: $ =>
-      alias($._outer_line_doc_comment_marker, $.doc_comment_marker),
-    _outer_line_doc_comment_marker: _ => token.immediate(prec(2, '/')),
-
     block_comment: $ => seq(
       '/*',
       optional(
         choice(
-          // Documentation block comments: /** docs */ or /*! docs */
+          // Documentation block comments: /** docs */
           seq(
             $._block_doc_comment_marker,
             optional(field('doc', alias($._block_comment_content, $.doc_comment))),
