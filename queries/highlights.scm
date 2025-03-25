@@ -127,8 +127,6 @@
   "s64"
   "f32"
   "f64"
-  "float32" ; deprecated
-  "float64" ; deprecated
   "char"
   "bool"
   "string"
