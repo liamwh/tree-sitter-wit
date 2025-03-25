@@ -236,7 +236,9 @@ module.exports = grammar({
     resource_method: ($) =>
       choice(
         $.func_item,
-        seq($.id, ':', 'static', optional('async'), $.func_type, ';'),
+        // TODO defer `foo: async async func() -> T;` case
+        // https://github.com/WebAssembly/component-model/blob/main/design/mvp/WIT.md#item-resource
+        seq($.id, ':', 'static', /* optional('async'), */ $.func_type, ';'),
         seq('constructor', $.param_list, ';'),
       ),
 
@@ -295,8 +297,8 @@ module.exports = grammar({
       ),
 
     handle: ($) => prec(0, choice($.id, seq('borrow', '<', $.id, '>'))),
-    future: ($) => seq('future', option('<', $.ty, '>')),
-    stream: ($) => seq('stream', option('<', $.ty, '>')),
+    future: ($) => seq('future', optional(seq('<', $.ty, '>'))),
+    stream: ($) => seq('stream', optional(seq('<', $.ty, '>'))),
 
 
     comment: $ => choice(

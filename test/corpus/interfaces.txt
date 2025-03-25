@@ -45,29 +45,6 @@ interface foo {
     name: (id)
     body: (interface_body
       interface_items: (interface_items
-        use: (use_item
-          (use_path
-            (id)
-            (id)
-            (id)
-            (valid_semver))
-          (use_names_list
-            use_names_item: (use_names_item
-              (id))
-            use_names_item: (use_names_item
-              (id)))))
-      interface_items: (interface_items
-        use: (use_item
-          (use_path
-            (id))
-          (use_names_list
-            use_names_item: (use_names_item
-              (id)
-              (id)))))))
-  (interface_item
-    name: (id)
-    body: (interface_body
-      interface_items: (interface_items
         typedef: (typedef_item
           (type_item
             alias: (id)
@@ -184,6 +161,7 @@ interface foo {
                   name: (id))
                 (variant_case
                   name: (id))))))))))
+
 ==================
 Use Items
 ==================
@@ -195,3 +173,5 @@ interface my-interface {
 }
 
 ---
+
+

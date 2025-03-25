@@ -13,19 +13,62 @@ interface filesystem {
 
 ---
 
-
-
-==================
-Desugared
-:skip
-==================
-world imports {
-  %[constructor]blob: func(init: list<u8>) -> blob;
-  %[method]blob.write: func(self: borrow<blob>, bytes: list<u8>);
-  %[method]blob.read: func(self: borrow<blob>, n: u32) -> list<u8>;
-  %[static]blob.merge: func(lhs: borrow<blob>, rhs: borrow<blob>) -> blob;
-}
-
----
-
-
+(source_file
+  (interface_item
+    (id)
+    (interface_body
+      (interface_items
+        (typedef_item
+          (resource_item
+            (id)
+            (resource_body
+              (resource_method
+                (param_list))
+              (resource_method
+                (func_item
+                  (id)
+                  (func_type
+                    (param_list)
+                    (result_list
+                      (ty)))))
+              (resource_method
+                (func_item
+                  (id)
+                  (func_type
+                    (param_list
+                      (named_type_list
+                        (named_type
+                          (id)
+                          (ty))))
+                    (result_list
+                      (ty
+                        (result
+                          (ty
+                            (list
+                              (ty)))))))))
+              (resource_method
+                (id)
+                (func_type
+                  (param_list
+                    (named_type_list
+                      (named_type
+                        (id)
+                        (ty
+                          (list
+                            (ty))))))
+                  (result_list
+                    (ty
+                      (id)))))
+              (resource_method
+                (id)
+                (func_type
+                  (param_list
+                    (named_type_list
+                      (named_type
+                        (id)
+                        (ty
+                          (stream
+                            (ty))))))
+                  (result_list
+                    (ty
+                      (id))))))))))))
