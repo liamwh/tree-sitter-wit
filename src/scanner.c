@@ -10,16 +10,12 @@ enum TokenType {
     LINE_DOC_CONTENT,
 };
 
-typedef struct {
 
-} Scanner;
+void *tree_sitter_wit_external_scanner_create() {}
 
-void *tree_sitter_wit_external_scanner_create() { return ts_calloc(1, sizeof(Scanner)); }
-
-void tree_sitter_wit_external_scanner_destroy(void *payload) { ts_free((Scanner *)payload); }
+void tree_sitter_wit_external_scanner_destroy(void *payload) {}
 
 unsigned tree_sitter_wit_external_scanner_serialize(void *payload, char *buffer) {
-    Scanner *scanner = (Scanner *)payload;
     return 1;
 }
 
@@ -197,8 +193,6 @@ bool tree_sitter_wit_external_scanner_scan(void *payload, TSLexer *lexer, const 
     if (valid_symbols[ERROR_SENTINEL]) {
         return false;
     }
-
-    Scanner *scanner = (Scanner *)payload;
 
     if (valid_symbols[BLOCK_COMMENT_CONTENT] || valid_symbols[BLOCK_DOC_MARKER]) {
         return process_block_comment(lexer, valid_symbols);
