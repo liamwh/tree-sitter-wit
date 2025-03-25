@@ -8,7 +8,8 @@ interface foo {
     fn1: func(hey: u32, ho: string) -> bool;
     fn2: func() -> result<bool, u32>;
     fn3: func() -> option<bool>;
-    fn4: func() -> list<bool, 4>;
+    fn4: func(str: stream) -> list<bool, 4>;
+    fn5: async func(fut: future<T>) -> stream<list<T, 2>>;
 
     resource res {
         constructor();
@@ -87,12 +88,37 @@ interface foo {
         (func_item
           (id)
           (func_type
-            (param_list)
+            (param_list
+              (named_type_list
+                (named_type
+                  (id)
+                  (ty
+                    (stream)))))
             (result_list
               (ty
                 (list
                   (ty)
                   (uint)))))))
+      (interface_items
+        (func_item
+          (id)
+          (func_type
+            (param_list
+              (named_type_list
+                (named_type
+                  (id)
+                  (ty
+                    (future
+                      (ty
+                        (id)))))))
+            (result_list
+              (ty
+                (stream
+                  (ty
+                    (list
+                      (ty
+                        (id))
+                      (uint)))))))))
       (interface_items
         (typedef_item
           (resource_item

@@ -142,6 +142,8 @@
   "option"
   "result"
   "borrow"
+  "future"
+  "stream"
 ] @type
 
 "_" @variable.parameter.builtin
