@@ -52,14 +52,11 @@
     "globals": "^15.15.0",
     "prebuildify": "^6.0.1",
     "tree-sitter-cli": "^0.25.3"
-<<<<<<< HEAD
-=======
   },
   "pnpm": {
     "onlyBuiltDependencies": [
       "tree-sitter",
       "tree-sitter-cli"
     ]
->>>>>>> feat/eslint-config-treesitter
   }
 }
