@@ -110,13 +110,14 @@
 "static" @keyword.modifier
 "async" @keyword.coroutine
 
-(uint) @number
+(uint) @constant
 
 [
   "include"
   "import"
   "export"
   "as"
+  "with"
 ] @keyword.import
 
 [

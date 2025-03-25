@@ -8,6 +8,7 @@ interface foo {
     fn1: func(hey: u32, ho: string) -> bool;
     fn2: func() -> result<bool, u32>;
     fn3: func() -> option<bool>;
+    fn4: func() -> list<bool, 4>;
 
     resource res {
         constructor();
@@ -82,6 +83,16 @@ interface foo {
               (ty
                 (option
                   (ty)))))))
+      (interface_items
+        (func_item
+          (id)
+          (func_type
+            (param_list)
+            (result_list
+              (ty
+                (list
+                  (ty)
+                  (uint)))))))
       (interface_items
         (typedef_item
           (resource_item
