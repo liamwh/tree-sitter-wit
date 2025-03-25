@@ -16,6 +16,22 @@
     }
   },
   {
+    "type": "deprecated_gate",
+    "named": true,
+    "fields": {
+      "version": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "valid_semver",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "enum_body",
     "named": true,
     "fields": {},
@@ -250,6 +266,44 @@
     }
   },
   {
+    "type": "gate",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "gate_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "gate_item",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "deprecated_gate",
+          "named": true
+        },
+        {
+          "type": "since_gate",
+          "named": true
+        },
+        {
+          "type": "unstable_gate",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "handle",
     "named": true,
     "fields": {},
@@ -407,6 +461,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "gate",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -443,6 +507,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "gate",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -756,6 +830,22 @@
     }
   },
   {
+    "type": "since_gate",
+    "named": true,
+    "fields": {
+      "version": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "valid_semver",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -963,6 +1053,22 @@
     }
   },
   {
+    "type": "unstable_gate",
+    "named": true,
+    "fields": {
+      "feature": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "id",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "use_item",
     "named": true,
     "fields": {},
@@ -1153,6 +1259,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "gate",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1209,6 +1325,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "gate",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1300,6 +1426,10 @@
     "named": false
   },
   {
+    "type": "deprecated",
+    "named": false
+  },
+  {
     "type": "doc_comment",
     "named": true
   },
@@ -1317,6 +1447,10 @@
   },
   {
     "type": "f64",
+    "named": false
+  },
+  {
+    "type": "feature",
     "named": false
   },
   {
@@ -1388,6 +1522,10 @@
     "named": false
   },
   {
+    "type": "since",
+    "named": false
+  },
+  {
     "type": "static",
     "named": false
   },
@@ -1428,6 +1566,10 @@
     "named": true
   },
   {
+    "type": "unstable",
+    "named": false
+  },
+  {
     "type": "use",
     "named": false
   },
@@ -1437,6 +1579,10 @@
   },
   {
     "type": "variant",
+    "named": false
+  },
+  {
+    "type": "version",
     "named": false
   },
   {

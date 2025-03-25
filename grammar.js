@@ -79,19 +79,21 @@ module.exports = grammar({
       /(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?/,
 
     world_item: ($) =>
-      seq('world', field('name', $.id), field('body', $.world_body)),
+      seq(optional($.gate), 'world', field('name', $.id), field('body', $.world_body)),
 
     world_body: ($) =>
       seq('{', field('world_items', repeat($.world_items)), '}'),
 
     world_items: ($) =>
-      choice(
-        field('export_item', $.export_item),
-        field('import_item', $.import_item),
-        field('use_item', $.use_item),
-        field('typedef_item', $.typedef_item),
-        field('include_item', $.include_item),
-      ),
+      seq(
+        optional($.gate),
+        choice(
+          field('export_item', $.export_item),
+          field('import_item', $.import_item),
+          field('use_item', $.use_item),
+          field('typedef_item', $.typedef_item),
+          field('include_item', $.include_item),
+        )),
 
     export_item: ($) =>
       choice(
@@ -128,17 +130,19 @@ module.exports = grammar({
     include_names_item: ($) => seq($.id, 'as', $.id),
 
     interface_item: ($) =>
-      seq('interface', field('name', $.id), field('body', $.interface_body)),
+      seq(optional($.gate), 'interface', field('name', $.id), field('body', $.interface_body)),
 
     interface_body: ($) =>
       seq('{', field('interface_items', repeat($.interface_items)), '}'),
 
     interface_items: ($) =>
-      choice(
-        field('typedef', $.typedef_item),
-        field('use', $.use_item),
-        field('func', $.func_item),
-      ),
+      seq(
+        optional($.gate),
+        choice(
+          field('typedef', $.typedef_item),
+          field('use', $.use_item),
+          field('func', $.func_item),
+        )),
 
     typedef_item: ($) =>
       choice(
@@ -338,7 +342,7 @@ module.exports = grammar({
       ),
       '*/',
     ),
-    // TODO Gates
+    // https://github.com/WebAssembly/component-model/blob/main/design/mvp/WIT.md#feature-gates
     // gate ::= gate-item*
     // gate-item ::= unstable-gate
     //             | since-gate
@@ -350,5 +354,18 @@ module.exports = grammar({
     //
     // feature-field ::= 'feature' '=' id
     // version-field ::= 'version' '=' <valid semver>
+    gate: $ => repeat1($.gate_item),
+    gate_item: $ => choice(
+      $.unstable_gate,
+      $.since_gate,
+      $.deprecated_gate,
+    ),
+
+    unstable_gate: $ => seq( '@', 'unstable', '(', $._feature_field, ')'),
+    _feature_field: $ => seq('feature', '=', field('feature', $.id)),
+
+    since_gate: $ => seq('@', 'since', '(', $._version_field, ')'),
+    deprecated_gate: $ => seq('@', 'deprecated', '(', $._version_field, ')'),
+    _version_field: $ => seq('version', '=', field('version', $.valid_semver)),
   },
 });
