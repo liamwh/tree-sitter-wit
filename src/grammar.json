@@ -1906,15 +1906,8 @@
               "type": "SEQ",
               "members": [
                 {
-                  "type": "IMMEDIATE_TOKEN",
-                  "content": {
-                    "type": "PREC",
-                    "value": 2,
-                    "content": {
-                      "type": "STRING",
-                      "value": "/"
-                    }
-                  }
+                  "type": "SYMBOL",
+                  "name": "_line_doc_comment_marker"
                 },
                 {
                   "type": "FIELD",
@@ -1945,6 +1938,26 @@
           ]
         }
       ]
+    },
+    "_line_doc_comment_marker": {
+      "type": "ALIAS",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_outer_line_doc_comment_marker"
+      },
+      "named": true,
+      "value": "doc_comment_marker"
+    },
+    "_outer_line_doc_comment_marker": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 2,
+        "content": {
+          "type": "STRING",
+          "value": "/"
+        }
+      }
     },
     "block_comment": {
       "type": "SEQ",

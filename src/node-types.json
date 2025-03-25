@@ -16,6 +16,11 @@
     }
   },
   {
+    "type": "doc_comment_marker",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "enum_body",
     "named": true,
     "fields": {},
@@ -444,6 +449,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "doc_comment_marker",
+          "named": true
+        }
+      ]
     }
   },
   {

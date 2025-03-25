@@ -2,26 +2,16 @@
 Doc comments
 ==================
 
-/// Prints "hello".
-print-hello: func();
-
-
-/**
-Prints "hello".
-*/
-print-hello: func();
+/// WIT grammar for tree-sitter
+package tree-sitter:wit@1.0.0;
 
 ---
 
-(source_file)
-
-==================
-Line comments
-==================
-
-//// Fake doc-comment
-print-hello: func();
-
----
-
-(source_file)
+(source_file
+  (line_comment
+    (doc_comment_marker)
+    (doc_comment))
+  (package_decl
+    (id)
+    (id)
+    (valid_semver)))
