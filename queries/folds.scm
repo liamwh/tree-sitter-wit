@@ -1,7 +1,4 @@
-[
-  (body)
-  (interface_items)
-] @fold
+(body) @fold
 
 (body
   [

@@ -93,6 +93,7 @@ static inline bool process_block_comment(TSLexer *lexer, const bool *valid_symbo
     if (valid_symbols[BLOCK_DOC_MARKER] && first == '*') {
         advance(lexer);
         lexer->mark_end(lexer);
+        lexer->result_symbol = BLOCK_DOC_MARKER;
         // If the next token is a / that means that it's an empty block comment:
         // /**/
         if (lexer->lookahead == '/') {
@@ -100,10 +101,7 @@ static inline bool process_block_comment(TSLexer *lexer, const bool *valid_symbo
         }
         // If the next token is a * that means that this isn't a BLOCK_DOC_MARKER
         // as BLOCK_DOC_MARKER's only have 2 * not 3 or more.
-        if (lexer->lookahead == '*') {
-            lexer->result_symbol = BLOCK_DOC_MARKER;
-            return true;
-        }
+        return true;
     } else {
          // Since there's a chance that an advance could
         // happen in one state, we must advance in all states to ensure that

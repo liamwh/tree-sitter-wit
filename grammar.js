@@ -144,9 +144,9 @@ module.exports = grammar({
       seq(optional($._gate), 'interface', field('name', $.id), alias($._interface_body, $.body)),
 
     _interface_body: ($) =>
-      seq('{', repeat($.interface_items), '}'),
+      seq('{', repeat($._interface_items), '}'),
 
-    interface_items: ($) =>
+    _interface_items: ($) =>
       seq(
         optional($._gate),
         choice(

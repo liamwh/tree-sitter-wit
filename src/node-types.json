@@ -103,6 +103,10 @@
           "named": true
         },
         {
+          "type": "func_item",
+          "named": true
+        },
+        {
           "type": "id",
           "named": true
         },
@@ -116,10 +120,6 @@
         },
         {
           "type": "include_names_list",
-          "named": true
-        },
-        {
-          "type": "interface_items",
           "named": true
         },
         {
@@ -463,33 +463,6 @@
         },
         {
           "type": "body",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "interface_items",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_gate_item",
-          "named": true
-        },
-        {
-          "type": "_typedef_item",
-          "named": true
-        },
-        {
-          "type": "func_item",
-          "named": true
-        },
-        {
-          "type": "use_item",
           "named": true
         }
       ]

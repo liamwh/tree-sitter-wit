@@ -34,48 +34,44 @@ world imports {
         name: (id)
         (extern_type
           (body
-            (interface_items
-              (type_item
-                alias: (id)
-                type: (ty)))
-            (interface_items
-              (func_item
-                name: (id)
-                (func_type
-                  (param_list
-                    (named_type_list
-                      (named_type
-                        name: (id)
-                        type: (ty))))
-                  (result_list
-                    (ty
-                      (result
-                        (ty)
-                        (ty
-                          (id)))))))))))
+            (type_item
+              alias: (id)
+              type: (ty))
+            (func_item
+              name: (id)
+              (func_type
+                (param_list
+                  (named_type_list
+                    (named_type
+                      name: (id)
+                      type: (ty))))
+                (result_list
+                  (ty
+                    (result
+                      (ty)
+                      (ty
+                        (id))))))))))
       (export_item
         name: (id)
         (extern_type
           (body
-            (interface_items
-              (type_item
-                alias: (id)
-                type: (ty)))
-            (interface_items
-              (func_item
-                name: (id)
-                (func_type
-                  (param_list
-                    (named_type_list
-                      (named_type
-                        name: (id)
-                        type: (ty))))
-                  (result_list
-                    (ty
-                      (result
-                        (ty)
-                        (ty
-                          (id)))))))))))
+            (type_item
+              alias: (id)
+              type: (ty))
+            (func_item
+              name: (id)
+              (func_type
+                (param_list
+                  (named_type_list
+                    (named_type
+                      name: (id)
+                      type: (ty))))
+                (result_list
+                  (ty
+                    (result
+                      (ty)
+                      (ty
+                        (id))))))))))
       (import_item
         name: (id)
         (extern_type
@@ -274,39 +270,37 @@ interface calc {
   (interface_item
     (id)
     (body
-      (interface_items
-        (since_gate
-          (version))
-        (variant_items
-          (id)
-          (body
-            (variant_cases
-              (variant_case
-                (id))
-              (variant_case
-                (id))
-              (variant_case
-                (id))))))
-      (interface_items
-        (since_gate
-          (version))
-        (func_item
-          (id)
-          (func_type
-            (param_list
-              (named_type_list
-                (named_type
-                  (id)
-                  (ty
-                    (id)))
-                (named_type
-                  (id)
-                  (ty
-                    (id)))))
-            (result_list
-              (ty
-                (result
-                  (ty
-                    (id))
-                  (ty
-                    (id)))))))))))
+      (since_gate
+        (version))
+      (variant_items
+        (id)
+        (body
+          (variant_cases
+            (variant_case
+              (id))
+            (variant_case
+              (id))
+            (variant_case
+              (id)))))
+      (since_gate
+        (version))
+      (func_item
+        (id)
+        (func_type
+          (param_list
+            (named_type_list
+              (named_type
+                (id)
+                (ty
+                  (id)))
+              (named_type
+                (id)
+                (ty
+                  (id)))))
+          (result_list
+            (ty
+              (result
+                (ty
+                  (id))
+                (ty
+                  (id))))))))))

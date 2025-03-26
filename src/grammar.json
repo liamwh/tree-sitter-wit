@@ -614,7 +614,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "interface_items"
+            "name": "_interface_items"
           }
         },
         {
@@ -623,7 +623,7 @@
         }
       ]
     },
-    "interface_items": {
+    "_interface_items": {
       "type": "SEQ",
       "members": [
         {

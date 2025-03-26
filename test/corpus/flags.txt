@@ -16,10 +16,9 @@ interface foo {
   (interface_item
     (id)
     (body
-      (interface_items
-        (flags_items
+      (flags_items
+        (id)
+        (body
           (id)
-          (body
-            (id)
-            (id)
-            (id)))))))
+          (id)
+          (id))))))

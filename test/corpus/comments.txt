@@ -56,7 +56,8 @@ package tree-sitter:wit@1.0.0;
     (id)
     (id)
     (version))
-  (block_comment)
+  (block_comment
+    (doc_comment))
   (package_decl
     (id)
     (id)
