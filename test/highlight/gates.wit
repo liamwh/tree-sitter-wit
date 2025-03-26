@@ -1,0 +1,27 @@
+@since(version = 0.1.0)
+world imports {
+    @since(version = 0.1.0)
+//  ^ punctuation.special
+//   ^ attribute.builtin
+    @unstable(feature = fancier-foo)
+//   ^ attribute.builtin
+    //                  ^ string
+    import streams;
+    @deprecated(version = 0.1.0)
+    //                    ^ string.special
+    export streams;
+}
+interface calc {
+    @since(version = 0.1.0)
+    variant calc-error {
+      integer-overflow,
+      integer-underflow,
+      unexpected,
+    }
+
+    @since(version = 0.1.0)
+    // TODO clarify i32
+    // https://github.com/WebAssembly/component-model/blob/main/design/mvp/WIT.md#scenario-deprecation-of-an-existing-stable-feature
+    add: func(x: i32, y: i32) -> result<i32, calc-error>;
+}
+
