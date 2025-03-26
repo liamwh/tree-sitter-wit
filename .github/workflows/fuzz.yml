@@ -20,4 +20,4 @@ jobs:
       - name: Run fuzzer
         uses: tree-sitter/fuzz-action@v4
         with:
-          tree-sitter-version: v0.22.2
+          tree-sitter-version: v0.25.3

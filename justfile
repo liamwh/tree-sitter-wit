@@ -15,8 +15,8 @@ build:
     tree-sitter build --wasm --output ./build/parser.wasm .
 
 # Test the parser
-test: generate
-    tree-sitter test
+test *args: generate
+    tree-sitter test {{args}}
 
 [private]
 remove-local:
@@ -33,3 +33,7 @@ format-queries:
 # Lint the grammar
 lint-grammar:
     npx eslint grammar.js
+
+# Format the grammar
+format-grammar:
+    npx eslint --fix grammar.js

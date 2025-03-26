@@ -1,8 +1,5 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-
+import treesitter from 'eslint-config-treesitter';
 
 export default [
-  {languageOptions: { globals: globals.node }},
-  pluginJs.configs.recommended,
+  ...treesitter,
 ];
