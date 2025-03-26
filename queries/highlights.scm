@@ -37,7 +37,7 @@
 (import_item
   name: (id) @module
   (extern_type
-    (interface_body)))
+    (body)))
 
 (import_item
   name: (id) @function
@@ -47,7 +47,7 @@
 (export_item
   name: (id) @module
   (extern_type
-    (interface_body)))
+    (body)))
 
 (export_item
   name: (id) @function
@@ -75,7 +75,7 @@
 (flags_items
   name: (id) @type)
 
-(flags_body
+(body
   (id) @variable.member)
 
 (variant_items

@@ -43,14 +43,13 @@ interface foo {
 (source_file
   (interface_item
     name: (id)
-    body: (interface_body
-      interface_items: (interface_items
-        typedef: (typedef_item
-          (type_item
-            alias: (id)
-            type: (ty))))
-      interface_items: (interface_items
-        func: (func_item
+    (body
+      (interface_items
+        (type_item
+          alias: (id)
+          type: (ty)))
+      (interface_items
+        (func_item
           name: (id)
           (func_type
             param_list: (param_list
@@ -63,8 +62,8 @@ interface foo {
                   type: (ty))))
             result_list: (result_list
               (ty)))))
-      interface_items: (interface_items
-        func: (func_item
+      (interface_items
+        (func_item
           name: (id)
           (func_type
             param_list: (param_list)
@@ -73,8 +72,8 @@ interface foo {
                 (result
                   (ty)
                   (ty)))))))
-      interface_items: (interface_items
-        func: (func_item
+      (interface_items
+        (func_item
           name: (id)
           (func_type
             param_list: (param_list)
@@ -82,85 +81,79 @@ interface foo {
               (ty
                 (option
                   (ty)))))))
-      interface_items: (interface_items
-        typedef: (typedef_item
-          (resource_item
-            name: (id)
-            resource_body: (resource_body
-              (resource_method
-                (param_list))
-              (resource_method
-                (func_item
-                  name: (id)
-                  (func_type
-                    param_list: (param_list
-                      (named_type_list
-                        (named_type
-                          name: (id)
-                          type: (ty))))
-                    result_list: (result_list
-                      (ty
-                        (result
-                          (ty)
-                          (ty
-                            (id))))))))
-              (resource_method
-                (func_item
-                  name: (id)
-                  (func_type
-                    param_list: (param_list
-                      (named_type_list
-                        (named_type
-                          name: (id)
-                          type: (ty
-                            (handle
-                              (id))))))
-                    result_list: (result_list
-                      (ty
-                        (result
-                          (ty)
-                          (ty
-                            (id))))))))))))
-      interface_items: (interface_items
-        typedef: (typedef_item
-          (record_item
-            name: (id)
-            body: (record_body))))
-      interface_items: (interface_items
-        typedef: (typedef_item
-          (record_item
-            name: (id)
-            body: (record_body
-              record_fields: (record_field
+      (interface_items
+        (resource_item
+          name: (id)
+          resource_body: (resource_body
+            (resource_method
+              (param_list))
+            (resource_method
+              (func_item
                 name: (id)
-                type: (ty))))))
-      interface_items: (interface_items
-        typedef: (typedef_item
-          (flags_items
-            name: (id)
-            body: (flags_body
-              flags_fields: (id)
-              flags_fields: (id)))))
-      interface_items: (interface_items
-        typedef: (typedef_item
-          (enum_items
-            name: (id)
-            (enum_body
-              (enum_cases
-                (enum_case
-                  name: (id))
-                (enum_case
-                  name: (id)))))))
-      interface_items: (interface_items
-        typedef: (typedef_item
-          (variant_items
-            name: (id)
-            body: (variant_body
-              (variant_cases
-                (variant_case
-                  name: (id))
-                (variant_case
-                  name: (id))))))))))
+                (func_type
+                  param_list: (param_list
+                    (named_type_list
+                      (named_type
+                        name: (id)
+                        type: (ty))))
+                  result_list: (result_list
+                    (ty
+                      (result
+                        (ty)
+                        (ty
+                          (id))))))))
+            (resource_method
+              (func_item
+                name: (id)
+                (func_type
+                  param_list: (param_list
+                    (named_type_list
+                      (named_type
+                        name: (id)
+                        type: (ty
+                          (handle
+                            (id))))))
+                  result_list: (result_list
+                    (ty
+                      (result
+                        (ty)
+                        (ty
+                          (id)))))))))))
+      (interface_items
+        (record_item
+          name: (id)
+          (body)))
+      (interface_items
+        (record_item
+          name: (id)
+          (body
+            record_fields: (record_field
+              name: (id)
+              type: (ty)))))
+      (interface_items
+        (flags_items
+          name: (id)
+          (body
+            flags_fields: (id)
+            flags_fields: (id))))
+      (interface_items
+        (enum_items
+          name: (id)
+          (enum_body
+            (enum_cases
+              (enum_case
+                name: (id))
+              (enum_case
+                name: (id))))))
+      (interface_items
+        (variant_items
+          name: (id)
+          (body
+            (variant_cases
+              (variant_case
+                name: (id))
+              (variant_case
+                name: (id)))))))))
 
 ==================
 Use Items
@@ -177,7 +170,7 @@ interface my-interface {
 (source_file
   (interface_item
     (id)
-    (interface_body
+    (body
       (interface_items
         (use_item
           (use_path

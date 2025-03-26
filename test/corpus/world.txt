@@ -23,81 +23,74 @@ world imports {
 (source_file
   (world_item
     name: (id)
-    body: (world_body
-      world_items: (world_items
-        import_item: (import_item
-          (use_path
-            (id))))
-      world_items: (world_items
-        export_item: (export_item
-          (use_path
-            (id))))
-      world_items: (world_items
-        import_item: (import_item
-          name: (id)
-          (extern_type
-            (interface_body
-              interface_items: (interface_items
-                typedef: (typedef_item
-                  (type_item
-                    alias: (id)
-                    type: (ty))))
-              interface_items: (interface_items
-                func: (func_item
-                  name: (id)
-                  (func_type
-                    param_list: (param_list
-                      (named_type_list
-                        (named_type
-                          name: (id)
-                          type: (ty))))
-                    result_list: (result_list
-                      (ty
-                        (result
-                          (ty)
-                          (ty
-                            (id))))))))))))
-      world_items: (world_items
-        export_item: (export_item
-          name: (id)
-          (extern_type
-            (interface_body
-              interface_items: (interface_items
-                typedef: (typedef_item
-                  (type_item
-                    alias: (id)
-                    type: (ty))))
-              interface_items: (interface_items
-                func: (func_item
-                  name: (id)
-                  (func_type
-                    param_list: (param_list
-                      (named_type_list
-                        (named_type
-                          name: (id)
-                          type: (ty))))
-                    result_list: (result_list
-                      (ty
-                        (result
-                          (ty)
-                          (ty
-                            (id))))))))))))
-      world_items: (world_items
-        import_item: (import_item
-          name: (id)
-          (extern_type
-            (func_type
-              param_list: (param_list
-                (named_type_list
-                  (named_type
-                    name: (id)
-                    type: (ty))))
-              result_list: (result_list
-                (ty
-                  (result
-                    (ty)
+    (body
+      (import_item
+        (use_path
+          (id)))
+      (export_item
+        (use_path
+          (id)))
+      (import_item
+        name: (id)
+        (extern_type
+          (body
+            (interface_items
+              (type_item
+                alias: (id)
+                type: (ty)))
+            (interface_items
+              (func_item
+                name: (id)
+                (func_type
+                  param_list: (param_list
+                    (named_type_list
+                      (named_type
+                        name: (id)
+                        type: (ty))))
+                  result_list: (result_list
                     (ty
-                      (id))))))))))))
+                      (result
+                        (ty)
+                        (ty
+                          (id)))))))))))
+      (export_item
+        name: (id)
+        (extern_type
+          (body
+            (interface_items
+              (type_item
+                alias: (id)
+                type: (ty)))
+            (interface_items
+              (func_item
+                name: (id)
+                (func_type
+                  param_list: (param_list
+                    (named_type_list
+                      (named_type
+                        name: (id)
+                        type: (ty))))
+                  result_list: (result_list
+                    (ty
+                      (result
+                        (ty)
+                        (ty
+                          (id)))))))))))
+      (import_item
+        name: (id)
+        (extern_type
+          (func_type
+            param_list: (param_list
+              (named_type_list
+                (named_type
+                  name: (id)
+                  type: (ty))))
+            result_list: (result_list
+              (ty
+                (result
+                  (ty)
+                  (ty
+                    (id)))))))))))
 
 ==================
 Union
@@ -125,53 +118,47 @@ world union-my-world-b {
     (id))
   (world_item
     (id)
-    (world_body
-      (world_items
-        (import_item
-          (id)
-          (extern_type
-            (func_type
-              (param_list)))))))
+    (body
+      (import_item
+        (id)
+        (extern_type
+          (func_type
+            (param_list))))))
   (world_item
     (id)
-    (world_body
-      (world_items
-        (import_item
-          (id)
-          (extern_type
-            (func_type
-              (param_list)))))))
+    (body
+      (import_item
+        (id)
+        (extern_type
+          (func_type
+            (param_list))))))
   (world_item
     (id)
-    (world_body
-      (world_items
-        (include_item
-          (use_path
-            (id))))
-      (world_items
-        (include_item
-          (use_path
-            (id))
-          (include_names_body
-            (include_names_list
-              (include_names_item
-                (id)
-                (id))))))))
+    (body
+      (include_item
+        (use_path
+          (id)))
+      (include_item
+        (use_path
+          (id))
+        (include_names_body
+          (include_names_list
+            (include_names_item
+              (id)
+              (id)))))))
   (world_item
     (id)
-    (world_body
-      (world_items
-        (import_item
-          (id)
-          (extern_type
-            (func_type
-              (param_list)))))
-      (world_items
-        (import_item
-          (id)
-          (extern_type
-            (func_type
-              (param_list))))))))
+    (body
+      (import_item
+        (id)
+        (extern_type
+          (func_type
+            (param_list))))
+      (import_item
+        (id)
+        (extern_type
+          (func_type
+            (param_list)))))))
 
 ==================
 Union
@@ -199,53 +186,47 @@ world union-my-world-b {
     (id))
   (world_item
     (id)
-    (world_body
-      (world_items
-        (import_item
-          (id)
-          (extern_type
-            (func_type
-              (param_list)))))))
+    (body
+      (import_item
+        (id)
+        (extern_type
+          (func_type
+            (param_list))))))
   (world_item
     (id)
-    (world_body
-      (world_items
-        (import_item
-          (id)
-          (extern_type
-            (func_type
-              (param_list)))))))
+    (body
+      (import_item
+        (id)
+        (extern_type
+          (func_type
+            (param_list))))))
   (world_item
     (id)
-    (world_body
-      (world_items
-        (include_item
-          (use_path
-            (id))))
-      (world_items
-        (include_item
-          (use_path
-            (id))
-          (include_names_body
-            (include_names_list
-              (include_names_item
-                (id)
-                (id))))))))
+    (body
+      (include_item
+        (use_path
+          (id)))
+      (include_item
+        (use_path
+          (id))
+        (include_names_body
+          (include_names_list
+            (include_names_item
+              (id)
+              (id)))))))
   (world_item
     (id)
-    (world_body
-      (world_items
-        (import_item
-          (id)
-          (extern_type
-            (func_type
-              (param_list)))))
-      (world_items
-        (import_item
-          (id)
-          (extern_type
-            (func_type
-              (param_list))))))))
+    (body
+      (import_item
+        (id)
+        (extern_type
+          (func_type
+            (param_list))))
+      (import_item
+        (id)
+        (extern_type
+          (func_type
+            (param_list)))))))
 
 ==================
 Gates
@@ -277,38 +258,35 @@ interface calc {
     (since_gate
       (version))
     (id)
-    (world_body
-      (world_items
-        (since_gate
-          (version))
-        (unstable_gate
-          (id))
-        (import_item
-          (use_path
-            (id))))
-      (world_items
-        (deprecated_gate
-          (version))
-        (export_item
-          (use_path
-            (id))))))
+    (body
+      (since_gate
+        (version))
+      (unstable_gate
+        (id))
+      (import_item
+        (use_path
+          (id)))
+      (deprecated_gate
+        (version))
+      (export_item
+        (use_path
+          (id)))))
   (interface_item
     (id)
-    (interface_body
+    (body
       (interface_items
         (since_gate
           (version))
-        (typedef_item
-          (variant_items
-            (id)
-            (variant_body
-              (variant_cases
-                (variant_case
-                  (id))
-                (variant_case
-                  (id))
-                (variant_case
-                  (id)))))))
+        (variant_items
+          (id)
+          (body
+            (variant_cases
+              (variant_case
+                (id))
+              (variant_case
+                (id))
+              (variant_case
+                (id))))))
       (interface_items
         (since_gate
           (version))

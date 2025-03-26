@@ -1,11 +1,9 @@
 [
-  (world_items)
-  (world_body)
+  (body)
   (interface_items)
-  (interface_body)
 ] @fold
 
-(world_items
+(body
   [
     (use_item)
     (import_item)

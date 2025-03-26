@@ -30,6 +30,7 @@ module.exports = grammar({
 
   supertypes: $ => [
     $._gate_item,
+    $._typedef_item,
   ],
 
   rules: {
@@ -64,7 +65,7 @@ module.exports = grammar({
     toplevel_use_item: ($) =>
       seq(
         'use',
-        field('path', $.use_path),
+        $.use_path,
         optional(seq('as', field('alias', $.id))),
         ';',
       ),
@@ -89,20 +90,20 @@ module.exports = grammar({
       /(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?/,
 
     world_item: ($) =>
-      seq(optional($._gate), 'world', field('name', $.id), field('body', $.world_body)),
+      seq(optional($._gate), 'world', field('name', $.id), alias($.world_body, $.body)),
 
     world_body: ($) =>
-      seq('{', field('world_items', repeat($.world_items)), '}'),
+      seq('{', repeat($._world_items), '}'),
 
-    world_items: ($) =>
+    _world_items: ($) =>
       seq(
         optional($._gate),
         choice(
-          field('export_item', $.export_item),
-          field('import_item', $.import_item),
-          field('use_item', $.use_item),
-          field('typedef_item', $.typedef_item),
-          field('include_item', $.include_item),
+          $.export_item,
+          $.import_item,
+          $.use_item,
+          $._typedef_item,
+          $.include_item,
         )),
 
     export_item: ($) =>
@@ -118,14 +119,14 @@ module.exports = grammar({
       ),
 
     extern_type: ($) =>
-      choice(seq($.func_type, ';'), seq('interface', $.interface_body)),
+      choice(seq($.func_type, ';'), seq('interface', alias($.interface_body, $.body))),
 
     include_item: ($) =>
       choice(
-        seq('include', field('use_path', $.use_path), ';'),
+        seq('include', $.use_path, ';'),
         seq(
           'include',
-          field('use_path', $.use_path),
+          $.use_path,
           'with',
           field('include_names_body', $.include_names_body),
         ),
@@ -140,21 +141,21 @@ module.exports = grammar({
     include_names_item: ($) => seq($.id, 'as', $.id),
 
     interface_item: ($) =>
-      seq(optional($._gate), 'interface', field('name', $.id), field('body', $.interface_body)),
+      seq(optional($._gate), 'interface', field('name', $.id), alias($.interface_body, $.body)),
 
     interface_body: ($) =>
-      seq('{', field('interface_items', repeat($.interface_items)), '}'),
+      seq('{', repeat($.interface_items), '}'),
 
     interface_items: ($) =>
       seq(
         optional($._gate),
         choice(
-          field('typedef', $.typedef_item),
-          field('use', $.use_item),
-          field('func', $.func_item),
+          $._typedef_item,
+          $.use_item,
+          $.func_item,
         )),
 
-    typedef_item: ($) =>
+    _typedef_item: ($) =>
       choice(
         $.resource_item,
         $.variant_items,
@@ -195,7 +196,7 @@ module.exports = grammar({
       seq('type', field('alias', $.id), '=', field('type', $.ty), ';'),
 
     record_item: ($) =>
-      seq('record', field('name', $.id), field('body', $.record_body)),
+      seq('record', field('name', $.id), alias($.record_body, $.body)),
 
     record_body: ($) =>
       seq(
@@ -207,13 +208,13 @@ module.exports = grammar({
     record_field: ($) => seq(field('name', $.id), ':', field('type', $.ty)),
 
     flags_items: ($) =>
-      seq('flags', field('name', $.id), field('body', $.flags_body)),
+      seq('flags', field('name', $.id), alias($.flags_body, $.body)),
 
     flags_body: ($) =>
       seq('{', field('flags_fields', optionalCommaSeparatedList($.id)), '}'),
 
     variant_items: ($) =>
-      seq('variant', field('name', $.id), field('body', $.variant_body)),
+      seq('variant', field('name', $.id), alias($.variant_body, $.body)),
 
     variant_body: ($) =>
       seq('{', $.variant_cases, '}'),
