@@ -121,7 +121,7 @@ interface foo {
       (interface_items
         (resource_item
           (id)
-          (resource_body
+          (body
             (resource_method
               (param_list))
             (resource_method
@@ -176,7 +176,7 @@ interface foo {
       (interface_items
         (enum_items
           (id)
-          (enum_body
+          (body
             (enum_cases
               (enum_case
                 (id))

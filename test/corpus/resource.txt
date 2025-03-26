@@ -20,7 +20,7 @@ interface filesystem {
       (interface_items
         (resource_item
           (id)
-          (resource_body
+          (body
             (resource_method
               (param_list))
             (resource_method

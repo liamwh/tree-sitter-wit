@@ -52,7 +52,7 @@ interface foo {
         (func_item
           name: (id)
           (func_type
-            param_list: (param_list
+            (param_list
               (named_type_list
                 (named_type
                   name: (id)
@@ -60,14 +60,14 @@ interface foo {
                 (named_type
                   name: (id)
                   type: (ty))))
-            result_list: (result_list
+            (result_list
               (ty)))))
       (interface_items
         (func_item
           name: (id)
           (func_type
-            param_list: (param_list)
-            result_list: (result_list
+            (param_list)
+            (result_list
               (ty
                 (result
                   (ty)
@@ -76,27 +76,27 @@ interface foo {
         (func_item
           name: (id)
           (func_type
-            param_list: (param_list)
-            result_list: (result_list
+            (param_list)
+            (result_list
               (ty
                 (option
                   (ty)))))))
       (interface_items
         (resource_item
           name: (id)
-          resource_body: (resource_body
+          (body
             (resource_method
               (param_list))
             (resource_method
               (func_item
                 name: (id)
                 (func_type
-                  param_list: (param_list
+                  (param_list
                     (named_type_list
                       (named_type
                         name: (id)
                         type: (ty))))
-                  result_list: (result_list
+                  (result_list
                     (ty
                       (result
                         (ty)
@@ -106,14 +106,14 @@ interface foo {
               (func_item
                 name: (id)
                 (func_type
-                  param_list: (param_list
+                  (param_list
                     (named_type_list
                       (named_type
                         name: (id)
                         type: (ty
                           (handle
                             (id))))))
-                  result_list: (result_list
+                  (result_list
                     (ty
                       (result
                         (ty)
@@ -134,12 +134,12 @@ interface foo {
         (flags_items
           name: (id)
           (body
-            flags_fields: (id)
-            flags_fields: (id))))
+            (id)
+            (id))))
       (interface_items
         (enum_items
           name: (id)
-          (enum_body
+          (body
             (enum_cases
               (enum_case
                 name: (id))

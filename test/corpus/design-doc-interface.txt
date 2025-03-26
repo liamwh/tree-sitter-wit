@@ -85,7 +85,7 @@ interface foo {
       (interface_items
         (enum_items
           (id)
-          (enum_body
+          (body
             (enum_cases
               (enum_case
                 (id))

@@ -42,12 +42,12 @@ world imports {
               (func_item
                 name: (id)
                 (func_type
-                  param_list: (param_list
+                  (param_list
                     (named_type_list
                       (named_type
                         name: (id)
                         type: (ty))))
-                  result_list: (result_list
+                  (result_list
                     (ty
                       (result
                         (ty)
@@ -65,12 +65,12 @@ world imports {
               (func_item
                 name: (id)
                 (func_type
-                  param_list: (param_list
+                  (param_list
                     (named_type_list
                       (named_type
                         name: (id)
                         type: (ty))))
-                  result_list: (result_list
+                  (result_list
                     (ty
                       (result
                         (ty)
@@ -80,12 +80,12 @@ world imports {
         name: (id)
         (extern_type
           (func_type
-            param_list: (param_list
+            (param_list
               (named_type_list
                 (named_type
                   name: (id)
                   type: (ty))))
-            result_list: (result_list
+            (result_list
               (ty
                 (result
                   (ty)
@@ -141,7 +141,7 @@ world union-my-world-b {
       (include_item
         (use_path
           (id))
-        (include_names_body
+        (body
           (include_names_list
             (include_names_item
               (id)
@@ -209,7 +209,7 @@ world union-my-world-b {
       (include_item
         (use_path
           (id))
-        (include_names_body
+        (body
           (include_names_list
             (include_names_item
               (id)

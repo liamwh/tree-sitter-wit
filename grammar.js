@@ -90,9 +90,9 @@ module.exports = grammar({
       /(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?/,
 
     world_item: ($) =>
-      seq(optional($._gate), 'world', field('name', $.id), alias($.world_body, $.body)),
+      seq(optional($._gate), 'world', field('name', $.id), alias($._world_body, $.body)),
 
-    world_body: ($) =>
+    _world_body: ($) =>
       seq('{', repeat($._world_items), '}'),
 
     _world_items: ($) =>
@@ -119,7 +119,7 @@ module.exports = grammar({
       ),
 
     extern_type: ($) =>
-      choice(seq($.func_type, ';'), seq('interface', alias($.interface_body, $.body))),
+      choice(seq($.func_type, ';'), seq('interface', alias($._interface_body, $.body))),
 
     include_item: ($) =>
       choice(
@@ -128,22 +128,22 @@ module.exports = grammar({
           'include',
           $.use_path,
           'with',
-          field('include_names_body', $.include_names_body),
+          alias($._include_names_body, $.body),
         ),
       ),
 
-    include_names_body: ($) =>
-      seq('{', field('include_names_list', $.include_names_list), '}'),
+    _include_names_body: ($) =>
+      seq('{', $.include_names_list, '}'),
 
     include_names_list: ($) =>
-      commaSeparatedList(field('include_names_item', $.include_names_item)),
+      commaSeparatedList( $.include_names_item),
 
     include_names_item: ($) => seq($.id, 'as', $.id),
 
     interface_item: ($) =>
-      seq(optional($._gate), 'interface', field('name', $.id), alias($.interface_body, $.body)),
+      seq(optional($._gate), 'interface', field('name', $.id), alias($._interface_body, $.body)),
 
-    interface_body: ($) =>
+    _interface_body: ($) =>
       seq('{', repeat($.interface_items), '}'),
 
     interface_items: ($) =>
@@ -171,8 +171,8 @@ module.exports = grammar({
       seq(
         optional('async'),
         'func',
-        field('param_list', $.param_list),
-        optional(field('result_list', $.result_list)),
+        $.param_list,
+        optional($.result_list),
       ),
 
     param_list: ($) => seq('(', optional($.named_type_list), ')'),
@@ -188,7 +188,7 @@ module.exports = grammar({
       seq('use', $.use_path, '.', '{', $.use_names_list, '}', ';'),
 
     use_names_list: ($) =>
-      commaSeparatedList(field('use_names_item', $.use_names_item)),
+      commaSeparatedList($.use_names_item),
 
     use_names_item: ($) => choice($.id, seq($.id, 'as', $.id)),
 
@@ -196,9 +196,9 @@ module.exports = grammar({
       seq('type', field('alias', $.id), '=', field('type', $.ty), ';'),
 
     record_item: ($) =>
-      seq('record', field('name', $.id), alias($.record_body, $.body)),
+      seq('record', field('name', $.id), alias($._record_body, $.body)),
 
-    record_body: ($) =>
+    _record_body: ($) =>
       seq(
         '{',
         field('record_fields', optionalCommaSeparatedList($.record_field)),
@@ -208,15 +208,15 @@ module.exports = grammar({
     record_field: ($) => seq(field('name', $.id), ':', field('type', $.ty)),
 
     flags_items: ($) =>
-      seq('flags', field('name', $.id), alias($.flags_body, $.body)),
+      seq('flags', field('name', $.id), alias($._flags_body, $.body)),
 
-    flags_body: ($) =>
-      seq('{', field('flags_fields', optionalCommaSeparatedList($.id)), '}'),
+    _flags_body: ($) =>
+      seq('{', optionalCommaSeparatedList($.id), '}'),
 
     variant_items: ($) =>
-      seq('variant', field('name', $.id), alias($.variant_body, $.body)),
+      seq('variant', field('name', $.id), alias($._variant_body, $.body)),
 
-    variant_body: ($) =>
+    _variant_body: ($) =>
       seq('{', $.variant_cases, '}'),
 
     variant_cases: ($) =>
@@ -228,9 +228,9 @@ module.exports = grammar({
         seq(field('name', $.id), '(', field('type', $.ty), ')'),
       ),
 
-    enum_items: ($) => seq('enum', field('name', $.id), $.enum_body),
+    enum_items: ($) => seq('enum', field('name', $.id), alias($._enum_body, $.body)),
 
-    enum_body: ($) =>
+    _enum_body: ($) =>
       seq('{', $.enum_cases, '}'),
 
     enum_cases: ($) =>
@@ -243,10 +243,10 @@ module.exports = grammar({
       seq(
         'resource',
         field('name', $.id),
-        choice(';', optional(field('resource_body', $.resource_body))),
+        choice(';', optional(alias($._resource_body, $.body))),
       ),
 
-    resource_body: ($) => seq('{', repeat($.resource_method), '}'),
+    _resource_body: ($) => seq('{', repeat($.resource_method), '}'),
 
     resource_method: ($) =>
       choice(
