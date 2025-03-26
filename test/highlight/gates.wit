@@ -1,10 +1,10 @@
 @since(version = 0.1.0)
 world imports {
     @since(version = 0.1.0)
-//  ^ punctuation.special
-//   ^ attribute.builtin
+ // ^ punctuation.special
+ //  ^ attribute.builtin
     @unstable(feature = fancier-foo)
-//   ^ attribute.builtin
+ //  ^ attribute.builtin
     //                  ^ string
     import streams;
     @deprecated(version = 0.1.0)
@@ -20,8 +20,6 @@ interface calc {
     }
 
     @since(version = 0.1.0)
-    // TODO clarify i32
-    // https://github.com/WebAssembly/component-model/blob/main/design/mvp/WIT.md#scenario-deprecation-of-an-existing-stable-feature
-    add: func(x: i32, y: i32) -> result<i32, calc-error>;
+    add: func(x: s32, y: s32) -> result<s32, calc-error>;
 }
 
