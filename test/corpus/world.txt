@@ -246,3 +246,89 @@ world union-my-world-b {
           (extern_type
             (func_type
               (param_list))))))))
+
+==================
+Gates
+==================
+@since(version = 0.1.0)
+world imports {
+    @since(version = 0.1.0)
+    @unstable(feature = fancier-foo)
+    import streams;
+    @deprecated(version = 0.1.0)
+    export streams;
+}
+interface calc {
+    @since(version = 0.1.0)
+    variant calc-error {
+      integer-overflow,
+      integer-underflow,
+      unexpected,
+    }
+
+    @since(version = 0.1.0)
+    add: func(x: i32, y: i32) -> result<i32, calc-error>;
+}
+
+---
+
+(source_file
+  (world_item
+    (since_gate
+      (valid_semver))
+    (id)
+    (world_body
+      (world_items
+        (since_gate
+          (valid_semver))
+        (unstable_gate
+          (id))
+        (import_item
+          (use_path
+            (id))))
+      (world_items
+        (deprecated_gate
+          (valid_semver))
+        (export_item
+          (use_path
+            (id))))))
+  (interface_item
+    (id)
+    (interface_body
+      (interface_items
+        (since_gate
+          (valid_semver))
+        (typedef_item
+          (variant_items
+            (id)
+            (variant_body
+              (variant_cases
+                (variant_case
+                  (id))
+                (variant_case
+                  (id))
+                (variant_case
+                  (id)))))))
+      (interface_items
+        (since_gate
+          (valid_semver))
+        (func_item
+          (id)
+          (func_type
+            (param_list
+              (named_type_list
+                (named_type
+                  (id)
+                  (ty
+                    (id)))
+                (named_type
+                  (id)
+                  (ty
+                    (id)))))
+            (result_list
+              (ty
+                (result
+                  (ty
+                    (id))
+                  (ty
+                    (id)))))))))))

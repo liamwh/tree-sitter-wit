@@ -1,5 +1,23 @@
 [
   {
+    "type": "_gate_item",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "deprecated_gate",
+        "named": true
+      },
+      {
+        "type": "since_gate",
+        "named": true
+      },
+      {
+        "type": "unstable_gate",
+        "named": true
+      }
+    ]
+  },
+  {
     "type": "block_comment",
     "named": true,
     "fields": {
@@ -266,44 +284,6 @@
     }
   },
   {
-    "type": "gate",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "gate_item",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "gate_item",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "deprecated_gate",
-          "named": true
-        },
-        {
-          "type": "since_gate",
-          "named": true
-        },
-        {
-          "type": "unstable_gate",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "handle",
     "named": true,
     "fields": {},
@@ -463,11 +443,11 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
-          "type": "gate",
+          "type": "_gate_item",
           "named": true
         }
       ]
@@ -509,11 +489,11 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
-          "type": "gate",
+          "type": "_gate_item",
           "named": true
         }
       ]
@@ -1261,11 +1241,11 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
-          "type": "gate",
+          "type": "_gate_item",
           "named": true
         }
       ]
@@ -1327,11 +1307,11 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
-          "type": "gate",
+          "type": "_gate_item",
           "named": true
         }
       ]

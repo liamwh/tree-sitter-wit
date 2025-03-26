@@ -28,6 +28,10 @@ module.exports = grammar({
     $._line_doc_content,
   ],
 
+  supertypes: $ => [
+    $._gate_item,
+  ],
+
   rules: {
     source_file: ($) =>
       seq(
@@ -41,13 +45,19 @@ module.exports = grammar({
       $.interface_item,
     ),
 
+
+    // URI patterns shared between `use_path` and `package_decl`
+    _uri_head: $ => seq($.id, ':'),
+    _uri_tail: $ => seq('/', $.id),
+    _version: $ => seq('@', alias($._valid_semver, $.version)),
+
     package_decl: ($) =>
       seq(
         'package',
-        repeat1(seq($.id, ':')),
+        repeat1($._uri_head),
         $.id,
-        repeat(seq('/', $.id)),
-        optional(seq('@', $.valid_semver)),
+        repeat($._uri_tail),
+        optional($._version),
         ';',
       ),
 
@@ -55,19 +65,19 @@ module.exports = grammar({
       seq(
         'use',
         field('path', $.use_path),
-        optional(field('alias', seq('as', $.id))),
+        optional(seq('as', field('alias', $.id))),
         ';',
       ),
+
     use_path: ($) =>
       choice(
         $.id,
         seq(
-          repeat1(seq($.id, ':')),
+          repeat1($._uri_head),
           $.id,
-          repeat(seq('/', $.id)),
-          optional(seq('@', $.valid_semver)),
-        ),
-      ),
+          repeat1($._uri_tail),
+          optional($._version),
+        )),
 
     // See here: https://github.com/WebAssembly/component-model/blob/f44d2377f79ea6dd105060f08f01e269cda7df85/design/mvp/WIT.md#wit-identifiers
     // And here: https://github.com/WebAssembly/component-model/blob/c182ca92143c06287e71c3d1125e38d49ffc32b3/design/mvp/Explainer.md#import-and-export-definitions
@@ -75,18 +85,18 @@ module.exports = grammar({
       /%?(([a-z][a-z0-9]*|[A-Z][A-Z0-9]*))(-([a-z][a-z0-9]*|[A-Z][A-Z0-9]*))*/,
 
     // As per https://semver.org/, this regex allows for trailing metadata after MAJOR.MINOR.PATCH
-    valid_semver: ($) =>
+    _valid_semver: ($) =>
       /(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?/,
 
     world_item: ($) =>
-      seq(optional($.gate), 'world', field('name', $.id), field('body', $.world_body)),
+      seq(optional($._gate), 'world', field('name', $.id), field('body', $.world_body)),
 
     world_body: ($) =>
       seq('{', field('world_items', repeat($.world_items)), '}'),
 
     world_items: ($) =>
       seq(
-        optional($.gate),
+        optional($._gate),
         choice(
           field('export_item', $.export_item),
           field('import_item', $.import_item),
@@ -130,14 +140,14 @@ module.exports = grammar({
     include_names_item: ($) => seq($.id, 'as', $.id),
 
     interface_item: ($) =>
-      seq(optional($.gate), 'interface', field('name', $.id), field('body', $.interface_body)),
+      seq(optional($._gate), 'interface', field('name', $.id), field('body', $.interface_body)),
 
     interface_body: ($) =>
       seq('{', field('interface_items', repeat($.interface_items)), '}'),
 
     interface_items: ($) =>
       seq(
-        optional($.gate),
+        optional($._gate),
         choice(
           field('typedef', $.typedef_item),
           field('use', $.use_item),
@@ -354,8 +364,8 @@ module.exports = grammar({
     //
     // feature-field ::= 'feature' '=' id
     // version-field ::= 'version' '=' <valid semver>
-    gate: $ => repeat1($.gate_item),
-    gate_item: $ => choice(
+    _gate: $ => repeat1($._gate_item),
+    _gate_item: $ => choice(
       $.unstable_gate,
       $.since_gate,
       $.deprecated_gate,
@@ -366,6 +376,6 @@ module.exports = grammar({
 
     since_gate: $ => seq('@', 'since', '(', $._version_field, ')'),
     deprecated_gate: $ => seq('@', 'deprecated', '(', $._version_field, ')'),
-    _version_field: $ => seq('version', '=', field('version', $.valid_semver)),
+    _version_field: $ => seq('version', '=', alias($._valid_semver, $.version)),
   },
 });
