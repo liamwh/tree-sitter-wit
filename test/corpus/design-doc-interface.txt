@@ -56,7 +56,7 @@ interface foo {
   (interface_item
     (id)
     (interface_body
-      (comment)
+      (line_comment)
       (interface_items
         (typedef_item
           (record_item
@@ -68,37 +68,37 @@ interface foo {
               (record_field
                 (id)
                 (ty))))))
-      (comment)
+      (line_comment)
       (interface_items
         (typedef_item
           (variant_items
             (id)
             (variant_body
-             (variant_cases
-              (variant_case
-               (id))
-              (variant_case
-               (id)
-               (ty))
-              (comment)
-              (variant_case
-               (id)))))))
-      (comment)
+              (variant_cases
+                (variant_case
+                  (id))
+                (variant_case
+                  (id)
+                  (ty))
+                (line_comment)
+                (variant_case
+                  (id)))))))
+      (line_comment)
       (interface_items
         (typedef_item
           (enum_items
             (id)
             (enum_body
-             (enum_cases
-              (enum_case
-               (id))
-              (enum_case
-               (id))
-              (enum_case
-               (id))
-              (enum_case
-               (id)))))))
-      (comment)
+              (enum_cases
+                (enum_case
+                  (id))
+                (enum_case
+                  (id))
+                (enum_case
+                  (id))
+                (enum_case
+                  (id)))))))
+      (line_comment)
       (interface_items
         (typedef_item
           (flags_items
@@ -107,8 +107,8 @@ interface foo {
               (id)
               (id)
               (id)))))
-      (comment)
-      (comment)
+      (line_comment)
+      (line_comment)
       (interface_items
         (typedef_item
           (type_item
@@ -143,7 +143,7 @@ interface foo {
               (result
                 (ty
                   (id)))))))
-      (comment)
+      (line_comment)
       (interface_items
         (typedef_item
           (type_item
@@ -151,7 +151,7 @@ interface foo {
             (ty
               (result
                 (ty))))))
-      (comment)
+      (line_comment)
       (interface_items
         (typedef_item
           (type_item
@@ -161,14 +161,14 @@ interface foo {
                 (ty)
                 (ty
                   (id)))))))
-      (comment)
+      (line_comment)
       (interface_items
         (typedef_item
           (type_item
             (id)
             (ty
               (result)))))
-      (comment)
+      (line_comment)
       (interface_items
         (typedef_item
           (type_item

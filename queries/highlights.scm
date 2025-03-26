@@ -1,4 +1,3 @@
-(comment) @comment @spell
 
 (ty
   (id)) @type
@@ -133,26 +132,33 @@
   "char"
   "bool"
   "string"
+] @type.builtin
+
+[
   "tuple"
   "list"
   "option"
   "result"
   "borrow"
-] @type.builtin
+] @type
+
+"_" @variable.parameter.builtin
+
+
+"_" @variable.parameter.builtin
 
 [
   "@"
-  "_"
 ] @punctuation.special
 
 [
-  "/"
   ";"
   ":"
   ","
   "."
   "->"
 ] @punctuation.delimiter
+(use_path "/" @punctuation.delimiter)
 
 [
   "{"
@@ -164,3 +170,8 @@
 ] @punctuation.bracket
 
 "=" @operator
+
+[(line_comment) (block_comment)] @comment @spell
+
+(line_comment (doc_comment)) @comment.documentation
+(block_comment (doc_comment)) @comment.documentation
