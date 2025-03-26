@@ -5,7 +5,15 @@
 (package_decl
   (id) @module)
 
-(valid_semver) @string.special
+(version) @string.special
+(use_path
+  ["@"
+   "/"
+  ]@punctuation.delimiter)
+(package_decl
+  ["@"
+   "/"
+  ]@punctuation.delimiter)
 
 (world_item
   name: (id) @module)
@@ -148,9 +156,6 @@
 
 "_" @variable.parameter.builtin
 
-[
-  "@"
-] @punctuation.special
 
 [
   ";"
@@ -159,7 +164,6 @@
   "."
   "->"
 ] @punctuation.delimiter
-(use_path "/" @punctuation.delimiter)
 
 [
   "{"

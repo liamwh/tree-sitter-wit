@@ -209,7 +209,7 @@ interface my-interface {
             (id)
             (id)
             (id)
-            (valid_semver))
+            (version))
           (use_names_list
             (use_names_item
               (id))

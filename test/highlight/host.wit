@@ -8,8 +8,6 @@ world interfaces {
     // ^ keyword.import
     //     ^ module
     //                              ^ string.special
-    //                                   ^ string.special
-    //                                        ^ string.special
     //                                         ^ punctuation.delimiter
     import wasi:config/runtime@0.2.0-draft;
     import wasi:http/outgoing-handler@0.2.0;

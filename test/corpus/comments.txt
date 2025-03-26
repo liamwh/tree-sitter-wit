@@ -21,17 +21,17 @@ package tree-sitter:wit@1.0.0;
   (package_decl
     (id)
     (id)
-    (valid_semver))
+    (version))
   (block_comment)
   (package_decl
     (id)
     (id)
-    (valid_semver))
+    (version))
   (block_comment)
   (package_decl
     (id)
     (id)
-    (valid_semver)))
+    (version)))
 
 ==================
 Doc comments
@@ -55,15 +55,15 @@ package tree-sitter:wit@1.0.0;
   (package_decl
     (id)
     (id)
-    (valid_semver))
+    (version))
   (block_comment)
   (package_decl
     (id)
     (id)
-    (valid_semver))
+    (version))
   (block_comment
     (doc_comment))
   (package_decl
     (id)
     (id)
-    (valid_semver)))
+    (version)))

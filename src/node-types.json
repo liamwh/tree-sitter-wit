@@ -36,17 +36,16 @@
   {
     "type": "deprecated_gate",
     "named": true,
-    "fields": {
-      "version": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "valid_semver",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "version",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -614,7 +613,7 @@
           "named": true
         },
         {
-          "type": "valid_semver",
+          "type": "version",
           "named": true
         }
       ]
@@ -812,17 +811,16 @@
   {
     "type": "since_gate",
     "named": true,
-    "fields": {
-      "version": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "valid_semver",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "version",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -873,13 +871,9 @@
     "named": true,
     "fields": {
       "alias": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": "as",
-            "named": false
-          },
           {
             "type": "id",
             "named": true
@@ -1111,7 +1105,7 @@
           "named": true
         },
         {
-          "type": "valid_semver",
+          "type": "version",
           "named": true
         }
       ]
@@ -1554,12 +1548,12 @@
     "named": false
   },
   {
-    "type": "valid_semver",
-    "named": true
-  },
-  {
     "type": "variant",
     "named": false
+  },
+  {
+    "type": "version",
+    "named": true
   },
   {
     "type": "version",

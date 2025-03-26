@@ -275,12 +275,12 @@ interface calc {
 (source_file
   (world_item
     (since_gate
-      (valid_semver))
+      (version))
     (id)
     (world_body
       (world_items
         (since_gate
-          (valid_semver))
+          (version))
         (unstable_gate
           (id))
         (import_item
@@ -288,7 +288,7 @@ interface calc {
             (id))))
       (world_items
         (deprecated_gate
-          (valid_semver))
+          (version))
         (export_item
           (use_path
             (id))))))
@@ -297,7 +297,7 @@ interface calc {
     (interface_body
       (interface_items
         (since_gate
-          (valid_semver))
+          (version))
         (typedef_item
           (variant_items
             (id)
@@ -311,7 +311,7 @@ interface calc {
                   (id)))))))
       (interface_items
         (since_gate
-          (valid_semver))
+          (version))
         (func_item
           (id)
           (func_type
