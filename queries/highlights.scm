@@ -15,6 +15,19 @@
    "/"
   ]@punctuation.delimiter)
 
+; feature gates with leading `@`
+(_
+  . "@" @punctuation.special
+  .
+   ["since"
+    "unstable"
+    "deprecated"
+    ] @attribute.builtin
+   )
+
+(unstable_gate
+  feature: (id) @string)
+
 (world_item
   name: (id) @module)
 
