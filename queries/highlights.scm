@@ -148,6 +148,9 @@
 
 "_" @variable.parameter.builtin
 
+
+"_" @variable.parameter.builtin
+
 [
   "@"
 ] @punctuation.special
