@@ -51,13 +51,12 @@ interface foo {
         name: (id)
         (func_type
           (param_list
-            (named_type_list
-              (named_type
-                name: (id)
-                type: (ty))
-              (named_type
-                name: (id)
-                type: (ty))))
+            (named_type
+              name: (id)
+              type: (ty))
+            (named_type
+              name: (id)
+              type: (ty)))
           (result_list
             (ty))))
       (func_item
@@ -87,10 +86,9 @@ interface foo {
               name: (id)
               (func_type
                 (param_list
-                  (named_type_list
-                    (named_type
-                      name: (id)
-                      type: (ty))))
+                  (named_type
+                    name: (id)
+                    type: (ty)))
                 (result_list
                   (ty
                     (result
@@ -102,12 +100,11 @@ interface foo {
               name: (id)
               (func_type
                 (param_list
-                  (named_type_list
-                    (named_type
-                      name: (id)
-                      type: (ty
-                        (handle
-                          (id))))))
+                  (named_type
+                    name: (id)
+                    type: (ty
+                      (handle
+                        (id)))))
                 (result_list
                   (ty
                     (result

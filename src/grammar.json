@@ -760,7 +760,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "named_type_list"
+              "name": "_named_type_list"
             },
             {
               "type": "BLANK"
@@ -805,7 +805,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "named_type_list"
+                  "name": "_named_type_list"
                 },
                 {
                   "type": "BLANK"
@@ -820,7 +820,7 @@
         }
       ]
     },
-    "named_type_list": {
+    "_named_type_list": {
       "type": "SEQ",
       "members": [
         {

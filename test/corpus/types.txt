@@ -53,13 +53,12 @@ interface foo {
         (id)
         (func_type
           (param_list
-            (named_type_list
-              (named_type
-                (id)
-                (ty))
-              (named_type
-                (id)
-                (ty))))
+            (named_type
+              (id)
+              (ty))
+            (named_type
+              (id)
+              (ty)))
           (result_list
             (ty))))
       (func_item
@@ -83,11 +82,10 @@ interface foo {
         (id)
         (func_type
           (param_list
-            (named_type_list
-              (named_type
-                (id)
-                (ty
-                  (stream)))))
+            (named_type
+              (id)
+              (ty
+                (stream))))
           (result_list
             (ty
               (list
@@ -97,13 +95,12 @@ interface foo {
         (id)
         (func_type
           (param_list
-            (named_type_list
-              (named_type
-                (id)
-                (ty
-                  (future
-                    (ty
-                      (id)))))))
+            (named_type
+              (id)
+              (ty
+                (future
+                  (ty
+                    (id))))))
           (result_list
             (ty
               (stream
@@ -122,10 +119,9 @@ interface foo {
               (id)
               (func_type
                 (param_list
-                  (named_type_list
-                    (named_type
-                      (id)
-                      (ty))))
+                  (named_type
+                    (id)
+                    (ty)))
                 (result_list
                   (ty
                     (result
@@ -137,12 +133,11 @@ interface foo {
               (id)
               (func_type
                 (param_list
-                  (named_type_list
-                    (named_type
-                      (id)
-                      (ty
-                        (handle
-                          (id))))))
+                  (named_type
+                    (id)
+                    (ty
+                      (handle
+                        (id)))))
                 (result_list
                   (ty
                     (result

@@ -34,10 +34,9 @@ interface filesystem {
               (id)
               (func_type
                 (param_list
-                  (named_type_list
-                    (named_type
-                      (id)
-                      (ty))))
+                  (named_type
+                    (id)
+                    (ty)))
                 (result_list
                   (ty
                     (result
@@ -48,12 +47,11 @@ interface filesystem {
             (id)
             (func_type
               (param_list
-                (named_type_list
-                  (named_type
-                    (id)
-                    (ty
-                      (list
-                        (ty))))))
+                (named_type
+                  (id)
+                  (ty
+                    (list
+                      (ty)))))
               (result_list
                 (ty
                   (id)))))
@@ -61,12 +59,11 @@ interface filesystem {
             (id)
             (func_type
               (param_list
-                (named_type_list
-                  (named_type
-                    (id)
-                    (ty
-                      (stream
-                        (ty))))))
+                (named_type
+                  (id)
+                  (ty
+                    (stream
+                      (ty)))))
               (result_list
                 (ty
                   (id))))))))))

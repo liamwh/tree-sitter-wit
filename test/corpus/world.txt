@@ -41,10 +41,9 @@ world imports {
               name: (id)
               (func_type
                 (param_list
-                  (named_type_list
-                    (named_type
-                      name: (id)
-                      type: (ty))))
+                  (named_type
+                    name: (id)
+                    type: (ty)))
                 (result_list
                   (ty
                     (result
@@ -62,10 +61,9 @@ world imports {
               name: (id)
               (func_type
                 (param_list
-                  (named_type_list
-                    (named_type
-                      name: (id)
-                      type: (ty))))
+                  (named_type
+                    name: (id)
+                    type: (ty)))
                 (result_list
                   (ty
                     (result
@@ -77,10 +75,9 @@ world imports {
         (extern_type
           (func_type
             (param_list
-              (named_type_list
-                (named_type
-                  name: (id)
-                  type: (ty))))
+              (named_type
+                name: (id)
+                type: (ty)))
             (result_list
               (ty
                 (result
@@ -288,15 +285,14 @@ interface calc {
         (id)
         (func_type
           (param_list
-            (named_type_list
-              (named_type
-                (id)
-                (ty
-                  (id)))
-              (named_type
-                (id)
-                (ty
-                  (id)))))
+            (named_type
+              (id)
+              (ty
+                (id)))
+            (named_type
+              (id)
+              (ty
+                (id))))
           (result_list
             (ty
               (result

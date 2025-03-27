@@ -175,12 +175,12 @@ module.exports = grammar({
         optional($.result_list),
       ),
 
-    param_list: ($) => seq('(', optional($.named_type_list), ')'),
+    param_list: ($) => seq('(', optional($._named_type_list), ')'),
 
     result_list: ($) =>
-      choice(seq('->', $.ty), seq('->', '(', optional($.named_type_list), ')')),
+      choice(seq('->', $.ty), seq('->', '(', optional($._named_type_list), ')')),
 
-    named_type_list: ($) => commaSeparatedList($.named_type),
+    _named_type_list: ($) => commaSeparatedList($.named_type),
 
     named_type: ($) => seq(field('name', $.id), ':', field('type', $.ty)),
 

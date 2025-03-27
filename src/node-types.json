@@ -541,21 +541,6 @@
     }
   },
   {
-    "type": "named_type_list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "named_type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "option",
     "named": true,
     "fields": {},
@@ -594,11 +579,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
-          "type": "named_type_list",
+          "type": "named_type",
           "named": true
         }
       ]
@@ -729,11 +714,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
-          "type": "named_type_list",
+          "type": "named_type",
           "named": true
         },
         {
