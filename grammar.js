@@ -192,9 +192,9 @@ module.exports = grammar({
         ';'),
 
     _use_names_body: $ =>
-      seq('{', $.use_names_list, '}'),
+      seq('{', $._use_names_list, '}'),
 
-    use_names_list: ($) =>
+    _use_names_list: ($) =>
       commaSeparatedList($.use_names_item),
 
     use_names_item: ($) => choice($.id, $.alias_item),

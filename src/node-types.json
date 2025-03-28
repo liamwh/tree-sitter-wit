@@ -161,7 +161,7 @@
           "named": true
         },
         {
-          "type": "use_names_list",
+          "type": "use_names_item",
           "named": true
         }
       ]
@@ -960,21 +960,6 @@
         },
         {
           "type": "id",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "use_names_list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "use_names_item",
           "named": true
         }
       ]

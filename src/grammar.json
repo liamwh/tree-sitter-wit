@@ -938,7 +938,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "use_names_list"
+          "name": "_use_names_list"
         },
         {
           "type": "STRING",
@@ -946,7 +946,7 @@
         }
       ]
     },
-    "use_names_list": {
+    "_use_names_list": {
       "type": "SEQ",
       "members": [
         {
