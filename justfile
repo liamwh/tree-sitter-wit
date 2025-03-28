@@ -4,9 +4,16 @@
 
 # Show available commands
 default:
-    @just --list --justfile {{justfile()}}
+    @just --list --justfile {{ justfile() }}
+
+# regenerate tree-sitter bindings
+regen:
+    rm CMakeLists.txt Makefile Package.swift binding.gyp go.mod pyproject.toml setup.py
+    rm -rf bindings
+    tree-sitter init --update
 
 alias gen := generate
+
 # Generate the c parser from the grammar.
 generate:
     tree-sitter generate
@@ -17,7 +24,7 @@ build:
 
 # Test the parser
 test *args: generate
-    tree-sitter test {{args}}
+    tree-sitter test {{ args }}
 
 [private]
 remove-local:
@@ -27,16 +34,27 @@ remove-local:
 install-local: remove-local
     cp -r ./queries ~/.local/share/nvim/lazy/nvim-treesitter/queries/wit
 
+fmt:
+    eslint --fix grammar.js
+    # topiary fmt ./queries/*.scm
+    # topiary fmt ./examples/*.wit
+    just --fmt --unstable
+    # nixfmt flake.nix shell.nix
+
 alias fmt-queries := format-queries
+
 # Format the queries
 format-queries:
     nvim -l scripts/format-queries.lua
 
-# Lint the grammar
-lint-grammar:
+# Lint all the things
+lint:
     npx eslint grammar.js
+    typos
+    just --fmt --check
 
 alias fmt-grammar := format-grammar
+
 # Format the grammar
 format-grammar:
     npx eslint --fix grammar.js

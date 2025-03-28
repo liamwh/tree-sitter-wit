@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.13)
 
 project(tree-sitter-wit
-        VERSION "1.0.0"
-        DESCRIPTION ""
-        HOMEPAGE_URL "https://github.com/tree-sitter/tree-sitter-wit"
+        VERSION "1.1.0"
+        DESCRIPTION "WIT grammar for tree-sitter"
+        HOMEPAGE_URL "https://github.com/liamwh/tree-sitter-wit"
         LANGUAGES C)
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
