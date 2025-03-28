@@ -6,6 +6,7 @@
 default:
     @just --list --justfile {{justfile()}}
 
+alias gen := generate
 # Generate the c parser from the grammar.
 generate:
     tree-sitter generate
@@ -26,6 +27,7 @@ remove-local:
 install-local: remove-local
     cp -r ./queries ~/.local/share/nvim/lazy/nvim-treesitter/queries/wit
 
+alias format-queries := fmt-queries
 # Format the queries
 format-queries:
     nvim -l scripts/format-queries.lua
@@ -34,6 +36,7 @@ format-queries:
 lint-grammar:
     npx eslint grammar.js
 
+alias format-grammar := fmt-grammar
 # Format the grammar
 format-grammar:
     npx eslint --fix grammar.js
