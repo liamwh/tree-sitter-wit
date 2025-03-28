@@ -161,41 +161,47 @@ interface my-interface {
       (use_item
         (use_path
           (id))
-        (use_names_list
-          (use_names_item
-            (id))
-          (use_names_item
-            (id))
-          (use_names_item
-            (id))
-          (use_names_item
-            (id))))
+        (definitions
+          (use_names_list
+            (use_names_item
+              (id))
+            (use_names_item
+              (id))
+            (use_names_item
+              (id))
+            (use_names_item
+              (id)))))
       (use_item
         (use_path
           (id)
           (id)
           (id))
-        (use_names_list
-          (use_names_item
-            (id))
-          (use_names_item
-            (id)
-            (id))))
+        (definitions
+          (use_names_list
+            (use_names_item
+              (id))
+            (use_names_item
+              (alias_item
+                (id)
+                (id))))))
       (use_item
         (use_path
           (id)
           (id)
           (id)
           (version))
-        (use_names_list
-          (use_names_item
-            (id))
-          (use_names_item
-            (id))))
+        (definitions
+          (use_names_list
+            (use_names_item
+              (id))
+            (use_names_item
+              (id)))))
       (use_item
         (use_path
           (id))
-        (use_names_list
-          (use_names_item
-            (id)
-            (id)))))))
+        (definitions
+          (use_names_list
+            (use_names_item
+              (alias_item
+                (id)
+                (id)))))))))

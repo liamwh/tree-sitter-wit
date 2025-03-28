@@ -134,11 +134,10 @@ world union-my-world-b {
       (include_item
         (use_path
           (id))
-        (body
-          (include_names_list
-            (include_names_item
-              (id)
-              (id)))))))
+        (definitions
+          (alias_item
+            (id)
+            (id))))))
   (world_item
     (id)
     (body
@@ -202,11 +201,10 @@ world union-my-world-b {
       (include_item
         (use_path
           (id))
-        (body
-          (include_names_list
-            (include_names_item
-              (id)
-              (id)))))))
+        (definitions
+          (alias_item
+            (id)
+            (id))))))
   (world_item
     (id)
     (body
