@@ -488,7 +488,7 @@
                 "name": "_include_names_body"
               },
               "named": true,
-              "value": "body"
+              "value": "definitions"
             }
           ]
         }
@@ -503,7 +503,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "include_names_list"
+          "name": "_include_names_list"
         },
         {
           "type": "STRING",
@@ -511,12 +511,12 @@
         }
       ]
     },
-    "include_names_list": {
+    "_include_names_list": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "include_names_item"
+          "name": "alias_item"
         },
         {
           "type": "REPEAT",
@@ -529,7 +529,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "include_names_item"
+                "name": "alias_item"
               }
             ]
           }
@@ -545,6 +545,23 @@
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "alias_item": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "id"
+        },
+        {
+          "type": "STRING",
+          "value": "as"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "id"
         }
       ]
     },
@@ -898,6 +915,24 @@
           "value": "."
         },
         {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_use_names_body"
+          },
+          "named": true,
+          "value": "definitions"
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
+    "_use_names_body": {
+      "type": "SEQ",
+      "members": [
+        {
           "type": "STRING",
           "value": "{"
         },
@@ -908,10 +943,6 @@
         {
           "type": "STRING",
           "value": "}"
-        },
-        {
-          "type": "STRING",
-          "value": ";"
         }
       ]
     },
@@ -960,21 +991,8 @@
           "name": "id"
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "id"
-            },
-            {
-              "type": "STRING",
-              "value": "as"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "id"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "alias_item"
         }
       ]
     },

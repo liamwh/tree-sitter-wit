@@ -128,16 +128,18 @@ module.exports = grammar({
           'include',
           $.use_path,
           'with',
-          alias($._include_names_body, $.body),
+          alias($._include_names_body, $.definitions),
         ),
       ),
 
     _include_names_body: ($) =>
-      seq('{', $.include_names_list, '}'),
+      seq('{', $._include_names_list, '}'),
 
-    include_names_list: ($) =>
-      commaSeparatedList( $.include_names_item),
+    _include_names_list: ($) =>
+      commaSeparatedList( $.alias_item),
 
+    alias_item: $ =>
+      seq($.id, 'as', $.id),
     include_names_item: ($) => seq($.id, 'as', $.id),
 
     interface_item: ($) =>
@@ -185,12 +187,17 @@ module.exports = grammar({
     named_type: ($) => seq(field('name', $.id), ':', field('type', $.ty)),
 
     use_item: ($) =>
-      seq('use', $.use_path, '.', '{', $.use_names_list, '}', ';'),
+      seq('use', $.use_path, '.',
+        alias($._use_names_body, $.definitions),
+        ';'),
+
+    _use_names_body: $ =>
+      seq('{', $.use_names_list, '}'),
 
     use_names_list: ($) =>
       commaSeparatedList($.use_names_item),
 
-    use_names_item: ($) => choice($.id, seq($.id, 'as', $.id)),
+    use_names_item: ($) => choice($.id, $.alias_item),
 
     type_item: ($) =>
       seq('type', field('alias', $.id), '=', field('type', $.ty), ';'),

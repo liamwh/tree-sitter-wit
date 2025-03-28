@@ -48,6 +48,21 @@
     ]
   },
   {
+    "type": "alias_item",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "block_comment",
     "named": true,
     "fields": {
@@ -119,10 +134,6 @@
           "named": true
         },
         {
-          "type": "include_names_list",
-          "named": true
-        },
-        {
           "type": "resource_method",
           "named": true
         },
@@ -132,6 +143,25 @@
         },
         {
           "type": "variant_cases",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "definitions",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "alias_item",
+          "named": true
+        },
+        {
+          "type": "use_names_list",
           "named": true
         }
       ]
@@ -398,41 +428,11 @@
       "required": true,
       "types": [
         {
-          "type": "body",
+          "type": "definitions",
           "named": true
         },
         {
           "type": "use_path",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "include_names_item",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "id",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "include_names_list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "include_names_item",
           "named": true
         }
       ]
@@ -936,7 +936,7 @@
       "required": true,
       "types": [
         {
-          "type": "use_names_list",
+          "type": "definitions",
           "named": true
         },
         {
@@ -951,9 +951,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "alias_item",
+          "named": true
+        },
         {
           "type": "id",
           "named": true
