@@ -39,7 +39,7 @@ fmt:
     # topiary fmt ./queries/*.scm
     # topiary fmt ./examples/*.wit
     just --fmt --unstable
-    # nixfmt flake.nix shell.nix
+    nixfmt flake.nix shell.nix
 
 alias fmt-queries := format-queries
 
@@ -51,7 +51,7 @@ format-queries:
 lint:
     npx eslint grammar.js
     typos
-    just --fmt --check
+    just --fmt --unstable --check
 
 alias fmt-grammar := format-grammar
 
