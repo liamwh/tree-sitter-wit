@@ -236,9 +236,7 @@ module.exports = grammar({
     resource_method: ($) =>
       choice(
         $.func_item,
-        // TODO defer `foo: async async func() -> T;` case
-        // https://github.com/WebAssembly/component-model/blob/main/design/mvp/WIT.md#item-resource
-        seq($.id, ':', 'static', /* optional('async'), */ $.func_type, ';'),
+        seq($.id, ':', 'static', $.func_type, ';'),
         seq('constructor', $.param_list, ';'),
       ),
 
