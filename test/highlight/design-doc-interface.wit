@@ -83,7 +83,7 @@ interface foo {
   // ^ keyword.type
   //   ^ type.definition
   //      ^ operator
-  //        ^ type.builtin
+  //        ^ type
   //             ^ punctuation.bracket
   //              ^ type.builtin
   //                 ^ punctuation.delimiter
@@ -100,7 +100,7 @@ interface foo {
   // ^ keyword.type
   //   ^ type.definition
   //      ^ operator
-  //        ^ type.builtin
+  //        ^ type
   //              ^ punctuation.bracket
   //               ^ type.builtin
   //                  ^ punctuation.bracket
@@ -109,7 +109,7 @@ interface foo {
   // ^ keyword.type
   //   ^ type.definition
   //      ^ operator
-  //        ^ type.builtin
+  //        ^ type
   //              ^ punctuation.bracket
   //               ^ variable.parameter.builtin
   //                ^ punctuation.delimiter
@@ -119,7 +119,7 @@ interface foo {
   // ^ keyword.type
   //   ^ type.definition
   //      ^ operator
-  //        ^ type.builtin
+  //        ^ type
   //              ^ punctuation.bracket
   //               ^ type.builtin
   //                     ^ punctuation.bracket
@@ -128,7 +128,7 @@ interface foo {
   // ^ keyword.type
   //   ^ type.definition
   //      ^ operator
-  //        ^ type.builtin
+  //        ^ type
   //               ^ type.builtin
   //                     ^ type
   //                           ^ punctuation.delimiter
@@ -136,13 +136,13 @@ interface foo {
   // ^ keyword.type
   //   ^ type.definition
   //      ^ operator
-  //        ^ type.builtin
+  //        ^ type
   //              ^ punctuation.delimiter
   type t9 = list<string>;
   // ^ keyword.type
   //   ^ type.definition
   //      ^ operator
-  //        ^ type.builtin
+  //        ^ type
   //            ^ punctuation.bracket
   //               ^ type.builtin
   //                   ^ punctuation.bracket
