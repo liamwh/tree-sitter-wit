@@ -336,17 +336,5 @@ module.exports = grammar({
       ),
       '*/',
     ),
-    // TODO Gates
-    // gate ::= gate-item*
-    // gate-item ::= unstable-gate
-    //             | since-gate
-    //             | deprecated-gate
-    //
-    // unstable-gate ::= '@unstable' '(' feature-field ')'
-    // since-gate ::= '@since' '(' version-field ')'
-    // deprecated-gate ::= '@deprecated' '(' version-field ')'
-    //
-    // feature-field ::= 'feature' '=' id
-    // version-field ::= 'version' '=' <valid semver>
   },
 });
