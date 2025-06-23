@@ -8,7 +8,7 @@ reset := "\\033[0m"
 
 # Show available commands
 default:
-    @just --list --justfile {{justfile()}}
+    @just --list --justfile {{ justfile() }}
 
 # regenerate tree-sitter bindings
 regen:
@@ -26,7 +26,7 @@ build:
 
 # Test the parser
 test *args: generate
-    tree-sitter test {{args}}
+    tree-sitter test {{ args }}
 
 [private]
 remove-local:
