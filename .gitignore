@@ -45,3 +45,8 @@ zig-out/
 *.tar.gz
 *.tgz
 *.zip
+
+# Clang autocompletion and setup commands
+compile_commands.json
+.clangd
+

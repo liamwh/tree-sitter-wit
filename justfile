@@ -15,8 +15,8 @@ build:
     tree-sitter build --wasm --output ./build/parser.wasm .
 
 # Test the parser
-test: generate
-    tree-sitter test
+test *args: generate
+    tree-sitter test {{args}}
 
 [private]
 remove-local:

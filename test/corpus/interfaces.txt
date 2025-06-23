@@ -2,9 +2,9 @@
 Interfaces
 ==================
 
+
 interface foo {
     type alias = string;
-
     fn1: func(hey: u32, ho: string) -> bool;
     fn2: func() -> result<bool, u32>;
     fn3: func() -> option<bool>;
@@ -161,3 +161,65 @@ interface foo {
                   name: (id))
                 (variant_case
                   name: (id))))))))))
+
+==================
+Use Items
+==================
+interface my-interface {
+    use an-interface.{a, list, of, names};
+    use my:dependency/the-interface.{more, names as foo};
+    use wasi:http/types@1.0.0.{request, response};
+    use types.{errno as my-errno};
+}
+
+---
+
+(source_file
+  (interface_item
+    (id)
+    (interface_body
+      (interface_items
+        (use_item
+          (use_path
+            (id))
+          (use_names_list
+            (use_names_item
+              (id))
+            (use_names_item
+              (id))
+            (use_names_item
+              (id))
+            (use_names_item
+              (id)))))
+      (interface_items
+        (use_item
+          (use_path
+            (id)
+            (id)
+            (id))
+          (use_names_list
+            (use_names_item
+              (id))
+            (use_names_item
+              (id)
+              (id)))))
+      (interface_items
+        (use_item
+          (use_path
+            (id)
+            (id)
+            (id)
+            (valid_semver))
+          (use_names_list
+            (use_names_item
+              (id))
+            (use_names_item
+              (id)))))
+      (interface_items
+        (use_item
+          (use_path
+            (id))
+          (use_names_list
+            (use_names_item
+              (id)
+              (id))))))))

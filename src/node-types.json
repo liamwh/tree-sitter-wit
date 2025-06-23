@@ -1,5 +1,21 @@
 [
   {
+    "type": "block_comment",
+    "named": true,
+    "fields": {
+      "doc": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "doc_comment",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "enum_body",
     "named": true,
     "fields": {},
@@ -219,6 +235,21 @@
     }
   },
   {
+    "type": "future",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "ty",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "handle",
     "named": true,
     "fields": {},
@@ -415,9 +446,40 @@
     }
   },
   {
+    "type": "line_comment",
+    "named": true,
+    "fields": {
+      "doc": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "doc_comment",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "list",
     "named": true,
-    "fields": {},
+    "fields": {
+      "size": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "uint",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": false,
       "required": true,
@@ -722,6 +784,21 @@
     }
   },
   {
+    "type": "stream",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "ty",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "toplevel_use_item",
     "named": true,
     "fields": {
@@ -790,6 +867,10 @@
       "required": false,
       "types": [
         {
+          "type": "future",
+          "named": true
+        },
+        {
           "type": "handle",
           "named": true
         },
@@ -807,6 +888,10 @@
         },
         {
           "type": "result",
+          "named": true
+        },
+        {
+          "type": "stream",
           "named": true
         },
         {
@@ -1135,6 +1220,10 @@
     "named": false
   },
   {
+    "type": "*/",
+    "named": false
+  },
+  {
     "type": ",",
     "named": false
   },
@@ -1148,6 +1237,14 @@
   },
   {
     "type": "/",
+    "named": false
+  },
+  {
+    "type": "/*",
+    "named": false
+  },
+  {
+    "type": "//",
     "named": false
   },
   {
@@ -1183,6 +1280,10 @@
     "named": false
   },
   {
+    "type": "async",
+    "named": false
+  },
+  {
     "type": "bool",
     "named": false
   },
@@ -1195,13 +1296,12 @@
     "named": false
   },
   {
-    "type": "comment",
-    "named": true,
-    "extra": true
-  },
-  {
     "type": "constructor",
     "named": false
+  },
+  {
+    "type": "doc_comment",
+    "named": true
   },
   {
     "type": "enum",
@@ -1224,15 +1324,11 @@
     "named": false
   },
   {
-    "type": "float32",
-    "named": false
-  },
-  {
-    "type": "float64",
-    "named": false
-  },
-  {
     "type": "func",
+    "named": false
+  },
+  {
+    "type": "future",
     "named": false
   },
   {
@@ -1296,6 +1392,10 @@
     "named": false
   },
   {
+    "type": "stream",
+    "named": false
+  },
+  {
     "type": "string",
     "named": false
   },
@@ -1322,6 +1422,10 @@
   {
     "type": "u8",
     "named": false
+  },
+  {
+    "type": "uint",
+    "named": true
   },
   {
     "type": "use",
