@@ -108,12 +108,16 @@
 ] @keyword.type
 
 "static" @keyword.modifier
+"async" @keyword.coroutine
+
+(uint) @constant
 
 [
   "include"
   "import"
   "export"
   "as"
+  "with"
 ] @keyword.import
 
 [
@@ -127,8 +131,6 @@
   "s64"
   "f32"
   "f64"
-  "float32" ; deprecated
-  "float64" ; deprecated
   "char"
   "bool"
   "string"
@@ -140,6 +142,8 @@
   "option"
   "result"
   "borrow"
+  "future"
+  "stream"
 ] @type
 
 "_" @variable.parameter.builtin

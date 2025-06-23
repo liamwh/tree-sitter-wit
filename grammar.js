@@ -154,6 +154,7 @@ module.exports = grammar({
 
     func_type: ($) =>
       seq(
+        optional('async'),
         'func',
         field('param_list', $.param_list),
         optional(field('result_list', $.result_list)),
@@ -253,8 +254,6 @@ module.exports = grammar({
           's64',
           'f32',
           'f64',
-          'float32', // deprecated
-          'float64', // deprecated
           'char',
           'bool',
           'string',
@@ -264,6 +263,8 @@ module.exports = grammar({
           $.result,
           $.id,
           $.handle,
+          $.future,
+          $.stream,
         ),
       ),
 
@@ -271,7 +272,13 @@ module.exports = grammar({
 
     tuple_list: ($) => commaSeparatedList($.ty),
 
-    list: ($) => seq('list', '<', $.ty, '>'),
+    uint: _ =>/[1-9][0-9]*/,
+    list: ($) => seq('list',
+      '<',
+      $.ty,
+      optional(field('size', seq(',', $.uint))),
+      '>',
+    ),
 
     option: ($) => seq('option', '<', $.ty, '>'),
 
@@ -288,6 +295,8 @@ module.exports = grammar({
       ),
 
     handle: ($) => prec(0, choice($.id, seq('borrow', '<', $.id, '>'))),
+    future: ($) => seq('future', optional(seq('<', $.ty, '>'))),
+    stream: ($) => seq('stream', optional(seq('<', $.ty, '>'))),
 
 
     comment: $ => choice(
