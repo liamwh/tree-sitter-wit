@@ -2,13 +2,17 @@
 # ^ A shebang isn't required, but allows a justfile to be executed
 #   like a script, with `./justfile test`, for example.
 
+green := "\\033[32m"
+yellow := "\\033[33m"
+reset := "\\033[0m"
+
 # Show available commands
 default:
     @just --list --justfile {{ justfile() }}
 
 # regenerate tree-sitter bindings
 regen:
-    rm CMakeLists.txt Makefile Package.swift binding.gyp go.mod pyproject.toml setup.py
+    rm CMakeLists.txt Makefile Package.swift binding.gyp go.mod pyproject.toml setup.py || true
     rm -rf bindings
     tree-sitter init --update
 
@@ -53,8 +57,22 @@ lint:
     typos
     just --fmt --unstable --check
 
-alias fmt-grammar := format-grammar
-
 # Format the grammar
 format-grammar:
     npx eslint --fix grammar.js
+
+fmt: format-grammar
+    just --fmt --unstable
+
+# updates node package.json to latest available
+update:
+    pnpm outdated --format json | jq  'keys[]' | xargs pnpm update
+    cargo upgrade && cargo update
+
+# updates node package.json to latest available
+outdated:
+    @printf '{{ yellow }}=={{ reset }}NPM{{ yellow }}=={{ reset }}\n'
+    npx outdated -y || true # `npoutdated` returns exit code 1 on finding outdated stuff ?!
+    @printf '{{ yellow }}={{ reset }}Cargo{{ yellow }}={{ reset }}\n'
+    cargo outdated -d 1
+    @printf '{{ yellow }}======={{ reset }}\n'

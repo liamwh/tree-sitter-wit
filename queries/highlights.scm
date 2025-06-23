@@ -171,12 +171,17 @@
 
 
 [
+  "@"
+] @punctuation.special
+
+[
   ";"
   ":"
   ","
   "."
   "->"
 ] @punctuation.delimiter
+(use_path "/" @punctuation.delimiter)
 
 [
   "{"
