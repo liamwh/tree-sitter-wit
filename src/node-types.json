@@ -1,5 +1,68 @@
 [
   {
+    "type": "_gate_item",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "deprecated_gate",
+        "named": true
+      },
+      {
+        "type": "since_gate",
+        "named": true
+      },
+      {
+        "type": "unstable_gate",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "_typedef_item",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "enum_items",
+        "named": true
+      },
+      {
+        "type": "flags_items",
+        "named": true
+      },
+      {
+        "type": "record_item",
+        "named": true
+      },
+      {
+        "type": "resource_item",
+        "named": true
+      },
+      {
+        "type": "type_item",
+        "named": true
+      },
+      {
+        "type": "variant_items",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "alias_item",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "block_comment",
     "named": true,
     "fields": {
@@ -16,7 +79,96 @@
     }
   },
   {
-    "type": "enum_body",
+    "type": "body",
+    "named": true,
+    "fields": {
+      "record_fields": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "record_field",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "_gate_item",
+          "named": true
+        },
+        {
+          "type": "_typedef_item",
+          "named": true
+        },
+        {
+          "type": "enum_cases",
+          "named": true
+        },
+        {
+          "type": "export_item",
+          "named": true
+        },
+        {
+          "type": "func_item",
+          "named": true
+        },
+        {
+          "type": "id",
+          "named": true
+        },
+        {
+          "type": "import_item",
+          "named": true
+        },
+        {
+          "type": "include_item",
+          "named": true
+        },
+        {
+          "type": "resource_method",
+          "named": true
+        },
+        {
+          "type": "use_item",
+          "named": true
+        },
+        {
+          "type": "variant_cases",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "definitions",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "alias_item",
+          "named": true
+        },
+        {
+          "type": "use_names_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "deprecated_gate",
     "named": true,
     "fields": {},
     "children": {
@@ -24,7 +176,7 @@
       "required": true,
       "types": [
         {
-          "type": "enum_cases",
+          "type": "version",
           "named": true
         }
       ]
@@ -81,7 +233,7 @@
       "required": true,
       "types": [
         {
-          "type": "enum_body",
+          "type": "body",
           "named": true
         }
       ]
@@ -126,50 +278,20 @@
       "required": true,
       "types": [
         {
-          "type": "func_type",
+          "type": "body",
           "named": true
         },
         {
-          "type": "interface_body",
+          "type": "func_type",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "flags_body",
-    "named": true,
-    "fields": {
-      "flags_fields": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": ",",
-            "named": false
-          },
-          {
-            "type": "id",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "flags_items",
     "named": true,
     "fields": {
-      "body": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "flags_body",
-            "named": true
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
@@ -180,6 +302,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "body",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -211,27 +343,20 @@
   {
     "type": "func_type",
     "named": true,
-    "fields": {
-      "param_list": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "param_list",
-            "named": true
-          }
-        ]
-      },
-      "result_list": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "result_list",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "param_list",
+          "named": true
+        },
+        {
+          "type": "result_list",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -297,106 +422,26 @@
   {
     "type": "include_item",
     "named": true,
-    "fields": {
-      "include_names_body": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "include_names_body",
-            "named": true
-          }
-        ]
-      },
-      "use_path": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "use_path",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "include_names_body",
-    "named": true,
-    "fields": {
-      "include_names_list": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "include_names_list",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "include_names_item",
-    "named": true,
     "fields": {},
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "id",
+          "type": "definitions",
+          "named": true
+        },
+        {
+          "type": "use_path",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "include_names_list",
-    "named": true,
-    "fields": {
-      "include_names_item": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "include_names_item",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "interface_body",
-    "named": true,
-    "fields": {
-      "interface_items": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "interface_items",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "interface_item",
     "named": true,
     "fields": {
-      "body": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "interface_body",
-            "named": true
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
@@ -407,42 +452,20 @@
           }
         ]
       }
-    }
-  },
-  {
-    "type": "interface_items",
-    "named": true,
-    "fields": {
-      "func": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "func_item",
-            "named": true
-          }
-        ]
-      },
-      "typedef": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "typedef_item",
-            "named": true
-          }
-        ]
-      },
-      "use": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "use_item",
-            "named": true
-          }
-        ]
-      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_gate_item",
+          "named": true
+        },
+        {
+          "type": "body",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -518,21 +541,6 @@
     }
   },
   {
-    "type": "named_type_list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "named_type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "option",
     "named": true,
     "fields": {},
@@ -560,7 +568,7 @@
           "named": true
         },
         {
-          "type": "valid_semver",
+          "type": "version",
           "named": true
         }
       ]
@@ -571,34 +579,14 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
-          "type": "named_type_list",
+          "type": "named_type",
           "named": true
         }
       ]
-    }
-  },
-  {
-    "type": "record_body",
-    "named": true,
-    "fields": {
-      "record_fields": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": ",",
-            "named": false
-          },
-          {
-            "type": "record_field",
-            "named": true
-          }
-        ]
-      }
     }
   },
   {
@@ -631,16 +619,6 @@
     "type": "record_item",
     "named": true,
     "fields": {
-      "body": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "record_body",
-            "named": true
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
@@ -651,18 +629,13 @@
           }
         ]
       }
-    }
-  },
-  {
-    "type": "resource_body",
-    "named": true,
-    "fields": {},
+    },
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
-          "type": "resource_method",
+          "type": "body",
           "named": true
         }
       ]
@@ -681,17 +654,17 @@
             "named": true
           }
         ]
-      },
-      "resource_body": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "resource_body",
-            "named": true
-          }
-        ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "body",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -741,15 +714,30 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
-          "type": "named_type_list",
+          "type": "named_type",
           "named": true
         },
         {
           "type": "ty",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "since_gate",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "version",
           "named": true
         }
       ]
@@ -803,29 +791,25 @@
     "named": true,
     "fields": {
       "alias": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": "as",
-            "named": false
-          },
           {
             "type": "id",
             "named": true
           }
         ]
-      },
-      "path": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "use_path",
-            "named": true
-          }
-        ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "use_path",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -928,38 +912,19 @@
     }
   },
   {
-    "type": "typedef_item",
+    "type": "unstable_gate",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "enum_items",
-          "named": true
-        },
-        {
-          "type": "flags_items",
-          "named": true
-        },
-        {
-          "type": "record_item",
-          "named": true
-        },
-        {
-          "type": "resource_item",
-          "named": true
-        },
-        {
-          "type": "type_item",
-          "named": true
-        },
-        {
-          "type": "variant_items",
-          "named": true
-        }
-      ]
+    "fields": {
+      "feature": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "id",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -971,7 +936,7 @@
       "required": true,
       "types": [
         {
-          "type": "use_names_list",
+          "type": "definitions",
           "named": true
         },
         {
@@ -986,30 +951,18 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "alias_item",
+          "named": true
+        },
         {
           "type": "id",
           "named": true
         }
       ]
-    }
-  },
-  {
-    "type": "use_names_list",
-    "named": true,
-    "fields": {
-      "use_names_item": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "use_names_item",
-            "named": true
-          }
-        ]
-      }
     }
   },
   {
@@ -1025,22 +978,7 @@
           "named": true
         },
         {
-          "type": "valid_semver",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "variant_body",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "variant_cases",
+          "type": "version",
           "named": true
         }
       ]
@@ -1091,16 +1029,6 @@
     "type": "variant_items",
     "named": true,
     "fields": {
-      "body": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "variant_body",
-            "named": true
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
@@ -1111,38 +1039,22 @@
           }
         ]
       }
-    }
-  },
-  {
-    "type": "world_body",
-    "named": true,
-    "fields": {
-      "world_items": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "world_items",
-            "named": true
-          }
-        ]
-      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "body",
+          "named": true
+        }
+      ]
     }
   },
   {
     "type": "world_item",
     "named": true,
     "fields": {
-      "body": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "world_body",
-            "named": true
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
@@ -1153,62 +1065,20 @@
           }
         ]
       }
-    }
-  },
-  {
-    "type": "world_items",
-    "named": true,
-    "fields": {
-      "export_item": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "export_item",
-            "named": true
-          }
-        ]
-      },
-      "import_item": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "import_item",
-            "named": true
-          }
-        ]
-      },
-      "include_item": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "include_item",
-            "named": true
-          }
-        ]
-      },
-      "typedef_item": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "typedef_item",
-            "named": true
-          }
-        ]
-      },
-      "use_item": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "use_item",
-            "named": true
-          }
-        ]
-      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_gate_item",
+          "named": true
+        },
+        {
+          "type": "body",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1300,6 +1170,10 @@
     "named": false
   },
   {
+    "type": "deprecated",
+    "named": false
+  },
+  {
     "type": "doc_comment",
     "named": true
   },
@@ -1317,6 +1191,10 @@
   },
   {
     "type": "f64",
+    "named": false
+  },
+  {
+    "type": "feature",
     "named": false
   },
   {
@@ -1388,6 +1266,10 @@
     "named": false
   },
   {
+    "type": "since",
+    "named": false
+  },
+  {
     "type": "static",
     "named": false
   },
@@ -1428,15 +1310,23 @@
     "named": true
   },
   {
+    "type": "unstable",
+    "named": false
+  },
+  {
     "type": "use",
     "named": false
   },
   {
-    "type": "valid_semver",
+    "type": "variant",
+    "named": false
+  },
+  {
+    "type": "version",
     "named": true
   },
   {
-    "type": "variant",
+    "type": "version",
     "named": false
   },
   {

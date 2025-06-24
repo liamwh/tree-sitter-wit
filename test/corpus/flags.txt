@@ -15,12 +15,10 @@ interface foo {
 (source_file
   (interface_item
     (id)
-    (interface_body
-      (interface_items
-        (typedef_item
-          (flags_items
-            (id)
-            (flags_body
-              (id)
-              (id)
-              (id))))))))
+    (body
+      (flags_items
+        (id)
+        (body
+          (id)
+          (id)
+          (id))))))

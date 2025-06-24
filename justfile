@@ -16,6 +16,8 @@ regen:
     rm -rf bindings
     tree-sitter init --update
 
+alias gen := generate
+
 # Generate the c parser from the grammar.
 generate:
     tree-sitter generate
@@ -36,20 +38,28 @@ remove-local:
 install-local: remove-local
     cp -r ./queries ~/.local/share/nvim/lazy/nvim-treesitter/queries/wit
 
+fmt:
+    eslint --fix grammar.js
+    ts_query_ls format ./queries
+    # topiary fmt ./examples/*.wit
+    just --fmt --unstable
+    nixfmt flake.nix shell.nix
+
+alias fmt-queries := format-queries
+
 # Format the queries
 format-queries:
     nvim -l scripts/format-queries.lua
 
-# Lint the grammar
-lint-grammar:
+# Lint all the things
+lint:
     npx eslint grammar.js
+    typos
+    just --fmt --unstable --check
 
 # Format the grammar
 format-grammar:
     npx eslint --fix grammar.js
-
-fmt: format-grammar
-    just --fmt --unstable
 
 # updates node package.json to latest available
 update:

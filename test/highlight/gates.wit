@@ -1,0 +1,27 @@
+@since(version = 0.1.0)
+// <- punctuation.special
+// ^ attribute.builtin
+world imports {
+    @since(version = 0.1.0)
+ // ^ punctuation.special
+ //  ^ attribute.builtin
+    @unstable(feature = fancier-foo)
+ //  ^ attribute.builtin
+    //                  ^ string
+    import streams;
+    @deprecated(version = 0.1.0)
+    //                    ^ string.special
+    export streams;
+}
+interface calc {
+    @since(version = 0.1.0)
+    variant calc-error {
+      integer-overflow,
+      integer-underflow,
+      unexpected,
+    }
+
+    @since(version = 0.1.0)
+    add: func(x: s32, y: s32) -> result<s32, calc-error>;
+}
+

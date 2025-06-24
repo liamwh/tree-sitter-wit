@@ -23,226 +23,278 @@ world imports {
 (source_file
   (world_item
     name: (id)
-    body: (world_body
-      world_items: (world_items
-        import_item: (import_item
-          (use_path
-            (id))))
-      world_items: (world_items
-        export_item: (export_item
-          (use_path
-            (id))))
-      world_items: (world_items
-        import_item: (import_item
-          name: (id)
-          (extern_type
-            (interface_body
-              interface_items: (interface_items
-                typedef: (typedef_item
-                  (type_item
-                    alias: (id)
-                    type: (ty))))
-              interface_items: (interface_items
-                func: (func_item
-                  name: (id)
-                  (func_type
-                    param_list: (param_list
-                      (named_type_list
-                        (named_type
-                          name: (id)
-                          type: (ty))))
-                    result_list: (result_list
-                      (ty
-                        (result
-                          (ty)
-                          (ty
-                            (id))))))))))))
-      world_items: (world_items
-        export_item: (export_item
-          name: (id)
-          (extern_type
-            (interface_body
-              interface_items: (interface_items
-                typedef: (typedef_item
-                  (type_item
-                    alias: (id)
-                    type: (ty))))
-              interface_items: (interface_items
-                func: (func_item
-                  name: (id)
-                  (func_type
-                    param_list: (param_list
-                      (named_type_list
-                        (named_type
-                          name: (id)
-                          type: (ty))))
-                    result_list: (result_list
-                      (ty
-                        (result
-                          (ty)
-                          (ty
-                            (id))))))))))))
-      world_items: (world_items
-        import_item: (import_item
-          name: (id)
-          (extern_type
-            (func_type
-              param_list: (param_list
-                (named_type_list
+    (body
+      (import_item
+        (use_path
+          (id)))
+      (export_item
+        (use_path
+          (id)))
+      (import_item
+        name: (id)
+        (extern_type
+          (body
+            (type_item
+              alias: (id)
+              type: (ty))
+            (func_item
+              name: (id)
+              (func_type
+                (param_list
                   (named_type
                     name: (id)
-                    type: (ty))))
-              result_list: (result_list
+                    type: (ty)))
+                (result_list
+                  (ty
+                    (result
+                      (ty)
+                      (ty
+                        (id))))))))))
+      (export_item
+        name: (id)
+        (extern_type
+          (body
+            (type_item
+              alias: (id)
+              type: (ty))
+            (func_item
+              name: (id)
+              (func_type
+                (param_list
+                  (named_type
+                    name: (id)
+                    type: (ty)))
+                (result_list
+                  (ty
+                    (result
+                      (ty)
+                      (ty
+                        (id))))))))))
+      (import_item
+        name: (id)
+        (extern_type
+          (func_type
+            (param_list
+              (named_type
+                name: (id)
+                type: (ty)))
+            (result_list
+              (ty
+                (result
+                  (ty)
+                  (ty
+                    (id)))))))))))
+
+==================
+Union
+==================
+package local:demo;
+
+world world-one { import a: func(); }
+world world-two { import a: func(); }
+
+world union-my-world-a {
+    include world-one;
+    include world-two with { a as b }
+}
+
+world union-my-world-b {
+    import a: func();
+    import b: func();
+}
+
+---
+
+(source_file
+  (package_decl
+    (id)
+    (id))
+  (world_item
+    (id)
+    (body
+      (import_item
+        (id)
+        (extern_type
+          (func_type
+            (param_list))))))
+  (world_item
+    (id)
+    (body
+      (import_item
+        (id)
+        (extern_type
+          (func_type
+            (param_list))))))
+  (world_item
+    (id)
+    (body
+      (include_item
+        (use_path
+          (id)))
+      (include_item
+        (use_path
+          (id))
+        (definitions
+          (alias_item
+            (id)
+            (id))))))
+  (world_item
+    (id)
+    (body
+      (import_item
+        (id)
+        (extern_type
+          (func_type
+            (param_list))))
+      (import_item
+        (id)
+        (extern_type
+          (func_type
+            (param_list)))))))
+
+==================
+Union
+==================
+package local:demo;
+
+world world-one { import a: func(); }
+world world-two { import a: func(); }
+
+world union-my-world-a {
+    include world-one;
+    include world-two with { a as b }
+}
+
+world union-my-world-b {
+    import a: func();
+    import b: func();
+}
+
+---
+
+(source_file
+  (package_decl
+    (id)
+    (id))
+  (world_item
+    (id)
+    (body
+      (import_item
+        (id)
+        (extern_type
+          (func_type
+            (param_list))))))
+  (world_item
+    (id)
+    (body
+      (import_item
+        (id)
+        (extern_type
+          (func_type
+            (param_list))))))
+  (world_item
+    (id)
+    (body
+      (include_item
+        (use_path
+          (id)))
+      (include_item
+        (use_path
+          (id))
+        (definitions
+          (alias_item
+            (id)
+            (id))))))
+  (world_item
+    (id)
+    (body
+      (import_item
+        (id)
+        (extern_type
+          (func_type
+            (param_list))))
+      (import_item
+        (id)
+        (extern_type
+          (func_type
+            (param_list)))))))
+
+==================
+Gates
+==================
+@since(version = 0.1.0)
+world imports {
+    @since(version = 0.1.0)
+    @unstable(feature = fancier-foo)
+    import streams;
+    @deprecated(version = 0.1.0)
+    export streams;
+}
+interface calc {
+    @since(version = 0.1.0)
+    variant calc-error {
+      integer-overflow,
+      integer-underflow,
+      unexpected,
+    }
+
+    @since(version = 0.1.0)
+    add: func(x: i32, y: i32) -> result<i32, calc-error>;
+}
+
+---
+
+(source_file
+  (world_item
+    (since_gate
+      (version))
+    (id)
+    (body
+      (since_gate
+        (version))
+      (unstable_gate
+        (id))
+      (import_item
+        (use_path
+          (id)))
+      (deprecated_gate
+        (version))
+      (export_item
+        (use_path
+          (id)))))
+  (interface_item
+    (id)
+    (body
+      (since_gate
+        (version))
+      (variant_items
+        (id)
+        (body
+          (variant_cases
+            (variant_case
+              (id))
+            (variant_case
+              (id))
+            (variant_case
+              (id)))))
+      (since_gate
+        (version))
+      (func_item
+        (id)
+        (func_type
+          (param_list
+            (named_type
+              (id)
+              (ty
+                (id)))
+            (named_type
+              (id)
+              (ty
+                (id))))
+          (result_list
+            (ty
+              (result
                 (ty
-                  (result
-                    (ty)
-                    (ty
-                      (id))))))))))))
-
-==================
-Union
-==================
-package local:demo;
-
-world world-one { import a: func(); }
-world world-two { import a: func(); }
-
-world union-my-world-a {
-    include world-one;
-    include world-two with { a as b }
-}
-
-world union-my-world-b {
-    import a: func();
-    import b: func();
-}
-
----
-
-(source_file
-  (package_decl
-    (id)
-    (id))
-  (world_item
-    (id)
-    (world_body
-      (world_items
-        (import_item
-          (id)
-          (extern_type
-            (func_type
-              (param_list)))))))
-  (world_item
-    (id)
-    (world_body
-      (world_items
-        (import_item
-          (id)
-          (extern_type
-            (func_type
-              (param_list)))))))
-  (world_item
-    (id)
-    (world_body
-      (world_items
-        (include_item
-          (use_path
-            (id))))
-      (world_items
-        (include_item
-          (use_path
-            (id))
-          (include_names_body
-            (include_names_list
-              (include_names_item
-                (id)
-                (id))))))))
-  (world_item
-    (id)
-    (world_body
-      (world_items
-        (import_item
-          (id)
-          (extern_type
-            (func_type
-              (param_list)))))
-      (world_items
-        (import_item
-          (id)
-          (extern_type
-            (func_type
-              (param_list))))))))
-
-==================
-Union
-==================
-package local:demo;
-
-world world-one { import a: func(); }
-world world-two { import a: func(); }
-
-world union-my-world-a {
-    include world-one;
-    include world-two with { a as b }
-}
-
-world union-my-world-b {
-    import a: func();
-    import b: func();
-}
-
----
-
-(source_file
-  (package_decl
-    (id)
-    (id))
-  (world_item
-    (id)
-    (world_body
-      (world_items
-        (import_item
-          (id)
-          (extern_type
-            (func_type
-              (param_list)))))))
-  (world_item
-    (id)
-    (world_body
-      (world_items
-        (import_item
-          (id)
-          (extern_type
-            (func_type
-              (param_list)))))))
-  (world_item
-    (id)
-    (world_body
-      (world_items
-        (include_item
-          (use_path
-            (id))))
-      (world_items
-        (include_item
-          (use_path
-            (id))
-          (include_names_body
-            (include_names_list
-              (include_names_item
-                (id)
-                (id))))))))
-  (world_item
-    (id)
-    (world_body
-      (world_items
-        (import_item
-          (id)
-          (extern_type
-            (func_type
-              (param_list)))))
-      (world_items
-        (import_item
-          (id)
-          (extern_type
-            (func_type
-              (param_list))))))))
+                  (id))
+                (ty
+                  (id))))))))))
