@@ -40,8 +40,8 @@ install-local: remove-local
 
 fmt:
     eslint --fix grammar.js
-    # topiary fmt ./queries/*.scm
-    topiary fmt ./examples/*.wit
+    ts_query_ls format ./queries
+    # topiary fmt ./examples/*.wit
     just --fmt --unstable
     nixfmt flake.nix shell.nix
 
