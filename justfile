@@ -41,7 +41,7 @@ install-local: remove-local
 fmt:
     eslint --fix grammar.js
     # topiary fmt ./queries/*.scm
-    # topiary fmt ./examples/*.wit
+    topiary fmt ./examples/*.wit
     just --fmt --unstable
     nixfmt flake.nix shell.nix
 
@@ -60,9 +60,6 @@ lint:
 # Format the grammar
 format-grammar:
     npx eslint --fix grammar.js
-
-fmt: format-grammar
-    just --fmt --unstable
 
 # updates node package.json to latest available
 update:
