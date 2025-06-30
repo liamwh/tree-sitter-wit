@@ -1,7 +1,7 @@
 /**
  * @file WIT grammar for tree-sitter
  * @author Liam Woodleigh-Hardinge <liam.woodleigh@gmail.com>
- * @license MIT
+ * @license Apache-2.0 WITH LLVM-exception
  */
 
 /// <reference types="tree-sitter-cli/dsl" />
